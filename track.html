@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Application Status - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s ease;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .card-base {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+    }
+    /* Vertical Timeline */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 36px;
+      bottom: -16px;
+      width: 2px;
+      background: #E2E8F0;
+    }
+    .timeline-item:last-child::before {
+      display: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all content) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-6 py-8 flex-1 w-full">
+    
+    <div class="mb-6">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">Live e-District Verification</span>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">Track Your Application Status</h1>
+      <p class="text-sm text-slate-600">
+        Enter your Application Reference Number or registered mobile number to view live processing stages and issuing authority remarks.
+      </p>
+    </div>
+
+    <!-- Search / Tracker Input Box -->
+    <div class="card-base p-6 mb-8">
+      <div class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1">
+          <input 
+            type="text" 
+            id="trackInput" 
+            placeholder="Enter Reference Number (e.g. CS-2026-849201) or 10-digit Mobile..." 
+            value="CS-2026-849201"
+            class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] font-mono tracking-wider font-semibold text-slate-800"
+          />
+          <svg class="w-5 h-5 text-slate-400 absolute left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <button onclick="searchStatus()" class="btn-official-stone px-8 py-3 text-sm font-bold flex items-center justify-center space-x-2 shrink-0">
+          <span>Track Application</span>
+          <span>&rarr;</span>
+        </button>
+      </div>
+      <div class="flex items-center space-x-4 mt-3 text-xs text-slate-500">
+        <span>Try demo reference numbers:</span>
+        <button onclick="setTrack('CS-2026-849201')" class="text-[#8D8179] font-mono font-bold hover:underline">CS-2026-849201</button>
+        <span>•</span>
+        <button onclick="setTrack('CS-2026-104928')" class="text-[#8D8179] font-mono font-bold hover:underline">CS-2026-104928 (Approved)</button>
+      </div>
+    </div>
+
+    <!-- Live Status Result Card -->
+    <div class="card-base p-8 mb-8" id="resultContainer">
+      
+      <!-- Top Overview Header -->
+      <div class="flex flex-col sm:flex-row justify-between sm:items-center pb-6 border-b border-slate-100 gap-4 mb-6">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-mono font-bold text-slate-500">REF:</span>
+            <span class="text-base font-mono font-extrabold text-slate-900" id="dispRef">CS-2026-849201</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-300" id="dispBadge">Under Field Scrutiny</span>
+          </div>
+          <h2 class="text-lg font-bold text-slate-900 mt-1" id="dispService">Income Certificate (Aay Praman Patra)</h2>
+          <p class="text-xs text-slate-500">Applicant: <strong class="text-slate-800" id="dispApplicant">Abhyuday Sharma</strong> | Applied on: 21 Sep 2026</p>
+        </div>
+
+        <div class="text-left sm:text-right">
+          <span class="text-xs text-slate-500 block">SLA Target Resolution:</span>
+          <span class="text-sm font-bold text-emerald-700 block" id="dispSLA">28 Sep 2026 (In Progress)</span>
+          <span class="text-[11px] text-slate-400">Assigned: Tehsildar Sub-Division Central</span>
+        </div>
+      </div>
+
+      <!-- 4-Stage Timeline -->
+      <div class="space-y-6 relative ml-2" id="timelineList">
+
+        <!-- Stage 1 -->
+        <div class="timeline-item relative flex items-start space-x-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shrink-0 border-2 border-emerald-500">
+            ✓
+          </div>
+          <div class="flex-1 pt-1">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-slate-900 text-sm">Stage 1: Application Registered & Acknowledged</h3>
+              <span class="text-[11px] text-slate-400">21 Sep 2026, 19:45 IST</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">Application submitted via Digital Portal. Initial KYC and Aadhaar authentication passed successfully.</p>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="timeline-item relative flex items-start space-x-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shrink-0 border-2 border-emerald-500">
+            ✓
+          </div>
+          <div class="flex-1 pt-1">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-slate-900 text-sm">Stage 2: Desk Scrutiny by Revenue Inspector (RI)</h3>
+              <span class="text-[11px] text-slate-400">22 Sep 2026, 11:20 IST</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">Uploaded documentation (Salary Slip, Residential Registry, Identity Proof) scrutinized and approved for ground report.</p>
+          </div>
+        </div>
+
+        <!-- Stage 3 (Active) -->
+        <div class="timeline-item relative flex items-start space-x-4">
+          <div class="w-10 h-10 rounded-full bg-[#8D8179] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md shadow-[#8D8179]/30 ring-4 ring-[#8D8179]/20">
+            3
+          </div>
+          <div class="flex-1 pt-1">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-slate-900 text-sm text-[#8D8179]">Stage 3: Field Verification by Patwari / Lekhpal (Active)</h3>
+              <span class="text-[11px] font-bold text-[#8D8179] bg-[#8D8179]/10 px-2 py-0.5 rounded">In Progress</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">Assigned Officer Shri Sunil Kumar (Patwari, Ward 12). Physical and municipal income verification underway. Report expected within 48 hours.</p>
+          </div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="timeline-item relative flex items-start space-x-4">
+          <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm shrink-0 border border-slate-300">
+            4
+          </div>
+          <div class="flex-1 pt-1 opacity-60">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-slate-900 text-sm">Stage 4: Tehsildar Digital Signature & e-Certificate Issuance</h3>
+              <span class="text-[11px] text-slate-400">Pending Stage 3</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5">Official digital certificate generation with verifiable QR code and automatic dispatch to your DigiLocker.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tracker Actions -->
+      <div class="mt-8 pt-6 border-t border-slate-100 flex flex-wrap justify-between items-center gap-3">
+        <button onclick="window.print()" class="px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold">
+          🖨️ Print Status Report
+        </button>
+        <div class="flex space-x-2">
+          <a href="./support.html" class="px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold">
+            Raise Delayed Inquiry
+          </a>
+          <button onclick="alert('Notification alert subscribed: Updates will be sent to registered mobile via SMS.')" class="btn-official-stone px-4 py-2 text-xs">
+            Subscribe SMS Updates
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <span class="font-bold text-slate-900">CivicSeva Application Tracker</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-500">Government of India</span>
+      </div>
+      <div class="flex space-x-4 text-slate-500">
+        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
+        <a href="./services.html" class="hover:text-[#8D8179]">Services</a>
+        <a href="./apply.html" class="hover:text-[#8D8179]">Apply</a>
+        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function setTrack(ref) {
+      document.getElementById('trackInput').value = ref;
+      searchStatus();
+    }
+
+    function searchStatus() {
+      const val = document.getElementById('trackInput').value.trim();
+      if (!val) {
+        alert('Please enter an application reference number.');
+        return;
+      }
+
+      if (val === 'CS-2026-104928') {
+        document.getElementById('dispRef').innerText = 'CS-2026-104928';
+        document.getElementById('dispBadge').innerText = 'Approved & Issued';
+        document.getElementById('dispBadge').className = 'px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-300';
+        document.getElementById('dispSLA').innerText = 'Completed on 18 Sep 2026';
+
+        document.getElementById('timelineList').innerHTML = `
+          <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-center justify-between mb-4">
+            <div class="flex items-center space-x-3">
+              <span class="text-2xl">🎖️</span>
+              <div>
+                <strong class="text-sm block">Certificate Officially Issued & Signed</strong>
+                <span class="text-xs text-emerald-700">Digital signature verified with Government of India CCA certificate authority.</span>
+              </div>
+            </div>
+            <button onclick="alert('Downloading digitally signed e-Certificate PDF...')" class="btn-official-stone px-4 py-2 text-xs">Download e-Certificate</button>
+          </div>
+        `;
+      } else {
+        document.getElementById('dispRef').innerText = val;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const r = params.get('ref');
+      if (r) {
+        document.getElementById('trackInput').value = r;
+        searchStatus();
+      }
+    });
+  </script>
+  <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
+  <script src="./assets/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Service Centers - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s ease;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .btn-outline-stone {
+      background-color: #FFFFFF;
+      color: #4A4541;
+      border: 1.5px solid #D5CFCB;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .btn-outline-stone:hover {
+      border-color: #8D8179;
+      color: #8D8179;
+      background-color: #FAF8F7;
+    }
+    .card-base {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+      transition: all 0.2s ease;
+    }
+    .card-base:hover {
+      border-color: #8D8179;
+      box-shadow: 0 8px 20px -2px rgba(141, 129, 121, 0.16);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all content) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
+    
+    <div class="mb-6">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">Physical Assisted Touchpoints</span>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">Find Your Nearest Citizen Service Center (CSC)</h1>
+      <p class="text-sm text-slate-600">
+        Need in-person assistance with biometric scanning, document notarization, or physical fee deposits? Locate certified CSC e-Seva Kendras near you.
+      </p>
+    </div>
+
+    <!-- Search / Filter Bar -->
+    <div class="card-base p-6 mb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">State / UT</label>
+          <select id="centerState" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+            <option>All States</option>
+            <option selected>Uttar Pradesh</option>
+            <option>Delhi NCR</option>
+            <option>Maharashtra</option>
+            <option>Madhya Pradesh</option>
+            <option>Karnataka</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">District / City</label>
+          <select id="centerDistrict" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+            <option selected>Central City / District HQ</option>
+            <option>North Sub-Division</option>
+            <option>South Sub-Division</option>
+            <option>Rural Block East</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pincode (Optional)</label>
+          <input type="text" id="centerPincode" placeholder="e.g. 208001" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+        </div>
+        <div class="flex items-end">
+          <button onclick="filterCenters()" class="btn-official-stone w-full py-2.5 text-sm font-bold flex items-center justify-center space-x-2">
+            <span>Locate Centers</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Listings Header -->
+    <div class="flex justify-between items-center mb-4 px-1">
+      <h2 class="text-base font-bold text-slate-900" id="centerCount">Verified Service Centers (4 Nearby)</h2>
+      <span class="text-xs text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200 font-bold">● Government Authorized</span>
+    </div>
+
+    <!-- Center Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="centersContainer">
+
+      <!-- Center 1 -->
+      <div class="card-base p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">CSC ID: UP-KAN-8491</span>
+              <h3 class="text-base font-bold text-slate-900 mt-1">Digital Seva Kendra (Tehsil Complex)</h3>
+            </div>
+            <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">0.8 km away</span>
+          </div>
+          
+          <p class="text-xs text-slate-600 mb-3">
+            <strong>Address:</strong> Room No. 4, Sub-Divisional Magistrate Office Complex, Civil Lines, Kanpur - 208001
+          </p>
+
+          <div class="text-xs text-slate-600 space-y-1 mb-4 bg-slate-50 p-3 rounded-lg">
+            <div><span class="font-semibold text-slate-800">Operator (VLE):</span> Shri Ramesh Chandra Saxena</div>
+            <div><span class="font-semibold text-slate-800">Phone:</span> +91 94150 XXXXX / 0512-230XXXX</div>
+            <div><span class="font-semibold text-slate-800">Timing:</span> Mon – Sat: 09:30 AM – 05:30 PM (Sun Closed)</div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Aadhaar Biometric</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Income/Caste Certificate</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Ayushman Card Print</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">DBT Banking</span>
+          </div>
+        </div>
+
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <button onclick="alert('Calling Center: +91 94150 XXXXX')" class="btn-outline-stone flex-1 py-2 text-center text-xs">Call Center</button>
+          <button onclick="alert('Launching Google Maps Navigation to Tehsil Complex...')" class="btn-official-stone flex-1 py-2 text-center text-xs">Get Directions &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Center 2 -->
+      <div class="card-base p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">CSC ID: UP-KAN-9021</span>
+              <h3 class="text-base font-bold text-slate-900 mt-1">Apna e-Seva Kendra - Mall Road</h3>
+            </div>
+            <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">2.1 km away</span>
+          </div>
+          
+          <p class="text-xs text-slate-600 mb-3">
+            <strong>Address:</strong> Shop 12, Municipal Market, Near Head Post Office, Mall Road - 208001
+          </p>
+
+          <div class="text-xs text-slate-600 space-y-1 mb-4 bg-slate-50 p-3 rounded-lg">
+            <div><span class="font-semibold text-slate-800">Operator (VLE):</span> Smt. Sunita Devi</div>
+            <div><span class="font-semibold text-slate-800">Phone:</span> +91 98391 XXXXX</div>
+            <div><span class="font-semibold text-slate-800">Timing:</span> Mon – Sat: 10:00 AM – 06:30 PM</div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Ration Card Application</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Driving License Slot Booking</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">FASTag Recharge</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Pension e-KYC</span>
+          </div>
+        </div>
+
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <button onclick="alert('Calling Center: +91 98391 XXXXX')" class="btn-outline-stone flex-1 py-2 text-center text-xs">Call Center</button>
+          <button onclick="alert('Launching Google Maps Navigation...')" class="btn-official-stone flex-1 py-2 text-center text-xs">Get Directions &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Center 3 -->
+      <div class="card-base p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">CSC ID: UP-KAN-1102</span>
+              <h3 class="text-base font-bold text-slate-900 mt-1">Gram Panchayat e-Mitra Kendra (Bithoor)</h3>
+            </div>
+            <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">5.4 km away</span>
+          </div>
+          
+          <p class="text-xs text-slate-600 mb-3">
+            <strong>Address:</strong> Gram Panchayat Bhawan, Main Road Bithoor Block - 209217
+          </p>
+
+          <div class="text-xs text-slate-600 space-y-1 mb-4 bg-slate-50 p-3 rounded-lg">
+            <div><span class="font-semibold text-slate-800">Operator (VLE):</span> Shri Manoj Yadav</div>
+            <div><span class="font-semibold text-slate-800">Phone:</span> +91 94520 XXXXX</div>
+            <div><span class="font-semibold text-slate-800">Timing:</span> Mon – Sat: 08:30 AM – 04:30 PM</div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">PM-KISAN e-KYC</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soil Health Cards</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Crop Insurance</span>
+          </div>
+        </div>
+
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <button onclick="alert('Calling Center...')" class="btn-outline-stone flex-1 py-2 text-center text-xs">Call Center</button>
+          <button onclick="alert('Launching Google Maps Navigation...')" class="btn-official-stone flex-1 py-2 text-center text-xs">Get Directions &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Center 4 -->
+      <div class="card-base p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">CSC ID: UP-KAN-7811</span>
+              <h3 class="text-base font-bold text-slate-900 mt-1">Swarajya Citizen Suvidha Kendra - Govind Nagar</h3>
+            </div>
+            <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">3.7 km away</span>
+          </div>
+          
+          <p class="text-xs text-slate-600 mb-3">
+            <strong>Address:</strong> B-Block Commercial Complex, Near Water Tank, Govind Nagar - 208006
+          </p>
+
+          <div class="text-xs text-slate-600 space-y-1 mb-4 bg-slate-50 p-3 rounded-lg">
+            <div><span class="font-semibold text-slate-800">Operator (VLE):</span> Shri Amit Trivedi</div>
+            <div><span class="font-semibold text-slate-800">Phone:</span> +91 97931 XXXXX</div>
+            <div><span class="font-semibold text-slate-800">Timing:</span> Mon – Sun: 10:00 AM – 07:00 PM</div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Electricity Bill Payment</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Passport Seva Form</span>
+            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Birth/Death Registration</span>
+          </div>
+        </div>
+
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <button onclick="alert('Calling Center...')" class="btn-outline-stone flex-1 py-2 text-center text-xs">Call Center</button>
+          <button onclick="alert('Launching Google Maps Navigation...')" class="btn-official-stone flex-1 py-2 text-center text-xs">Get Directions &rarr;</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <span class="font-bold text-slate-900">CivicSeva CSC Directory</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-500">Ministry of Electronics & IT (MeitY)</span>
+      </div>
+      <div class="flex space-x-4 text-slate-500">
+        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
+        <a href="./services.html" class="hover:text-[#8D8179]">Services</a>
+        <a href="./apply.html" class="hover:text-[#8D8179]">Apply</a>
+        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterCenters() {
+      const pin = document.getElementById('centerPincode').value.trim();
+      if (pin) {
+        document.getElementById('centerCount').innerText = `Verified Service Centers near Pincode ${pin} (2 Found)`;
+      } else {
+        document.getElementById('centerCount').innerText = 'Verified Service Centers (4 Nearby)';
+      }
+    }
+  </script>
+  <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
+  <script src="./assets/common.js"></script>
+</body>
+</html>

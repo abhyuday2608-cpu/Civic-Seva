@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Eligibility - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s ease;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .card-base {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all content) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
+    
+    <div class="mb-6">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">AI Citizen Assistance</span>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">Check Your Eligibility for Government Benefits</h1>
+      <p class="text-sm text-slate-600">
+        Answer a few simple profile questions below. Our algorithmic matcher will instantly calculate which Central and State schemes you qualify for.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left: Interactive Eligibility Form (5 cols) -->
+      <div class="lg:col-span-5">
+        <div class="card-base p-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+            <h2 class="font-bold text-slate-900 text-base">Your Citizen Profile</h2>
+            <button onclick="resetProfile()" class="text-xs text-[#8D8179] hover:underline font-semibold">Reset All</button>
+          </div>
+
+          <form id="eligibilityForm" onsubmit="event.preventDefault(); evaluateEligibility();" class="space-y-4">
+            
+            <!-- Age Group -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Age Group</label>
+              <select id="userAge" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option value="student">Youth / Student (Below 25 yrs)</option>
+                <option value="adult" selected>Adult (25 to 59 yrs)</option>
+                <option value="senior">Senior Citizen (60+ yrs)</option>
+              </select>
+            </div>
+
+            <!-- Gender -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Gender</label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#8D8179] has-[:checked]:bg-[#8D8179]/10">
+                  <input type="radio" name="gender" value="all" checked class="hidden"> All / Any
+                </label>
+                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#8D8179] has-[:checked]:bg-[#8D8179]/10">
+                  <input type="radio" name="gender" value="female" class="hidden"> Female
+                </label>
+                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#8D8179] has-[:checked]:bg-[#8D8179]/10">
+                  <input type="radio" name="gender" value="male" class="hidden"> Male
+                </label>
+              </div>
+            </div>
+
+            <!-- Social Category -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Social Category</label>
+              <select id="userCategory" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option value="all">General</option>
+                <option value="ews">Economically Weaker Section (EWS)</option>
+                <option value="obc">Other Backward Class (OBC / NCL)</option>
+                <option value="sc_st">Scheduled Caste (SC) / Scheduled Tribe (ST)</option>
+              </select>
+            </div>
+
+            <!-- Primary Occupation -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Primary Occupation</label>
+              <select id="userOccupation" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option value="farmer">Farmer / Agricultural Worker</option>
+                <option value="salaried" selected>Private / Public Salaried</option>
+                <option value="msme">Small Business / Artisan / Self-Employed</option>
+                <option value="unemployed">Unemployed / Job Seeker</option>
+                <option value="student">Student / Research Scholar</option>
+                <option value="retired">Retired / Pensioner</option>
+              </select>
+            </div>
+
+            <!-- Annual Household Income -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Annual Family Income</label>
+              <select id="userIncome" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option value="low">Below ₹1,00,000 / year (BPL / Antyodaya)</option>
+                <option value="mid" selected>₹1,00,000 – ₹2,50,000 / year</option>
+                <option value="upper_mid">₹2,50,000 – ₹8,00,000 / year</option>
+                <option value="high">Above ₹8,00,000 / year</option>
+              </select>
+            </div>
+
+            <!-- State / UT -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">State / Union Territory</label>
+              <select class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option>All India (Central Schemes)</option>
+                <option>Uttar Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Madhya Pradesh</option>
+                <option>Karnataka</option>
+                <option>Rajasthan</option>
+                <option>Gujarat</option>
+                <option>Tamil Nadu</option>
+                <option>Bihar</option>
+                <option>West Bengal</option>
+              </select>
+            </div>
+
+            <button type="button" onclick="evaluateEligibility()" class="btn-official-stone w-full py-3 text-sm flex items-center justify-center space-x-2 mt-4">
+              <span>Recalculate Eligibility</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Matched Schemes Results (7 cols) -->
+      <div class="lg:col-span-7">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-slate-900" id="schemeMatchTitle">Matched Welfare Schemes (4 Found)</h2>
+          <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full border border-emerald-300">Verified Match Criteria</span>
+        </div>
+
+        <div class="space-y-4" id="matchedList">
+          
+          <!-- Scheme Match 1 -->
+          <div class="card-base p-5 hover:border-[#8D8179] transition">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">100% Eligible</span>
+                <h3 class="text-base font-bold text-slate-900 mt-1">Ayushman Bharat - PMJAY Health Assurance</h3>
+              </div>
+              <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">Ministry of Health</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Covers cashless hospitalization expenses up to ₹5 Lakhs per family per year at empaneled public and private hospitals across India.
+            </p>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span class="text-xs text-slate-500 font-semibold">Benefit: <strong class="text-slate-900">₹5,00,000 Free Cover</strong></span>
+              <a href="./apply.html?service=ayushman" class="btn-official-stone px-4 py-1.5 text-xs">Apply For Ayushman Card &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Scheme Match 2 -->
+          <div class="card-base p-5 hover:border-[#8D8179] transition">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">100% Eligible</span>
+                <h3 class="text-base font-bold text-slate-900 mt-1">Pradhan Mantri Awas Yojana (PMAY-Urban / Gramin)</h3>
+              </div>
+              <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">Housing & Urban Affairs</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Interest subsidy of up to 6.5% on home loans for first-time home buyers or financial grant of up to ₹1.20 Lakhs for rural pucca house construction.
+            </p>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span class="text-xs text-slate-500 font-semibold">Benefit: <strong class="text-slate-900">Up to ₹2.67 Lakhs Subsidy</strong></span>
+              <a href="./apply.html?service=pmay" class="btn-official-stone px-4 py-1.5 text-xs">Apply Online &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Scheme Match 3 -->
+          <div class="card-base p-5 hover:border-[#8D8179] transition">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">High Match (90%)</span>
+                <h3 class="text-base font-bold text-slate-900 mt-1">PM Suraksha Bima Yojana (Accidental Cover)</h3>
+              </div>
+              <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">Ministry of Finance</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Extremely affordable accidental death and full disability cover of ₹2 Lakh for a nominal premium of ₹20 per year debited directly from bank account.
+            </p>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span class="text-xs text-slate-500 font-semibold">Benefit: <strong class="text-slate-900">₹2 Lakhs Cover @ ₹20/yr</strong></span>
+              <a href="./apply.html?service=pmsby" class="btn-official-stone px-4 py-1.5 text-xs">Enroll Online &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Scheme Match 4 -->
+          <div class="card-base p-5 hover:border-[#8D8179] transition">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-purple-800 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">Income Eligible</span>
+                <h3 class="text-base font-bold text-slate-900 mt-1">EWS / Low Income Certificate Issuance</h3>
+              </div>
+              <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">Revenue Department</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Get an officially certified Income Certificate required to unlock 10% educational/job reservations and institutional scholarships.
+            </p>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+              <span class="text-xs text-slate-500 font-semibold">Benefit: <strong class="text-slate-900">Statutory Certificate</strong></span>
+              <a href="./apply.html?service=income" class="btn-official-stone px-4 py-1.5 text-xs">Apply Now &rarr;</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <span class="font-bold text-slate-900">CivicSeva Eligibility Evaluator</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-500">Government of India</span>
+      </div>
+      <div class="flex space-x-4 text-slate-500">
+        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
+        <a href="./services.html" class="hover:text-[#8D8179]">Services</a>
+        <a href="./schemes.html" class="hover:text-[#8D8179]">Schemes</a>
+        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function evaluateEligibility() {
+      const occ = document.getElementById('userOccupation').value;
+      const age = document.getElementById('userAge').value;
+      const inc = document.getElementById('userIncome').value;
+
+      const container = document.getElementById('matchedList');
+      let schemes = [];
+
+      if (occ === 'farmer') {
+        schemes.push({
+          title: 'PM-KISAN Samman Nidhi',
+          dept: 'Ministry of Agriculture',
+          badge: '100% Eligible',
+          desc: 'Financial support of ₹6,000 per year directly transferred to bank account in three equal installments of ₹2,000.',
+          benefit: '₹6,000 / Year Direct DBT',
+          serviceKey: 'pmkisan'
+        });
+        schemes.push({
+          title: 'Pradhan Mantri Fasal Bima Yojana (PMFBY)',
+          dept: 'Agriculture & Farmers Welfare',
+          badge: '100% Eligible',
+          desc: 'Comprehensive crop insurance coverage against non-preventable natural risks from pre-sowing to post-harvest.',
+          benefit: 'Full Crop Loss Compensation',
+          serviceKey: 'crop'
+        });
+      }
+
+      if (age === 'senior') {
+        schemes.push({
+          title: 'Indira Gandhi National Old Age Pension Scheme (IGNOAPS)',
+          dept: 'Ministry of Rural Development',
+          badge: 'Age Qualified',
+          desc: 'Monthly direct financial pension for senior citizens aged 60 and above belonging to BPL/low-income families.',
+          benefit: 'Monthly Direct Pension',
+          serviceKey: 'pension'
+        });
+        schemes.push({
+          title: 'Pradhan Mantri Vaya Vandana Yojana',
+          dept: 'Life Insurance Corporation / Finance',
+          badge: 'High Match',
+          desc: 'Guaranteed pension scheme providing assured returns of 7.4% p.a. for senior citizens.',
+          benefit: 'Guaranteed 7.4% Monthly Return',
+          serviceKey: 'vaya'
+        });
+      }
+
+      if (age === 'student' || occ === 'student') {
+        schemes.push({
+          title: 'Post-Matric National Scholarship for Higher Education',
+          dept: 'Ministry of Social Justice',
+          badge: '100% Eligible',
+          desc: 'Full course tuition fee reimbursement and monthly living allowance for undergraduate and postgraduate studies.',
+          benefit: 'Up to ₹25,000 / Year',
+          serviceKey: 'scholarship'
+        });
+      }
+
+      // Default core schemes for low/mid income
+      if (inc === 'low' || inc === 'mid') {
+        schemes.push({
+          title: 'Ayushman Bharat PM-JAY Card',
+          dept: 'National Health Authority',
+          badge: '100% Eligible',
+          desc: 'Cashless hospital coverage up to ₹5 Lakhs per family per year at public and private empaneled hospitals.',
+          benefit: '₹5 Lakhs Free Cover',
+          serviceKey: 'ayushman'
+        });
+        schemes.push({
+          title: 'Pradhan Mantri Awas Yojana (PMAY)',
+          dept: 'Housing & Urban Affairs',
+          badge: 'Income Matched',
+          desc: 'Credit linked subsidy or direct construction grant for low-income and EWS households.',
+          benefit: 'Up to ₹2.67 Lakhs Subsidy',
+          serviceKey: 'pmay'
+        });
+      }
+
+      if (schemes.length === 0) {
+        schemes.push({
+          title: 'General Citizen Services & Certificates',
+          dept: 'State Revenue Department',
+          badge: 'Applicable',
+          desc: 'Standard administrative services such as Driving License, Birth Registration, and Property Mutation.',
+          benefit: 'Standard Govt Services',
+          serviceKey: 'general'
+        });
+      }
+
+      document.getElementById('schemeMatchTitle').innerText = `Matched Welfare Schemes (${schemes.length} Found)`;
+
+      container.innerHTML = schemes.map(s => `
+        <div class="card-base p-5 hover:border-[#8D8179] transition">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${s.badge}</span>
+              <h3 class="text-base font-bold text-slate-900 mt-1">${s.title}</h3>
+            </div>
+            <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">${s.dept}</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3">${s.desc}</p>
+          <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+            <span class="text-xs text-slate-500 font-semibold">Benefit: <strong class="text-slate-900">${s.benefit}</strong></span>
+            <a href="./apply.html?service=${s.serviceKey}" class="btn-official-stone px-4 py-1.5 text-xs">Apply Online &rarr;</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function resetProfile() {
+      document.getElementById('eligibilityForm').reset();
+      evaluateEligibility();
+    }
+  </script>
+  <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
+  <script src="./assets/common.js"></script>
+</body>
+</html>

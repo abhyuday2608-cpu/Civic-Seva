@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government Schemes - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s ease;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .btn-outline-stone {
+      background-color: #FFFFFF;
+      color: #4A4541;
+      border: 1.5px solid #D5CFCB;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .btn-outline-stone:hover {
+      border-color: #8D8179;
+      color: #8D8179;
+      background-color: #FAF8F7;
+    }
+    .btn-filter-pill {
+      background-color: #FFFFFF;
+      color: #4A4541;
+      border: 1.5px solid #D5CFCB;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 6px 14px;
+      font-size: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-filter-pill:hover {
+      border-color: #8D8179;
+      color: #8D8179;
+    }
+    .btn-filter-pill.active {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      border-color: #8D8179;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+    }
+    .scheme-card {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+      transition: all 0.2s ease;
+    }
+    .scheme-card:hover {
+      border-color: #8D8179;
+      box-shadow: 0 10px 20px -3px rgba(141, 129, 121, 0.16);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all content) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
+    
+    <div class="mb-6">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">Central & State Initiatives</span>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">Explore National Welfare Schemes</h1>
+      <p class="text-sm text-slate-600">
+        Direct Benefit Transfer (DBT), financial empowerment grants, subsidized healthcare, and housing schemes for every citizen segment.
+      </p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex flex-wrap gap-2 mb-8 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+      <button onclick="filterCategory('all', this)" class="btn-filter-pill active">All Schemes</button>
+      <button onclick="filterCategory('farmers', this)" class="btn-filter-pill">Farmers & Agriculture</button>
+      <button onclick="filterCategory('women', this)" class="btn-filter-pill">Women & Girls</button>
+      <button onclick="filterCategory('youth', this)" class="btn-filter-pill">Students & Youth</button>
+      <button onclick="filterCategory('senior', this)" class="btn-filter-pill">Senior Citizens</button>
+      <button onclick="filterCategory('housing', this)" class="btn-filter-pill">Housing & Urban</button>
+      <button onclick="filterCategory('msme', this)" class="btn-filter-pill">MSME & Artisans</button>
+    </div>
+
+    <!-- Scheme Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="schemesGrid">
+
+      <!-- Scheme 1: PM-KISAN -->
+      <div class="scheme-card p-6 flex flex-col justify-between" data-category="farmers">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <span class="px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-900 font-bold text-[10px] uppercase">Direct Benefit Transfer</span>
+            <span class="text-[11px] font-semibold text-slate-500">Min. of Agriculture</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5">PM-KISAN Samman Nidhi</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Direct income support of ₹6,000 per annum in three 4-monthly installments of ₹2,000 directly credited into bank accounts of landholding farmer families.
+          </p>
+          <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs">
+            <div class="font-bold text-slate-900">₹6,000 / Year DBT</div>
+            <span class="text-slate-500 text-[11px]">100% Central Government Funded</span>
+          </div>
+        </div>
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <a href="./apply.html?service=pmkisan" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Now</a>
+          <a href="./eligibility.html" class="btn-outline-stone px-3 py-2 text-center text-xs">Eligibility</a>
+        </div>
+      </div>
+
+      <!-- Scheme 2: Ayushman Bharat PM-JAY -->
+      <div class="scheme-card p-6 flex flex-col justify-between" data-category="senior">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <span class="px-2 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-900 font-bold text-[10px] uppercase">Universal Health</span>
+            <span class="text-[11px] font-semibold text-slate-500">National Health Auth</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5">Ayushman Bharat (PM-JAY)</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Cashless healthcare coverage of up to ₹5,00,000 per family per year across 27,000+ empaneled hospitals. Also now covers all senior citizens aged 70+.
+          </p>
+          <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs">
+            <div class="font-bold text-slate-900">₹5,00,000 Cashless Cover</div>
+            <span class="text-slate-500 text-[11px]">Covers pre-existing illnesses from Day 1</span>
+          </div>
+        </div>
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <a href="./apply.html?service=ayushman" class="btn-official-stone flex-1 py-2 text-center text-xs">Generate Card</a>
+          <a href="./eligibility.html" class="btn-outline-stone px-3 py-2 text-center text-xs">Eligibility</a>
+        </div>
+      </div>
+
+      <!-- Scheme 3: Sukanya Samriddhi Yojana -->
+      <div class="scheme-card p-6 flex flex-col justify-between" data-category="women">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <span class="px-2 py-0.5 rounded bg-purple-50 border border-purple-200 text-purple-900 font-bold text-[10px] uppercase">Beti Bachao Beti Padhao</span>
+            <span class="text-[11px] font-semibold text-slate-500">Ministry of Finance</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5">Sukanya Samriddhi Account (SSY)</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            High-interest government savings scheme for girl children below 10 years, offering 8.2% annual compounded interest and complete Section 80C tax exemption.
+          </p>
+          <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs">
+            <div class="font-bold text-slate-900">8.2% p.a. Tax-Free Return</div>
+            <span class="text-slate-500 text-[11px]">Maturity at 21 years or marriage</span>
+          </div>
+        </div>
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <a href="./apply.html?service=ssy" class="btn-official-stone flex-1 py-2 text-center text-xs">Open Account</a>
+          <a href="./documents.html?service=ssy" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+      <!-- Scheme 4: Pradhan Mantri Awas Yojana -->
+      <div class="scheme-card p-6 flex flex-col justify-between" data-category="housing">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <span class="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-900 font-bold text-[10px] uppercase">Housing For All</span>
+            <span class="text-[11px] font-semibold text-slate-500">Housing & Urban Affairs</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5">Pradhan Mantri Awas Yojana (PMAY)</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Credit-linked interest subsidy up to ₹2.67 Lakhs for EWS and LIG beneficiaries purchasing first homes, or direct grant for rural pucca house construction.
+          </p>
+          <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs">
+            <div class="font-bold text-slate-900">Up to ₹2.67 Lakh Subsidy</div>
+            <span class="text-slate-500 text-[11px]">Female co-ownership mandatory</span>
+          </div>
+        </div>
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <a href="./apply.html?service=pmay" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Online</a>
+          <a href="./eligibility.html" class="btn-outline-stone px-3 py-2 text-center text-xs">Eligibility</a>
+        </div>
+      </div>
+
+      <!-- Scheme 5: PM Vishwakarma Yojana -->
+      <div class="scheme-card p-6 flex flex-col justify-between" data-category="msme">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <span class="px-2 py-0.5 rounded bg-amber-50 border border-amber-200 text-amber-900 font-bold text-[10px] uppercase">Artisans & Craftsmen</span>
+            <span class="text-[11px] font-semibold text-slate-500">Ministry of MSME</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5">PM Vishwakarma Scheme</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Holistic support for traditional artisans with skill training, ₹15,000 modern toolkit incentive, and collateral-free loans up to ₹3 Lakhs at 5% interest.
+          </p>
+          <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs">
+            <div class="font-bold text-slate-900">₹3 Lakh Loan @ 5% + ₹15K Toolkit</div>
+            <span class="text-slate-500 text-[11px]">18 traditional trades recognized</span>
+          </div>
+        </div>
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <a href="./apply.html?service=vishwakarma" class="btn-official-stone flex-1 py-2 text-center text-xs">Register Trade</a>
+          <a href="./documents.html?service=vishwakarma" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+      <!-- Scheme 6: PM YUVA Mentorship & Skill -->
+      <div class="scheme-card p-6 flex flex-col justify-between" data-category="youth">
+        <div>
+          <div class="flex justify-between items-start mb-2">
+            <span class="px-2 py-0.5 rounded bg-indigo-50 border border-indigo-200 text-indigo-900 font-bold text-[10px] uppercase">Skill India</span>
+            <span class="text-[11px] font-semibold text-slate-500">Skill Development</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5">PM Kaushal Vikas Yojana (PMKVY 4.0)</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Free industry-aligned skill certification courses in emerging technologies (AI, Robotics, Drone Technology, Green Energy) with placement stipend.
+          </p>
+          <div class="bg-slate-50 p-3 rounded-xl mb-4 text-xs">
+            <div class="font-bold text-slate-900">100% Free Training + ₹8,000 Stipend</div>
+            <span class="text-slate-500 text-[11px]">NSDC Government Certified</span>
+          </div>
+        </div>
+        <div class="flex space-x-2 pt-3 border-t border-slate-100">
+          <a href="./apply.html?service=pmkvy" class="btn-official-stone flex-1 py-2 text-center text-xs">Enroll Course</a>
+          <a href="./eligibility.html" class="btn-outline-stone px-3 py-2 text-center text-xs">Eligibility</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <span class="font-bold text-slate-900">CivicSeva Schemes Repository</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-500">Government of India</span>
+      </div>
+      <div class="flex space-x-4 text-slate-500">
+        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
+        <a href="./services.html" class="hover:text-[#8D8179]">Services</a>
+        <a href="./eligibility.html" class="hover:text-[#8D8179]">Eligibility</a>
+        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.btn-filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.scheme-card');
+      cards.forEach(card => {
+        const c = card.getAttribute('data-category');
+        if (cat === 'all' || c === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+  <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
+  <script src="./assets/common.js"></script>
+</body>
+</html>

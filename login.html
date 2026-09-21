@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jan Parichay SSO Login - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .btn-official-stone:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 2px 6px rgba(141, 129, 121, 0.3);
+    }
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      transform: scale(0);
+      animation: rippleEffect 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes rippleEffect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800 relative">
+
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-[#8D8179] font-bold">Jan Parichay National Single Sign-On</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="./index.html" class="hover:text-[#8D8179] transition">&larr; Back to Portal Home</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <a href="./index.html" class="text-xs text-slate-600 hover:text-[#8D8179] font-bold px-3 py-1.5 rounded-lg border border-slate-300 hover:border-[#8D8179] bg-white transition">
+          &larr; Back to Portal
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Login Canvas -->
+  <main class="flex-1 flex items-center justify-center px-4 py-12 relative z-0">
+    <div class="max-w-md w-full bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Top Crest & Title -->
+      <div class="tricolor-ribbon"></div>
+      <div class="p-6 pb-4 border-b border-slate-100 bg-slate-50/70 flex items-center space-x-3.5">
+        <img src="./assets/emblem.png" alt="Emblem" class="h-10 w-auto">
+        <div>
+          <span class="text-sm font-extrabold text-slate-900 block">जन परिचय | Jan Parichay</span>
+          <span class="text-xs text-slate-500 font-medium">MeriPehchaan National Single Sign-On (SSO)</span>
+        </div>
+      </div>
+
+      <!-- Contextual Alert Banner (shows if redirected here) -->
+      <div id="loginContextAlert" class="px-6 pt-4 hidden">
+        <div class="p-3 bg-amber-50 border border-amber-300 rounded-xl text-xs font-semibold text-amber-900 flex items-center space-x-2">
+          <span class="text-base">🔒</span>
+          <span id="loginContextText">Authentication required to access the requested service.</span>
+        </div>
+      </div>
+
+      <!-- Login Tabs -->
+      <div class="flex border-b border-slate-200 text-xs font-bold text-slate-600 px-6 pt-4">
+        <button id="pageTabAadhaarBtn" onclick="setLoginPageTab('aadhaar')" class="flex-1 py-3 text-center border-b-2 border-[#8D8179] text-[#8D8179] bg-white transition cursor-pointer">
+          Aadhaar OTP (Direct e-KYC)
+        </button>
+        <button id="pageTabPasswordBtn" onclick="setLoginPageTab('password')" class="flex-1 py-3 text-center border-b-2 border-transparent hover:text-slate-900 bg-slate-50/60 transition cursor-pointer">
+          Jan Parichay Credentials
+        </button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="p-6">
+
+        <!-- TAB 1: AADHAAR OTP -->
+        <div id="pageAadhaarForm" class="space-y-4 text-xs">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Aadhaar Number or Virtual ID (VID) *</label>
+            <input 
+              type="text" 
+              id="pageAadhaarInput" 
+              maxlength="14" 
+              value="8492-9102-4521"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] font-mono tracking-wider font-semibold text-slate-900"
+            />
+            <span class="text-[10px] text-slate-400 mt-1 block">Direct e-KYC verification via UIDAI CIDR repository.</span>
+          </div>
+
+          <!-- OTP Input Section -->
+          <div id="pageOtpSection" class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-slate-800">Enter 6-Digit OTP:</span>
+              <span class="text-[10px] text-emerald-700 font-bold">Resend in 58s</span>
+            </div>
+            <input 
+              type="text" 
+              id="pageOtpInput" 
+              maxlength="6" 
+              value="123456" 
+              class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-center font-mono font-bold text-xl tracking-widest focus:outline-none focus:border-[#8D8179] bg-white"
+            />
+            <span class="text-[10px] text-slate-500 block text-center">Demo OTP <strong>123456</strong> pre-filled for testing.</span>
+          </div>
+
+          <div class="pt-2">
+            <button 
+              type="button" 
+              onclick="submitPageAadhaarLogin()" 
+              class="btn-official-stone w-full py-3.5 text-sm font-bold flex items-center justify-center space-x-2 cursor-pointer">
+              <span>Verify OTP & Access Account</span>
+              <span>✓</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 2: USERNAME / PASSWORD -->
+        <div id="pagePasswordForm" class="space-y-4 text-xs hidden">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Jan Parichay Username / Mobile *</label>
+            <input type="text" id="pageUsernameInput" value="abhyuday.citizen" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179]">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">Password *</label>
+            <input type="password" id="pagePassInput" value="NationalPortal@2026" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179]">
+          </div>
+          <div class="pt-2">
+            <button type="button" onclick="submitPageCredLogin()" class="btn-official-stone w-full py-3.5 text-sm font-bold cursor-pointer">
+              Login via MeriPehchaan &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Security and Info Footnote -->
+        <div class="mt-6 pt-4 border-t border-slate-100 text-center space-y-2">
+          <div class="inline-flex items-center space-x-2 text-[11px] text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 font-medium">
+            <span>🛡️</span>
+            <span>256-Bit SSL/TLS • UIDAI Certified • NIC Data Center</span>
+          </div>
+          <p class="text-[10px] text-slate-400">
+            Jan Parichay eliminates the need to create multiple credentials for different government services.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Institutional Government Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-auto text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <span class="text-[11px] text-slate-500">
+        Website designed and maintained by National Informatics Centre (NIC) for Government of India.
+      </span>
+      <div class="flex items-center space-x-4 text-[11px] text-slate-600">
+        <a href="./support.html" class="hover:text-[#8D8179]">Citizen Helplines (112 / 1076)</a>
+        <span>•</span>
+        <a href="./security.html" class="hover:text-[#8D8179]">Security Vault</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Ripple Effect
+    document.querySelectorAll('.btn-official-stone').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const circle = document.createElement('span');
+        const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+        const radius = diameter / 2;
+        const rect = btn.getBoundingClientRect();
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${e.clientX - rect.left - radius}px`;
+        circle.style.top = `${e.clientY - rect.top - radius}px`;
+        circle.classList.add('ripple');
+        const r = btn.querySelector('.ripple');
+        if (r) r.remove();
+        btn.appendChild(circle);
+      });
+    });
+
+    // Check query params for redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectTarget = urlParams.get('redirect');
+    const serviceReason = urlParams.get('service');
+    if (redirectTarget || serviceReason) {
+      const alertBox = document.getElementById('loginContextAlert');
+      const alertText = document.getElementById('loginContextText');
+      alertText.innerText = serviceReason ? `Please login to access "${serviceReason}".` : 'Authentication required to access this service.';
+      alertBox.classList.remove('hidden');
+    }
+
+    function setLoginPageTab(tab) {
+      const formAadhaar = document.getElementById('pageAadhaarForm');
+      const formPass = document.getElementById('pagePasswordForm');
+      const btnAadhaar = document.getElementById('pageTabAadhaarBtn');
+      const btnPass = document.getElementById('pageTabPasswordBtn');
+
+      if (tab === 'aadhaar') {
+        formAadhaar.classList.remove('hidden');
+        formPass.classList.add('hidden');
+        btnAadhaar.className = 'flex-1 py-3 text-center border-b-2 border-[#8D8179] text-[#8D8179] bg-white transition cursor-pointer';
+        btnPass.className = 'flex-1 py-3 text-center border-b-2 border-transparent hover:text-slate-900 bg-slate-50/60 transition cursor-pointer';
+      } else {
+        formAadhaar.classList.add('hidden');
+        formPass.classList.remove('hidden');
+        btnPass.className = 'flex-1 py-3 text-center border-b-2 border-[#8D8179] text-[#8D8179] bg-white transition cursor-pointer';
+        btnAadhaar.className = 'flex-1 py-3 text-center border-b-2 border-transparent hover:text-slate-900 bg-slate-50/60 transition cursor-pointer';
+      }
+    }
+
+    function submitPageAadhaarLogin() {
+      const otp = document.getElementById('pageOtpInput').value.trim();
+      if (otp !== '123456' && otp.length !== 6) {
+        alert('Invalid OTP. Please enter demo OTP 123456.');
+        return;
+      }
+      const citizen = {
+        name: 'Abhyuday Sharma',
+        initials: 'AS',
+        aadhaarMasked: 'XXXX-XXXX-4521',
+        mobile: '9876543210',
+        role: 'Verified Citizen',
+        loginTime: new Date().toISOString()
+      };
+      localStorage.setItem('civicseva_user', JSON.stringify(citizen));
+      showToast('Welcome, Abhyuday Sharma! Authenticated successfully via Aadhaar e-KYC.');
+      setTimeout(() => {
+        if (redirectTarget) {
+          window.location.href = redirectTarget;
+        } else {
+          window.location.href = './index.html';
+        }
+      }, 400);
+    }
+
+    function submitPageCredLogin() {
+      const citizen = {
+        name: 'Abhyuday Sharma',
+        initials: 'AS',
+        aadhaarMasked: 'XXXX-XXXX-4521',
+        mobile: '9876543210',
+        role: 'Verified Citizen',
+        loginTime: new Date().toISOString()
+      };
+      localStorage.setItem('civicseva_user', JSON.stringify(citizen));
+      showToast('Authenticated via MeriPehchaan (Jan Parichay).');
+      setTimeout(() => {
+        if (redirectTarget) {
+          window.location.href = redirectTarget;
+        } else {
+          window.location.href = './index.html';
+        }
+      }, 400);
+    }
+  </script>
+  <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
+  <script src="./assets/common.js"></script>
+</body>
+</html>

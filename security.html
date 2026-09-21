@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Security & Digital Document Vault - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .btn-outline-stone {
+      background-color: #FFFFFF;
+      color: #4A4541;
+      border: 1.5px solid #D5CFCB;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .btn-outline-stone:hover {
+      border-color: #8D8179;
+      color: #8D8179;
+      background-color: #FAF8F7;
+    }
+    .card-base {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+      transition: all 0.2s ease;
+    }
+    .shield-gradient {
+      background: linear-gradient(135deg, rgba(141, 129, 121, 0.08) 0%, rgba(255, 255, 255, 0.8) 100%);
+    }
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #8D8179;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #8D8179;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all content) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Security Dashboard Canvas -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full space-y-8">
+    
+    <!-- Top Security Status Banner -->
+    <div class="card-base p-6 shield-gradient border-l-4 border-l-[#8D8179]">
+      <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
+        <div>
+          <div class="flex items-center space-x-2 mb-1">
+            <span class="text-xl">🛡️</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">National Data Protection Act 2023 Compliant</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Document Security & Application Guard</h1>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
+            All documents uploaded to CivicSeva are protected with client-side zero-knowledge AES-256-GCM encryption, automatic UIDAI Aadhaar masking, cryptographic integrity hashing (SHA-256), and time-limited access tokens.
+          </p>
+        </div>
+
+        <div class="flex items-center space-x-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm shrink-0">
+          <div class="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-300 flex items-center justify-center text-emerald-700 font-extrabold text-lg">
+            98%
+          </div>
+          <div>
+            <span class="text-xs font-extrabold text-slate-900 block">Security Health: Excellent</span>
+            <span class="text-[11px] text-slate-500">2FA Active • Vault Encrypted</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: DOCUMENT SECURITY & DIGITAL VAULT CONTROLS -->
+    <section class="space-y-4">
+      <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 px-1">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">1. Your Encrypted Document Vault</h2>
+          <p class="text-xs text-slate-500">Manage cryptographic protection, confidential data masking, and access permissions for your uploaded documents.</p>
+        </div>
+        <button onclick="simulateUploadNewDoc()" class="btn-official-stone px-4 py-2 text-xs flex items-center space-x-1.5 self-start sm:self-auto">
+          <span>+ Add & Encrypt New Document</span>
+        </button>
+      </div>
+
+      <!-- Document Vault Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5" id="vaultGrid">
+
+        <!-- Vault Doc 1: Aadhaar Card -->
+        <div class="card-base p-5 flex flex-col justify-between" id="docCard1">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-xl text-blue-700">
+                🪪
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-300">
+                Encrypted & Masked
+              </span>
+            </div>
+
+            <h3 class="font-bold text-slate-900 text-base mb-0.5">Aadhaar Card (Identity Proof)</h3>
+            <p class="text-[11px] text-slate-500 mb-3">Linked to: Abhyuday Sharma • e-KYC Verified</p>
+
+            <!-- Security Data Box -->
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-2 mb-4">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">UIDAI Display:</span>
+                <span class="font-mono font-bold text-slate-900" id="aadhaarNum">XXXX-XXXX-4521</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">Encryption:</span>
+                <span class="font-mono font-semibold text-emerald-700">AES-256-GCM (Hardware Key)</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">SHA-256 Hash:</span>
+                <span class="font-mono text-[10px] text-slate-600 truncate max-w-[150px]" title="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855">
+                  e3b0c44298fc1c...
+                </span>
+              </div>
+            </div>
+
+            <!-- Interactive Security Toggles -->
+            <div class="space-y-2 text-xs">
+              <label class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-[#8D8179]">
+                <span class="font-semibold text-slate-700">Mask First 8 Digits (UIDAI Rule)</span>
+                <input type="checkbox" checked onchange="toggleMasking(this)" class="w-4 h-4 text-[#8D8179] rounded accent-[#8D8179]">
+              </label>
+              
+              <label class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-[#8D8179]">
+                <span class="font-semibold text-slate-700">Lock Document with PIN</span>
+                <input type="checkbox" onchange="togglePinLock('Aadhaar Card', this)" class="w-4 h-4 text-[#8D8179] rounded accent-[#8D8179]">
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-slate-100 flex space-x-2">
+            <button onclick="verifyTamperProof('Aadhaar Card')" class="btn-outline-stone flex-1 py-1.5 text-xs text-center">Verify Hash</button>
+            <button onclick="generateExpiringLink('Aadhaar Card')" class="btn-official-stone flex-1 py-1.5 text-xs text-center">Share Token</button>
+          </div>
+        </div>
+
+        <!-- Vault Doc 2: Income Affidavit -->
+        <div class="card-base p-5 flex flex-col justify-between" id="docCard2">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-xl text-amber-700">
+                📑
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-300">
+                Officer Access Active
+              </span>
+            </div>
+
+            <h3 class="font-bold text-slate-900 text-base mb-0.5">Salary & Income Affidavit</h3>
+            <p class="text-[11px] text-slate-500 mb-3">Annual Declared: ₹ 1,80,000 • Digitally Notarized</p>
+
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-2 mb-4">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">Active Viewer:</span>
+                <span class="font-bold text-slate-800">Shri R. P. Verma (RI)</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">Access Token SLA:</span>
+                <span class="font-mono font-semibold text-amber-700" id="tokenExpiryTime">Expires in 18 hrs</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">Digital Watermark:</span>
+                <span class="font-bold text-emerald-700">Active ("CIVICSEVA-2026")</span>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-amber-50/70 border border-amber-200 text-amber-900">
+                <span class="font-semibold block text-[11px]">Temporary officer access is active.</span>
+                <span class="text-[10px] text-slate-500">Officer can only read, not download or export.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-slate-100 flex space-x-2">
+            <button onclick="revokeOfficerToken()" id="revokeBtn" class="w-full py-1.5 rounded-lg border border-rose-300 bg-rose-50 text-rose-800 hover:bg-rose-100 text-xs font-bold transition">
+              🚨 Revoke Officer Access Immediately
+            </button>
+          </div>
+        </div>
+
+        <!-- Vault Doc 3: Caste Certificate -->
+        <div class="card-base p-5 flex flex-col justify-between" id="docCard3">
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-xl text-purple-700">
+                📜
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-300">
+                DigiLocker Synced
+              </span>
+            </div>
+
+            <h3 class="font-bold text-slate-900 text-base mb-0.5">Caste / Domicile Certificate</h3>
+            <p class="text-[11px] text-slate-500 mb-3">Issued by: Tehsildar Sub-Division Central</p>
+
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-2 mb-4">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">Signature:</span>
+                <span class="font-bold text-emerald-700">✓ CCA Digital e-Sign</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">2D QR Code:</span>
+                <span class="font-semibold text-slate-900">Cryptographically Bound</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">Tamper Status:</span>
+                <span class="text-emerald-700 font-bold">100% Intact</span>
+              </div>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <label class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-[#8D8179]">
+                <span class="font-semibold text-slate-700">Sync with National DigiLocker</span>
+                <input type="checkbox" checked class="w-4 h-4 text-[#8D8179] rounded accent-[#8D8179]">
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-slate-100 flex space-x-2">
+            <button onclick="verifyTamperProof('Caste Certificate')" class="btn-outline-stone flex-1 py-1.5 text-xs text-center">Verify Hash</button>
+            <button onclick="alert('Viewing 2D Cryptographic QR Code and Certificate Audit Trail...')" class="btn-official-stone flex-1 py-1.5 text-xs text-center">View QR Audit</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: APPLICATION & ACCOUNT SECURITY -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Left 6 Cols: Two-Factor Authentication & Biometrics -->
+      <div class="lg:col-span-6 space-y-5">
+        <div class="card-base p-6">
+          <div class="flex items-center space-x-2 pb-3 border-b border-slate-100 mb-4">
+            <span class="text-lg">🔐</span>
+            <h2 class="text-lg font-bold text-slate-900">Two-Factor Authentication (2FA) & Logins</h2>
+          </div>
+          <p class="text-xs text-slate-600 mb-5 leading-relaxed">
+            Multi-factor verification prevents unauthorized access even if your password or device is compromised.
+          </p>
+
+          <div class="space-y-4">
+            
+            <!-- Method 1: Aadhaar OTP -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <span class="text-2xl">📱</span>
+                <div>
+                  <strong class="text-xs font-bold text-slate-900 block">UIDAI Aadhaar OTP (SMS)</strong>
+                  <span class="text-[11px] text-slate-500">One-Time Passcode to registered mobile (*** *** 3210)</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Enabled</span>
+            </div>
+
+            <!-- Method 2: Biometric Fingerprint / Face (WebAuthn) -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <span class="text-2xl">👆</span>
+                <div>
+                  <strong class="text-xs font-bold text-slate-900 block">Biometric Passkey (Windows Hello / TouchID)</strong>
+                  <span class="text-[11px] text-slate-500">FIDO2 / WebAuthn cryptographic hardware key</span>
+                </div>
+              </div>
+              <button onclick="togglePasskey(this)" class="btn-official-stone px-3 py-1 text-xs">Configure</button>
+            </div>
+
+            <!-- Method 3: Jan Parichay (National SSO) -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <span class="text-2xl">🇮🇳</span>
+                <div>
+                  <strong class="text-xs font-bold text-slate-900 block">Jan Parichay (MeriPehchaan National SSO)</strong>
+                  <span class="text-[11px] text-slate-500">Unified secure login across all Indian Government ministries</span>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Linked</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Security Activity Logs -->
+        <div class="card-base p-6">
+          <div class="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+            <h3 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
+              <span>📋</span>
+              <span>Cryptographic Access Audit Trail</span>
+            </h3>
+            <span class="text-[11px] text-slate-500 font-semibold">Immutable Blockchain Log</span>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div class="flex items-start justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+              <div>
+                <strong class="text-slate-900 block">Aadhaar Document Access</strong>
+                <span class="text-slate-500 text-[11px]">Accessed by Sub-Divisional Officer (e-District KYC)</span>
+              </div>
+              <span class="text-[10px] text-slate-400">Today, 19:42 IST</span>
+            </div>
+
+            <div class="flex items-start justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+              <div>
+                <strong class="text-slate-900 block">DigiLocker Sync Token Generated</strong>
+                <span class="text-slate-500 text-[11px]">Authorized for Revenue Department auto-verification</span>
+              </div>
+              <span class="text-[10px] text-slate-400">Today, 19:28 IST</span>
+            </div>
+
+            <div class="flex items-start justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+              <div>
+                <strong class="text-slate-900 block">Session Login via 2FA (Aadhaar OTP)</strong>
+                <span class="text-slate-500 text-[11px]">IP: 103.21.***.*** (Chrome on Windows 11)</span>
+              </div>
+              <span class="text-[10px] text-slate-400">Today, 19:00 IST</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 6 Cols: Active Sessions & Threat Protection -->
+      <div class="lg:col-span-6 space-y-5">
+        
+        <!-- Active Device Sessions -->
+        <div class="card-base p-6">
+          <div class="flex justify-between items-center pb-3 border-b border-slate-100 mb-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center space-x-2">
+              <span>🖥️</span>
+              <span>Active Logged-In Sessions</span>
+            </h2>
+            <button onclick="terminateAllSessions()" class="text-xs text-rose-700 hover:underline font-bold">Logout All Other Devices</button>
+          </div>
+
+          <div class="space-y-3" id="sessionList">
+            
+            <!-- Current Session -->
+            <div class="p-3.5 rounded-xl border border-emerald-300 bg-emerald-50/50 flex items-center justify-between">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <strong class="text-xs font-bold text-slate-900">Chrome on Windows (This Device)</strong>
+                  <span class="px-2 py-0.2 rounded bg-emerald-200 text-emerald-900 text-[10px] font-bold">Current</span>
+                </div>
+                <p class="text-[11px] text-slate-500 mt-0.5">Kanpur, Uttar Pradesh • IP: 103.21.45.18 • Active Now</p>
+              </div>
+              <span class="text-xs text-emerald-700 font-bold">Active</span>
+            </div>
+
+            <!-- Other Session 1 -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between other-session">
+              <div>
+                <strong class="text-xs font-bold text-slate-900 block">UMANG / CivicSeva Mobile App (Android)</strong>
+                <p class="text-[11px] text-slate-500 mt-0.5">Lucknow, UP • Last active: 2 hours ago</p>
+              </div>
+              <button onclick="this.closest('.other-session').remove(); alert('Mobile app session terminated.')" class="px-2.5 py-1 text-[11px] rounded bg-slate-200 hover:bg-rose-100 hover:text-rose-800 text-slate-700 font-semibold transition">
+                Revoke
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Government Compliance Specifications Box -->
+        <div class="card-base p-6 bg-slate-900 text-white">
+          <div class="flex items-center space-x-2 mb-3 text-amber-400">
+            <span>🛡️</span>
+            <span class="text-xs uppercase font-extrabold tracking-wider">National Cyber Standard V4.2</span>
+          </div>
+          <h3 class="text-base font-bold mb-2">Government Data Protection Guarantee</h3>
+          <ul class="text-xs text-slate-300 space-y-2 leading-relaxed mb-5">
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Zero-Knowledge Encryption:</strong> Your private document keys are never stored unencrypted on government cloud servers.</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Aadhaar Virtual ID (VID) Ready:</strong> Uses 16-digit VID to prevent sharing raw 12-digit Aadhaar identifiers.</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Right to Erasure:</strong> Citizens can permanently purge all stored documents 30 days after application approval.</span>
+            </li>
+          </ul>
+
+          <button onclick="alert('Downloading Government Security Audit & Compliance Certificate (PDF)...')" class="btn-official-stone w-full py-2.5 text-xs text-center font-bold">
+            Download CERT-In Compliance Audit Certificate
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <span class="font-bold text-slate-900">CivicSeva Suraksha & Security Vault</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-500">Government of India</span>
+      </div>
+      <div class="flex space-x-4 text-slate-500">
+        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
+        <a href="./documents.html" class="hover:text-[#8D8179]">Documents</a>
+        <a href="./apply.html" class="hover:text-[#8D8179]">Apply</a>
+        <a href="./support.html" class="hover:text-[#8D8179]">Cyber Support (1930)</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    // Masking toggle for Aadhaar
+    function toggleMasking(checkbox) {
+      const el = document.getElementById('aadhaarNum');
+      if (checkbox.checked) {
+        el.innerText = 'XXXX-XXXX-4521';
+      } else {
+        el.innerText = '8492-9102-4521';
+      }
+    }
+
+    // Toggle Pin lock
+    function togglePinLock(docName, checkbox) {
+      if (checkbox.checked) {
+        const pin = prompt(`Set a 4-digit security PIN for ${docName}:`, '1234');
+        if (pin) {
+          alert(`Success: ${docName} is now encrypted with PIN protection. Any officer viewing it will require OTP verification.`);
+        } else {
+          checkbox.checked = false;
+        }
+      } else {
+        alert(`PIN lock disabled for ${docName}.`);
+      }
+    }
+
+    // Tamper proof SHA-256 validation simulation
+    function verifyTamperProof(docName) {
+      alert(`[CRYPTOGRAPHIC CHECK PASSED]\n\nDocument: ${docName}\nAlgorithm: SHA-256 with HMAC authentication\nTimestamp: 21 Sep 2026\nResult: 100% UNTAMPERED. Digital Signature verified by Controller of Certifying Authorities (CCA).`);
+    }
+
+    // Generate expiring access token
+    function generateExpiringLink(docName) {
+      const token = 'SEC-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+      prompt(`Generated 24-Hour Secure Verification Token for ${docName}.\nOfficers can verify using this link only:`, `https://civicseva.gov.in/verify?token=${token}`);
+    }
+
+    // Revoke officer access token
+    function revokeOfficerToken() {
+      document.getElementById('tokenExpiryTime').innerText = 'REVOKED (Zero Access)';
+      document.getElementById('tokenExpiryTime').className = 'font-mono font-bold text-rose-700';
+      const btn = document.getElementById('revokeBtn');
+      btn.innerText = '✓ Access Revoked by Citizen';
+      btn.disabled = true;
+      btn.className = 'w-full py-1.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-500 text-xs font-semibold cursor-not-allowed';
+      alert('Officer access revoked immediately. The verification token has been invalidated across government servers.');
+    }
+
+    // Terminate other sessions
+    function terminateAllSessions() {
+      document.querySelectorAll('.other-session').forEach(el => el.remove());
+      alert('All secondary device and mobile sessions terminated successfully. Only this current browser session remains authorized.');
+    }
+
+    // Biometric Passkey toggle
+    function togglePasskey(btn) {
+      if (confirm('Do you want to enroll your device biometric sensor (Fingerprint / Windows Hello) for one-touch login?')) {
+        btn.innerText = '✓ Biometric Active';
+        btn.className = 'px-3 py-1 text-xs rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-300';
+        alert('WebAuthn FIDO2 Biometric credential enrolled and saved locally in TPM security enclave.');
+      }
+    }
+
+    // Lock Vault Now
+    function lockVaultNow() {
+      if (confirm('Lock Document Vault now? All active previews and document tokens will require re-authentication with Aadhaar OTP.')) {
+        alert('Vault Locked Successfully. Session is protected.');
+      }
+    }
+
+    // Simulate Add & Encrypt New Document
+    function simulateUploadNewDoc() {
+      const docName = prompt('Enter document name to add and encrypt (e.g., Land Registry / Passport):', 'Pan Card');
+      if (docName) {
+        const grid = document.getElementById('vaultGrid');
+        const newCard = document.createElement('div');
+        newCard.className = 'card-base p-5 flex flex-col justify-between';
+        newCard.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-xl text-emerald-700">
+                📄
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-300">
+                AES-256 Encrypted
+              </span>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-0.5">${docName}</h3>
+            <p class="text-[11px] text-slate-500 mb-3">Just Uploaded • Verified Hash</p>
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-2 mb-4">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">Integrity Hash:</span>
+                <span class="font-mono text-[10px] text-emerald-700">a8f2bc901e...</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-semibold">Vault Security:</span>
+                <span class="font-bold text-slate-800">Hardware Locked</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 mt-4 border-t border-slate-100 flex space-x-2">
+            <button onclick="verifyTamperProof('${docName}')" class="btn-outline-stone flex-1 py-1.5 text-xs text-center">Verify Hash</button>
+            <button onclick="generateExpiringLink('${docName}')" class="btn-official-stone flex-1 py-1.5 text-xs text-center">Share Token</button>
+          </div>
+        `;
+        grid.appendChild(newCard);
+        alert(`Success: "${docName}" encrypted with client-side AES-256 key and added to your secure vault.`);
+      }
+    }
+  </script>
+  <script src="./assets/common.js"></script>
+</body>
+</html>

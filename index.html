@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicSeva - Government of India | Citizen Service Navigator</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 18px rgba(141, 129, 121, 0.38);
+      transform: translateY(-2px);
+    }
+    .btn-official-stone:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 2px 6px rgba(141, 129, 121, 0.25);
+    }
+    .btn-filter-pill {
+      background-color: #FFFFFF;
+      color: #4A4541;
+      border: 1.5px solid #D5CFCB;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-filter-pill:hover {
+      border-color: #8D8179;
+      color: #8D8179;
+      background-color: #FAF8F7;
+      transform: translateY(-1px);
+    }
+    .btn-filter-pill.active {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      border-color: #8D8179;
+      box-shadow: 0 4px 12px rgba(141, 129, 121, 0.3);
+    }
+    .search-card {
+      background: #FFFFFF;
+      border: 1.5px solid #D8D2CD;
+      box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.06);
+      transition: all 0.2s ease;
+    }
+    .search-card:focus-within {
+      border-color: #8D8179;
+      box-shadow: 0 10px 32px -4px rgba(141, 129, 121, 0.25);
+    }
+    .service-card {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+      border-radius: 16px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: #8D8179;
+      box-shadow: 0 12px 24px -4px rgba(141, 129, 121, 0.18), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
+    }
+    .service-card:hover .card-action-btn {
+      background-color: #796E66;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(141, 129, 121, 0.3);
+    }
+    .card-action-btn {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 8px;
+      font-size: 11px;
+      padding: 6px 14px;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      transform: scale(0);
+      animation: rippleEffect 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes rippleEffect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800 relative">
+
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all buttons and search bar) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Landing Canvas (#EEEEEE) -->
+  <main id="mainContent" class="relative z-0 flex-1 max-w-5xl mx-auto px-6 py-10 flex flex-col items-center justify-center text-center">
+
+    <!-- Trusted Badge -->
+    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border border-[#8D8179]/30 shadow-sm mb-5">
+      <span class="text-[#8D8179]">🏛️</span>
+      <span data-i18n="trusted_badge" class="text-xs font-bold text-[#8D8179] uppercase tracking-wide">Trusted Government e-Governance Platform</span>
+    </div>
+
+    <!-- Main Title with Dynamic Translation ID -->
+    <h1 id="heroHeadingText" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-3">
+      What government service <span class="text-[#8D8179]">do you need?</span>
+    </h1>
+
+    <p data-i18n="hero_desc" class="text-slate-600 text-sm sm:text-base max-w-xl font-normal mb-7 leading-relaxed">
+      Describe what you need in your own words and CivicSeva will guide you directly to the verified ministry portal, eligibility check, and application.
+    </p>
+
+    <!-- Search Bar with Official #8D8179 Button -->
+    <div class="w-full max-w-3xl search-card rounded-2xl p-2 flex items-center gap-2">
+      <div class="pl-3 text-slate-400">
+        <svg class="w-5 h-5 text-[#8D8179]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+
+      <input 
+        id="serviceInput"
+        type="text" 
+        data-i18n-placeholder="search_placeholder"
+        placeholder="Describe your need... (e.g. 'income certificate', 'driving licence', 'ration card')" 
+        class="w-full bg-transparent text-slate-800 placeholder-slate-400 text-sm md:text-base focus:outline-none px-2 font-medium"
+      />
+
+      <!-- Official Button modeled after user reference in #8D8179 -->
+      <button 
+        id="findBtn"
+        onclick="handleSearch()"
+        class="btn-official-stone px-6 py-3 flex items-center space-x-2 text-sm shrink-0 cursor-pointer">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <span data-i18n="find_service_btn">Find Service</span>
+      </button>
+    </div>
+
+    <!-- Interactive Filter Buttons Modeled After Reference "Filter" Button -->
+    <div class="mt-6 w-full max-w-3xl">
+      <div class="flex items-center justify-between mb-2.5 px-1">
+        <span data-i18n="quick_categories" class="text-xs text-slate-500 uppercase tracking-wider font-bold">Quick Categories:</span>
+        <span id="activeCount" data-i18n="showing_services" class="text-xs text-[#8D8179] font-bold">Showing all 8 core services</span>
+      </div>
+
+      <div class="flex flex-wrap gap-2.5 justify-center" id="filterContainer">
+        <button onclick="applyFilter('all', this)" data-i18n="cat_all" class="btn-filter-pill active px-5 py-2 text-xs">
+          All Services
+        </button>
+        <button onclick="applyFilter('certificates', this)" data-i18n="cat_certificates" class="btn-filter-pill px-5 py-2 text-xs">
+          Certificates
+        </button>
+        <button onclick="applyFilter('schemes', this)" data-i18n="cat_schemes" class="btn-filter-pill px-5 py-2 text-xs">
+          Schemes
+        </button>
+        <button onclick="applyFilter('licenses', this)" data-i18n="cat_licenses" class="btn-filter-pill px-5 py-2 text-xs">
+          Licenses
+        </button>
+        <button onclick="applyFilter('eligibility', this)" data-i18n="cat_eligibility" class="btn-filter-pill px-5 py-2 text-xs">
+          Eligibility
+        </button>
+        <button onclick="applyFilter('support', this)" data-i18n="cat_support" class="btn-filter-pill px-5 py-2 text-xs">
+          Support
+        </button>
+        <a href="./security.html" class="btn-filter-pill px-5 py-2 text-xs flex items-center space-x-1.5 border-emerald-300 text-emerald-800 bg-emerald-50/50 hover:bg-emerald-100">
+          <span>🔒</span>
+          <span data-i18n="cat_security">Security Vault</span>
+        </a>
+      </div>
+
+      <!-- Live Security Assurance Badge -->
+      <div class="mt-4 inline-flex items-center space-x-2 text-xs text-slate-500 bg-white/70 px-4 py-1.5 rounded-full border border-slate-200">
+        <span data-i18n="security_badge">✓ Zero-Knowledge Encrypted • Aadhaar Masking Active • Manage Security Controls &rarr;</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom 8 Dedicated Service Navigation Cards (Direct Page Links) -->
+  <section class="relative z-0 w-full max-w-7xl mx-auto px-6 pb-12">
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3.5" id="cardsGrid">
+
+      <!-- 1. Find a Service -->
+      <a href="./services.html" class="service-card p-4 flex flex-col items-center text-center justify-between group" data-category="all">
+        <div class="w-11 h-11 rounded-xl bg-[#8D8179]/15 flex items-center justify-center mb-2 text-[#8D8179] group-hover:scale-110 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <span data-i18n="card_1_title" class="text-xs font-bold text-slate-800 leading-snug mb-1">Find a Service</span>
+        <span data-i18n="card_1_sub" class="text-[10px] text-slate-500 mb-2">50+ Ministries</span>
+        <span data-i18n="card_1_btn" class="card-action-btn w-full">Catalog &rarr;</span>
+      </a>
+
+      <!-- 2. Check Eligibility -->
+      <a href="./eligibility.html" class="service-card p-4 flex flex-col items-center text-center justify-between group" data-category="eligibility">
+        <div class="w-11 h-11 rounded-xl bg-[#8D8179]/15 flex items-center justify-center mb-2 text-[#8D8179] group-hover:scale-110 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        </div>
+        <span data-i18n="card_2_title" class="text-xs font-bold text-slate-800 leading-snug mb-1">Check Eligibility</span>
+        <span data-i18n="card_2_sub" class="text-[10px] text-slate-500 mb-2">AI Assessment</span>
+        <span data-i18n="card_2_btn" class="card-action-btn w-full">Evaluate &rarr;</span>
+      </a>
+
+      <!-- 3. Documents Required -->
+      <a href="./documents.html" class="service-card p-4 flex flex-col items-center text-center justify-between group" data-category="certificates">
+        <div class="w-11 h-11 rounded-xl bg-[#8D8179]/15 flex items-center justify-center mb-2 text-[#8D8179] group-hover:scale-110 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <span data-i18n="card_3_title" class="text-xs font-bold text-slate-800 leading-snug mb-1">Documents</span>
+        <span data-i18n="card_3_sub" class="text-[10px] text-slate-500 mb-2">Checklist Guide</span>
+        <span data-i18n="card_3_btn" class="card-action-btn w-full">View Docs &rarr;</span>
+      </a>
+
+      <!-- 4. Apply Online -->
+      <a href="./apply.html" class="service-card p-4 flex flex-col items-center text-center justify-between group" data-category="licenses">
+        <div class="w-11 h-11 rounded-xl bg-[#8D8179]/15 flex items-center justify-center mb-2 text-[#8D8179] group-hover:scale-110 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+        </div>
+        <span data-i18n="card_4_title" class="text-xs font-bold text-slate-800 leading-snug mb-1">Apply Online</span>
+        <span data-i18n="card_4_sub" class="text-[10px] text-slate-500 mb-2">Unified Forms</span>
+        <span data-i18n="card_4_btn" class="card-action-btn w-full">Apply &rarr;</span>
+      </a>
+
+      <!-- 5. Track Application -->
+      <a href="./track.html" class="service-card p-4 flex flex-col items-center text-center justify-between group" data-category="eligibility">
+        <div class="w-11 h-11 rounded-xl bg-[#8D8179]/15 flex items-center justify-center mb-2 text-[#8D8179] group-hover:scale-110 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <span data-i18n="card_5_title" class="text-xs font-bold text-slate-800 leading-snug mb-1">Track Status</span>
+        <span data-i18n="card_5_sub" class="text-[10px] text-slate-500 mb-2">Live Timeline</span>
+        <span data-i18n="card_5_btn" class="card-action-btn w-full">Track &rarr;</span>
+      </a>
+
+      <!-- 6. Find Service Center -->
+      <a href="./centers.html" class="service-card p-4 flex flex-col items-center text-center justify-between group" data-category="support">
+        <div class="w-11 h-11 rounded-xl bg-[#8D8179]/15 flex items-center justify-center mb-2 text-[#8D8179] group-hover:scale-110 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        </div>
+        <span data-i18n="card_6_title" class="text-xs font-bold text-slate-800 leading-snug mb-1">CSC Centers</span>
+        <span data-i18n="card_6_sub" class="text-[10px] text-slate-500 mb-2">Locate Centers</span>
+        <span data-i18n="card_6_btn" class="card-action-btn w-full">Locate &rarr;</span>
+      </a>
+
+      <!-- 7. Govt Schemes -->
+      <a href="./schemes.html" class="service-card p-4 flex flex-col items-center text-center justify-between group" data-category="schemes">
+        <div class="w-11 h-11 rounded-xl bg-[#8D8179]/15 flex items-center justify-center mb-2 text-[#8D8179] group-hover:scale-110 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+        </div>
+        <span data-i18n="card_7_title" class="text-xs font-bold text-slate-800 leading-snug mb-1">Govt Schemes</span>
+        <span data-i18n="card_7_sub" class="text-[10px] text-slate-500 mb-2">Central & State</span>
+        <span data-i18n="card_7_btn" class="card-action-btn w-full">Explore &rarr;</span>
+      </a>
+
+      <!-- 8. Help & Support -->
+      <a href="./support.html" class="service-card p-4 flex flex-col items-center text-center justify-between group" data-category="support">
+        <div class="w-11 h-11 rounded-xl bg-[#8D8179]/15 flex items-center justify-center mb-2 text-[#8D8179] group-hover:scale-110 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <span data-i18n="card_8_title" class="text-xs font-bold text-slate-800 leading-snug mb-1">Helpdesk</span>
+        <span data-i18n="card_8_sub" class="text-[10px] text-slate-500 mb-2">24x7 Grievance</span>
+        <span data-i18n="card_8_btn" class="card-action-btn w-full">Support &rarr;</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Institutional Government Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-auto text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center space-x-2 mb-3">
+          <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+          <span data-i18n="portal_title" class="font-bold text-sm text-slate-900">CivicSeva Portal</span>
+        </div>
+        <p data-i18n="footer_desc" class="text-slate-500 leading-relaxed mb-3">
+          A flagship Digital India e-Governance initiative offering direct, transparent, and prompt access to governmental services and social welfare schemes.
+        </p>
+        <span data-i18n="footer_standard_badge" class="inline-block px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200">National e-Governance Standard V2.4</span>
+      </div>
+
+      <div>
+        <h4 data-i18n="footer_core_services" class="font-bold text-slate-900 mb-3 uppercase tracking-wider text-[11px]">Core Services</h4>
+        <ul class="space-y-2">
+          <li><a href="./services.html" data-i18n="footer_srv_directory" class="hover:text-[#8D8179]">Service Directory</a></li>
+          <li><a href="./eligibility.html" data-i18n="footer_srv_eligibility" class="hover:text-[#8D8179]">Eligibility Checker</a></li>
+          <li><a href="./documents.html" data-i18n="footer_srv_documents" class="hover:text-[#8D8179]">Document Requirements</a></li>
+          <li><a href="./apply.html" data-i18n="footer_srv_apply" class="hover:text-[#8D8179]">Online Applications</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 data-i18n="footer_citizen_support" class="font-bold text-slate-900 mb-3 uppercase tracking-wider text-[11px]">Citizen Support</h4>
+        <ul class="space-y-2">
+          <li><a href="./track.html" data-i18n="footer_sup_track" class="hover:text-[#8D8179]">Application Tracking</a></li>
+          <li><a href="./centers.html" data-i18n="footer_sup_centers" class="hover:text-[#8D8179]">Find Nearest CSC Center</a></li>
+          <li><a href="./schemes.html" data-i18n="footer_sup_schemes" class="hover:text-[#8D8179]">Welfare Schemes</a></li>
+          <li><a href="./support.html" data-i18n="footer_sup_grievance" class="hover:text-[#8D8179]">Grievance Portal (CPGRAMS)</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 data-i18n="footer_helplines" class="font-bold text-slate-900 mb-3 uppercase tracking-wider text-[11px]">National Helplines</h4>
+        <div class="space-y-1.5 text-slate-700">
+          <p><span data-i18n="footer_help_emergency" class="font-bold text-slate-900">Emergency Response:</span> 112</p>
+          <p><span data-i18n="footer_help_citizen" class="font-bold text-slate-900">Citizen Helpline:</span> 1076</p>
+          <p><span data-i18n="footer_help_cyber" class="font-bold text-slate-900">Cyber Crime Helpline:</span> 1930</p>
+          <p><span data-i18n="footer_help_tollfree" class="font-bold text-slate-900">Toll-Free Support:</span> 1800-111-555</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-i18n="footer_disclaimer" class="bg-slate-50 border-t border-slate-200 px-8 py-3.5 text-center text-slate-500 text-[11px]">
+      Website designed and maintained by National Informatics Centre (NIC) for Government of India. Content owned by Ministry of Electronics & IT.
+    </div>
+  </footer>
+
+  <!-- Script logic -->
+  <script>
+    // Ripple Effect
+    document.querySelectorAll('.btn-official-stone, .card-action-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const circle = document.createElement('span');
+        const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+        const radius = diameter / 2;
+        const rect = btn.getBoundingClientRect();
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${e.clientX - rect.left - radius}px`;
+        circle.style.top = `${e.clientY - rect.top - radius}px`;
+        circle.classList.add('ripple');
+        const r = btn.querySelector('.ripple');
+        if (r) r.remove();
+        btn.appendChild(circle);
+      });
+    });
+
+    // Dynamic Filter
+    function applyFilter(cat, btn) {
+      document.querySelectorAll('.btn-filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cards = document.querySelectorAll('.service-card');
+      let count = 0;
+      cards.forEach(card => {
+        const c = card.getAttribute('data-category');
+        if (cat === 'all' || c === cat) {
+          card.style.display = 'flex';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('activeCount').innerText = `Showing ${count} core services`;
+    }
+
+    // Search Redirect
+    function handleSearch() {
+      const q = document.getElementById('serviceInput').value.trim();
+      if (q) {
+        window.location.href = `./services.html?q=${encodeURIComponent(q)}`;
+      } else {
+        window.location.href = `./services.html`;
+      }
+    }
+  </script>
+  <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
+  <script src="./assets/common.js"></script>
+</body>
+</html>

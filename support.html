@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help & Support - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s ease;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .card-base {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+    }
+    .faq-item[open] summary {
+      color: #8D8179;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all content) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
+    
+    <div class="mb-6">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">Citizen Assistance & CPGRAMS</span>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">Help, Grievances & Support Directory</h1>
+      <p class="text-sm text-slate-600">
+        24x7 Government of India emergency helplines, official grievance redressal (CPGRAMS), and answers to frequently asked citizen questions.
+      </p>
+    </div>
+
+    <!-- National Helplines Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+      
+      <div class="card-base p-4 text-center">
+        <span class="text-2xl block mb-1">🚨</span>
+        <span class="text-xs font-bold text-slate-900 block">National Emergency</span>
+        <span class="text-sm font-extrabold text-[#8D8179]">112</span>
+        <span class="text-[10px] text-slate-400 block mt-0.5">Police, Fire, Ambulance</span>
+      </div>
+
+      <div class="card-base p-4 text-center">
+        <span class="text-2xl block mb-1">🏛️</span>
+        <span class="text-xs font-bold text-slate-900 block">Citizen Services</span>
+        <span class="text-sm font-extrabold text-[#8D8179]">1076</span>
+        <span class="text-[10px] text-slate-400 block mt-0.5">State CM Helpline</span>
+      </div>
+
+      <div class="card-base p-4 text-center">
+        <span class="text-2xl block mb-1">💻</span>
+        <span class="text-xs font-bold text-slate-900 block">Cyber Crime</span>
+        <span class="text-sm font-extrabold text-[#8D8179]">1930</span>
+        <span class="text-[10px] text-slate-400 block mt-0.5">Financial Fraud Helpline</span>
+      </div>
+
+      <div class="card-base p-4 text-center">
+        <span class="text-2xl block mb-1">👩</span>
+        <span class="text-xs font-bold text-slate-900 block">Women Helpline</span>
+        <span class="text-sm font-extrabold text-[#8D8179]">1091</span>
+        <span class="text-[10px] text-slate-400 block mt-0.5">24x7 Safety & Relief</span>
+      </div>
+
+      <div class="card-base p-4 text-center">
+        <span class="text-2xl block mb-1">🌾</span>
+        <span class="text-xs font-bold text-slate-900 block">Kisan Call Center</span>
+        <span class="text-sm font-extrabold text-[#8D8179]">1800-180-1551</span>
+        <span class="text-[10px] text-slate-400 block mt-0.5">Agriculture Advisory</span>
+      </div>
+
+      <div class="card-base p-4 text-center">
+        <span class="text-2xl block mb-1">🏥</span>
+        <span class="text-xs font-bold text-slate-900 block">Ayushman PM-JAY</span>
+        <span class="text-sm font-extrabold text-[#8D8179]">14555</span>
+        <span class="text-[10px] text-slate-400 block mt-0.5">Hospital Empanelment</span>
+      </div>
+
+    </div>
+
+    <!-- Grievance Form & FAQs Split Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- Left 6 Cols: File a Grievance (CPGRAMS) -->
+      <div class="lg:col-span-6">
+        <div class="card-base p-6">
+          <div class="flex items-center space-x-2 pb-3 border-b border-slate-100 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span>
+            <h2 class="text-lg font-bold text-slate-900">Lodge an Official Citizen Grievance</h2>
+          </div>
+          <p class="text-xs text-slate-600 mb-5">
+            Complaints are routed through the Department of Administrative Reforms and Public Grievances (DARPG). An officer must resolve your ticket within 21 days.
+          </p>
+
+          <form id="grievanceForm" onsubmit="event.preventDefault(); submitGrievance();" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Grievance Category *</label>
+              <select class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option selected>Delay in Service Delivery beyond SLA Target</option>
+                <option>Improper Rejection without Valid Clarification</option>
+                <option>Demand of Unauthorized Fees / Bribery</option>
+                <option>Technical Glitch on e-District / DigiLocker Portal</option>
+                <option>Misbehavior by Verification Officer or CSC Operator</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Related Application No. (If any)</label>
+                <input type="text" placeholder="e.g. CS-2026-849201" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50 font-mono font-semibold">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">District / Tehsil Office *</label>
+                <input type="text" value="Central Division Tehsildar" required class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Detailed Grievance Description *</label>
+              <textarea rows="3" required placeholder="Please mention dates, officer names, and specific issue faced..." class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">My application for Income Certificate has been pending under Field Verification past the 7-day SLA deadline without status update.</textarea>
+            </div>
+
+            <button type="submit" class="btn-official-stone w-full py-3 text-sm font-bold flex items-center justify-center space-x-2">
+              <span>Register Grievance on CPGRAMS</span>
+              <span>&rarr;</span>
+            </button>
+          </form>
+
+          <!-- Grievance Result Modal / Banner -->
+          <div id="grievanceAlert" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs">
+            <strong class="block text-sm mb-1">Grievance Ticket Registered Successfully!</strong>
+            Ticket ID: <span class="font-mono font-bold" id="ticketId">GR-2026-928104</span>. Acknowledged by District Magistrate Grievance Cell. SMS alert dispatched to your mobile.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 6 Cols: Interactive FAQ Accordion -->
+      <div class="lg:col-span-6">
+        <div class="card-base p-6">
+          <h2 class="text-lg font-bold text-slate-900 pb-3 border-b border-slate-100 mb-4">Frequently Asked Questions</h2>
+
+          <div class="space-y-3 text-xs">
+            
+            <details class="faq-item p-3.5 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer" open>
+              <summary class="font-bold text-slate-900 text-sm focus:outline-none">Is an electronic certificate legally equivalent to a physical certificate?</summary>
+              <p class="text-slate-600 mt-2 leading-relaxed">
+                Yes. Under Section 4 & 5 of the Information Technology Act 2000, digitally signed e-Certificates generated via CivicSeva / e-District portals possess identical legal validity in all courts, universities, and government recruitment processes.
+              </p>
+            </details>
+
+            <details class="faq-item p-3.5 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer">
+              <summary class="font-bold text-slate-900 text-sm focus:outline-none">How can I verify the authenticity of an issued certificate?</summary>
+              <p class="text-slate-600 mt-2 leading-relaxed">
+                Every certificate contains a 2D Secure QR Code. Scanning the QR code with any smartphone camera instantly connects to the National e-District verification server displaying the official issuing officer's signature and timestamp.
+              </p>
+            </details>
+
+            <details class="faq-item p-3.5 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer">
+              <summary class="font-bold text-slate-900 text-sm focus:outline-none">What should I do if the SLA deadline for my application has passed?</summary>
+              <p class="text-slate-600 mt-2 leading-relaxed">
+                If your application exceeds the statutory Service Level Agreement (7–15 days depending on the service), you can lodge an automated escalation directly using the "Raise Delayed Inquiry" tool on the status tracker or the CPGRAMS form on this page.
+              </p>
+            </details>
+
+            <details class="faq-item p-3.5 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer">
+              <summary class="font-bold text-slate-900 text-sm focus:outline-none">Can I access my certificates directly via DigiLocker?</summary>
+              <p class="text-slate-600 mt-2 leading-relaxed">
+                Yes. Once approved by the Tehsildar or SDM, all issued documents automatically push to your DigiLocker repository under the "Issued Documents" tab mapped to your Aadhaar number.
+              </p>
+            </details>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <span class="font-bold text-slate-900">CivicSeva Citizen Support</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-500">Government of India</span>
+      </div>
+      <div class="flex space-x-4 text-slate-500">
+        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
+        <a href="./services.html" class="hover:text-[#8D8179]">Services</a>
+        <a href="./track.html" class="hover:text-[#8D8179]">Track Status</a>
+        <a href="./centers.html" class="hover:text-[#8D8179]">Centers</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function submitGrievance() {
+      const rnd = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('ticketId').innerText = `GR-2026-${rnd}`;
+      document.getElementById('grievanceAlert').classList.remove('hidden');
+      document.getElementById('grievanceForm').reset();
+    }
+  </script>
+  <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
+  <script src="./assets/common.js"></script>
+</body>
+</html>

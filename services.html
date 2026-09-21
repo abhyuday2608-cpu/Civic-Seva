@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Service - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .btn-outline-stone {
+      background-color: #FFFFFF;
+      color: #4A4541;
+      border: 1.5px solid #D5CFCB;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .btn-outline-stone:hover {
+      border-color: #8D8179;
+      color: #8D8179;
+      background-color: #FAF8F7;
+    }
+    .btn-filter-pill {
+      background-color: #FFFFFF;
+      color: #4A4541;
+      border: 1.5px solid #D5CFCB;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 6px 14px;
+      font-size: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-filter-pill:hover {
+      border-color: #8D8179;
+      color: #8D8179;
+    }
+    .btn-filter-pill.active {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      border-color: #8D8179;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+    }
+    .catalog-card {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+      transition: all 0.2s ease;
+    }
+    .catalog-card:hover {
+      border-color: #8D8179;
+      box-shadow: 0 10px 20px -3px rgba(141, 129, 121, 0.16);
+      transform: translateY(-2px);
+    }
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      transform: scale(0);
+      animation: rippleEffect 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes rippleEffect {
+      to { transform: scale(4); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all content) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
+    
+    <!-- Title and Search Banner -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">Central & State Directory</span>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">Find a Government Service</h1>
+        <p class="text-sm text-slate-600 mb-5">
+          Browse verified government services across ministries. Apply directly online or check documentation requirements.
+        </p>
+      </div>
+
+      <!-- Search Input -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search by service name, certificate, or department (e.g. 'caste', 'income', 'license')..." 
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-[#8D8179] text-sm"
+          />
+          <svg class="w-5 h-5 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <button onclick="filterServices()" class="btn-official-stone px-6 py-2.5 text-sm">
+          Search Services
+        </button>
+      </div>
+
+      <!-- Department Filter Pills -->
+      <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-100">
+        <button onclick="setDept('all', this)" class="btn-filter-pill active">All Departments</button>
+        <button onclick="setDept('revenue', this)" class="btn-filter-pill">Revenue & Certificates</button>
+        <button onclick="setDept('transport', this)" class="btn-filter-pill">Transport & Driving</button>
+        <button onclick="setDept('civil', this)" class="btn-filter-pill">Civil Supplies & Food</button>
+        <button onclick="setDept('health', this)" class="btn-filter-pill">Healthcare & Ayushman</button>
+        <button onclick="setDept('education', this)" class="btn-filter-pill">Scholarships & Education</button>
+        <button onclick="setDept('labor', this)" class="btn-filter-pill">Social Justice & Welfare</button>
+      </div>
+    </div>
+
+    <!-- Active Results Header -->
+    <div class="flex justify-between items-center mb-5 px-1">
+      <h2 class="text-base font-bold text-slate-900" id="resultsCount">Showing all 12 featured services</h2>
+      <span class="text-xs text-slate-500">Service SLA standard: 7 to 15 business days</span>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="servicesContainer">
+
+      <!-- Card 1 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="revenue" data-keywords="income certificate tehsildar revenue eWS scholarship">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-amber-50 border border-amber-200 text-amber-900 font-bold text-[10px] uppercase">Revenue Dept</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Online Available</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Issuance of Income Certificate</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Official certificate certifying annual family income from all sources. Essential for educational fee waivers and welfare schemes.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Processing:</span> 7 Days</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> ₹30</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=income" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Now</a>
+          <a href="./documents.html?service=income" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="revenue" data-keywords="caste certificate sc st obc reservation revenue">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-amber-50 border border-amber-200 text-amber-900 font-bold text-[10px] uppercase">Revenue Dept</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Online Available</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Caste / Community Certificate</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Verification of SC / ST / OBC / SEBC community status under the State Revenue authority for reservations and government schemes.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Processing:</span> 15 Days</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> ₹30</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=caste" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Now</a>
+          <a href="./documents.html?service=caste" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="transport" data-keywords="driving license learner permanent rto sarathi">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-900 font-bold text-[10px] uppercase">Transport Dept (RTO)</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Online Test</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Learner / Driving License Application</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Apply for learner license with online contactless test or book slot for permanent driving license skill examination.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Processing:</span> Instant / Slot</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> ₹200+</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=license" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Now</a>
+          <a href="./documents.html?service=license" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="civil" data-keywords="ration card food civil supplies bpl apl nfsa">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-900 font-bold text-[10px] uppercase">Civil Supplies</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Online Available</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">New Ration Card / Member Addition</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Application for NFSA Priority Household (PHH) or Antyodaya (AAY) ration cards, and addition of new family members.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Processing:</span> 21 Days</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> Free / ₹20</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=ration" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Now</a>
+          <a href="./documents.html?service=ration" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="health" data-keywords="ayushman bharat golden card pmjay health insurance">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-900 font-bold text-[10px] uppercase">National Health Authority</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Instant e-Card</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Ayushman Card (PM-JAY)</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Provides cashless healthcare coverage up to ₹5,00,000 per family per year for secondary and tertiary hospitalization.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Coverage:</span> ₹5 Lakhs</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> Free</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=ayushman" class="btn-official-stone flex-1 py-2 text-center text-xs">Generate Card</a>
+          <a href="./eligibility.html" class="btn-outline-stone px-3 py-2 text-center text-xs">Eligibility</a>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="revenue" data-keywords="birth certificate death municipality registrar">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-amber-50 border border-amber-200 text-amber-900 font-bold text-[10px] uppercase">Registrar of Births</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Online Available</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Birth & Death Registration</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Official certificate issued by Municipal Corporation / Gram Panchayat certifying legal record of birth or death.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Processing:</span> 5 Days</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> ₹20</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=birth" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Now</a>
+          <a href="./documents.html?service=birth" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="labor" data-keywords="pension old age widow disability social security">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-purple-50 border border-purple-200 text-purple-900 font-bold text-[10px] uppercase">Social Welfare</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DBT Direct Transfer</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Old Age & Widow Social Pension</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Monthly financial assistance directly credited to bank account via DBT for senior citizens (60+) and destitute women.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Benefit:</span> Monthly DBT</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> Free</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=pension" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Now</a>
+          <a href="./eligibility.html" class="btn-outline-stone px-3 py-2 text-center text-xs">Check</a>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="education" data-keywords="scholarship post matric merit minority pre matric nsp">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-indigo-50 border border-indigo-200 text-indigo-900 font-bold text-[10px] uppercase">Ministry of Education</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">NSP Portal</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Post-Matric National Scholarship</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Financial aid covering tuition fees and maintenance allowance for higher secondary and college students from economically weaker sections.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Coverage:</span> Up to ₹25,000</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> Free</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=scholarship" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Online</a>
+          <a href="./documents.html?service=scholarship" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="catalog-card p-5 flex flex-col justify-between" data-dept="transport" data-keywords="vehicle registration rc transfer fitness hypothecation">
+        <div>
+          <div class="flex justify-between items-start mb-2.5">
+            <span class="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-900 font-bold text-[10px] uppercase">Transport Dept</span>
+            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Vahan Portal</span>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base mb-1">Vehicle RC Transfer & Duplicate RC</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            Ownership transfer upon sale, hypothecation endorsement / termination, and duplicate Registration Certificate issue.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-lg mb-4">
+            <div><span class="font-semibold text-slate-800">Processing:</span> 10 Days</div>
+            <div><span class="font-semibold text-slate-800">Govt Fee:</span> ₹300+</div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 pt-2 border-t border-slate-100">
+          <a href="./apply.html?service=vehicle" class="btn-official-stone flex-1 py-2 text-center text-xs">Apply Now</a>
+          <a href="./documents.html?service=vehicle" class="btn-outline-stone px-3 py-2 text-center text-xs">Docs</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Institutional Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <span class="font-bold text-slate-900">CivicSeva Service Directory</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-500">Government of India</span>
+      </div>
+      <div class="flex space-x-4 text-slate-500">
+        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
+        <a href="./schemes.html" class="hover:text-[#8D8179]">Schemes</a>
+        <a href="./track.html" class="hover:text-[#8D8179]">Track Application</a>
+        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentDept = 'all';
+
+    function setDept(dept, btn) {
+      document.querySelectorAll('.btn-filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDept = dept;
+      filterServices();
+    }
+
+    function filterServices() {
+      const term = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.catalog-card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const dept = card.getAttribute('data-dept');
+        const keywords = card.getAttribute('data-keywords').toLowerCase();
+        const title = card.querySelector('h3').innerText.toLowerCase();
+
+        const matchDept = (currentDept === 'all' || dept === currentDept);
+        const matchSearch = (!term || keywords.includes(term) || title.includes(term));
+
+        if (matchDept && matchSearch) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('resultsCount').innerText = `Showing ${visible} matching services`;
+    }
+
+    // Read URL query parameter if passed from home search
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (q) {
+        document.getElementById('searchInput').value = q;
+        filterServices();
+      }
+    });
+  </script>
+  <script src="./assets/common.js"></script>
+</body>
+</html>

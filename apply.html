@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply Online - CivicSeva | Government of India</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #EEEEEE;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      transition: all 0.2s ease;
+    }
+    .btn-official-stone:hover {
+      background-color: #796E66;
+      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
+      transform: translateY(-1px);
+    }
+    .btn-outline-stone {
+      background-color: #FFFFFF;
+      color: #4A4541;
+      border: 1.5px solid #D5CFCB;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    .btn-outline-stone:hover {
+      border-color: #8D8179;
+      color: #8D8179;
+      background-color: #FAF8F7;
+    }
+    .card-base {
+      background: #FFFFFF;
+      border: 1.5px solid #E5E0DC;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+    }
+    .step-pill.active {
+      background-color: #8D8179;
+      color: #FFFFFF;
+      border-color: #8D8179;
+    }
+    .step-pill.completed {
+      background-color: #F0FDF4;
+      color: #166534;
+      border-color: #86EFAC;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Government Masthead Top Bar -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <span class="text-slate-300">|</span>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center space-x-1 font-bold text-[11px]">
+        <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
+        <button onclick="document.body.style.fontSize='16px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A</button>
+        <button onclick="document.body.style.fontSize='18px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header (sticky z-[99999] to guarantee dropdown floats above all content) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Branding -->
+      <a href="./index.html" class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+          C
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
+          </div>
+          <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
+        </div>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+      </nav>
+
+      <!-- Right Header Actions with 22 Languages & Working Login -->
+      <div class="flex items-center space-x-3 text-sm">
+        <div id="langDropdownContainer"></div>
+        <div id="authActionContainer"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-6 py-8 flex-1 w-full">
+
+    <!-- Progress Indicator Bar -->
+    <div class="mb-8">
+      <div class="flex items-center justify-between mb-3 text-xs font-bold text-slate-700">
+        <span id="stepTitleText">Step 1 of 4: Citizen Demographics & Identity</span>
+        <span class="text-[#8D8179]" id="stepPercentText">25% Completed</span>
+      </div>
+      <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+        <div id="progressBar" class="h-full bg-[#8D8179] transition-all duration-300" style="width: 25%"></div>
+      </div>
+      
+      <!-- Step Tabs -->
+      <div class="grid grid-cols-4 gap-2 mt-3 text-center text-xs font-semibold">
+        <div id="tab1" class="step-pill active py-2 rounded-lg border border-slate-300">1. Citizen Info</div>
+        <div id="tab2" class="step-pill py-2 rounded-lg border border-slate-300 bg-white text-slate-500">2. Service Details</div>
+        <div id="tab3" class="step-pill py-2 rounded-lg border border-slate-300 bg-white text-slate-500">3. Upload Docs</div>
+        <div id="tab4" class="step-pill py-2 rounded-lg border border-slate-300 bg-white text-slate-500">4. Review & Sign</div>
+      </div>
+    </div>
+
+    <!-- Application Form Container -->
+    <div class="card-base p-8" id="formCard">
+      
+      <form id="applyForm">
+
+        <!-- STEP 1: Personal Details -->
+        <div id="step1" class="space-y-5">
+          <div class="border-b border-slate-100 pb-3 mb-4">
+            <h2 class="text-lg font-bold text-slate-900">Applicant Identity & Residential Information</h2>
+            <p class="text-xs text-slate-500">Data will be authenticated against National Citizen Identity / Aadhaar UIDAI registry.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Legal Name (as per Aadhaar) *</label>
+              <input type="text" id="appFullName" value="Abhyuday Sharma" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Father's / Husband's Name *</label>
+              <input type="text" id="appGuardian" placeholder="Enter guardian name" value="R. K. Sharma" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Aadhaar Card Number (12 Digits) *</label>
+              <input type="text" maxlength="14" placeholder="XXXX-XXXX-1234" value="8492-9102-4521" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium tracking-wider">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mobile Number (Linked with Aadhaar) *</label>
+              <input type="tel" maxlength="10" placeholder="9876543210" value="9876543210" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Date of Birth *</label>
+              <input type="date" value="1998-05-15" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Gender *</label>
+              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option selected>Male</option>
+                <option>Female</option>
+                <option>Third Gender</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Permanent Residential Address *</label>
+            <textarea rows="2" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50" required>House No. 42, Civil Lines Road, District Headquarters, Pincode 208001</textarea>
+          </div>
+
+          <div class="flex justify-end pt-4 border-t border-slate-100">
+            <button type="button" onclick="nextStep(2)" class="btn-official-stone px-6 py-2.5 text-xs flex items-center space-x-2">
+              <span>Save & Proceed to Service Details</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Service Specific Details -->
+        <div id="step2" class="space-y-5 hidden">
+          <div class="border-b border-slate-100 pb-3 mb-4">
+            <h2 class="text-lg font-bold text-slate-900">Service Category & Application Specifics</h2>
+            <p class="text-xs text-slate-500">Configure parameters for your selected governmental service.</p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Target Government Service *</label>
+            <select id="applyServiceSelect" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-semibold text-slate-900">
+              <option value="income" selected>Income Certificate (Aay Praman Patra)</option>
+              <option value="caste">Caste / Community Certificate</option>
+              <option value="license">Learner / Driving License Application</option>
+              <option value="ration">New Ration Card / Priority Household</option>
+              <option value="birth">Birth Registration Certificate</option>
+              <option value="ayushman">Ayushman Bharat PM-JAY Card</option>
+              <option value="pension">Old Age / Widow Social Pension</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Purpose of Application *</label>
+              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option selected>Higher Education Fee Concession / Scholarship</option>
+                <option>Government Employment / Job Reservation</option>
+                <option>Social Welfare Scheme Subsidies</option>
+                <option>Bank Loan / Credit Facility</option>
+                <option>Court / Official Verification</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Declared Annual Household Income (₹) *</label>
+              <input type="number" value="180000" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Competent Revenue Authority *</label>
+              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option selected>Tehsildar Office (Sub-Division Central)</option>
+                <option>Sub-Divisional Magistrate (SDM)</option>
+                <option>Revenue Officer / Mamlatdar</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Service Delivery Mode *</label>
+              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+                <option selected>Digital e-Certificate with QR Code (DigiLocker)</option>
+                <option>Speed Post Physical Certificate Delivery</option>
+                <option>In-Person Collection at Tehsildar Office</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex justify-between pt-4 border-t border-slate-100">
+            <button type="button" onclick="nextStep(1)" class="btn-outline-stone px-5 py-2.5 text-xs">&larr; Back</button>
+            <button type="button" onclick="nextStep(3)" class="btn-official-stone px-6 py-2.5 text-xs flex items-center space-x-2">
+              <span>Save & Proceed to Documents</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Document Uploads -->
+        <div id="step3" class="space-y-5 hidden">
+          <div class="border-b border-slate-100 pb-3 mb-4">
+            <h2 class="text-lg font-bold text-slate-900">Upload Required Documents</h2>
+            <p class="text-xs text-slate-500">Max file size 2MB per document. Accepted formats: PDF, JPG, PNG.</p>
+          </div>
+
+          <!-- Doc 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <span class="text-xl">🪪</span>
+              <div>
+                <span class="font-bold text-slate-900 text-xs block">Proof of Identity (Aadhaar / Voter ID) *</span>
+                <span class="text-[10px] text-emerald-700 font-semibold">✓ aadhaar_front_back_scanned.pdf (420 KB)</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Uploaded</span>
+          </div>
+
+          <!-- Doc 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <span class="text-xl">🏠</span>
+              <div>
+                <span class="font-bold text-slate-900 text-xs block">Proof of Address (Electricity Bill / Registry) *</span>
+                <span class="text-[10px] text-emerald-700 font-semibold">✓ electricity_bill_latest.pdf (310 KB)</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Uploaded</span>
+          </div>
+
+          <!-- Doc 3 -->
+          <div class="p-4 rounded-xl border border-dashed border-[#8D8179] bg-[#8D8179]/5 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <span class="text-xl text-[#8D8179]">📑</span>
+              <div>
+                <span class="font-bold text-slate-900 text-xs block">Income Affidavit / Salary Certificate *</span>
+                <span class="text-[10px] text-slate-500">Drag & drop or browse from local disk</span>
+              </div>
+            </div>
+            <button type="button" onclick="alert('Document upload simulation successful!')" class="btn-official-stone px-3 py-1.5 text-[11px]">Browse File</button>
+          </div>
+
+          <!-- Doc 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <span class="text-xl">👤</span>
+              <div>
+                <span class="font-bold text-slate-900 text-xs block">Applicant Passport Photograph *</span>
+                <span class="text-[10px] text-emerald-700 font-semibold">✓ passport_photo.jpg (85 KB)</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">Uploaded</span>
+          </div>
+
+          <div class="flex justify-between pt-4 border-t border-slate-100">
+            <button type="button" onclick="nextStep(2)" class="btn-outline-stone px-5 py-2.5 text-xs">&larr; Back</button>
+            <button type="button" onclick="nextStep(4)" class="btn-official-stone px-6 py-2.5 text-xs flex items-center space-x-2">
+              <span>Save & Review Application</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Review & Submit -->
+        <div id="step4" class="space-y-5 hidden">
+          <div class="border-b border-slate-100 pb-3 mb-4">
+            <h2 class="text-lg font-bold text-slate-900">Review & Legal Declaration</h2>
+            <p class="text-xs text-slate-500">Verify all information before final digital submission.</p>
+          </div>
+
+          <!-- Summary Box -->
+          <div class="bg-slate-50 rounded-xl p-5 border border-slate-200 text-xs space-y-2.5">
+            <div class="flex justify-between">
+              <span class="text-slate-500 font-semibold">Applicant Name:</span>
+              <span class="font-bold text-slate-900">Abhyuday Sharma</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500 font-semibold">Applied Service:</span>
+              <span class="font-bold text-slate-900">Income Certificate (Aay Praman Patra)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500 font-semibold">Processing Department:</span>
+              <span class="font-bold text-slate-900">Tehsildar Office (Central Division)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500 font-semibold">Declared Annual Income:</span>
+              <span class="font-bold text-slate-900">₹ 1,80,000 / year</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500 font-semibold">Statutory Government Fee:</span>
+              <span class="font-bold text-emerald-800">₹ 30.00 (Exempted under DBT Digital India)</span>
+            </div>
+          </div>
+
+          <!-- Legal Declaration Checkbox -->
+          <div class="p-4 rounded-xl border border-amber-200 bg-amber-50/70">
+            <label class="flex items-start space-x-3 cursor-pointer">
+              <input type="checkbox" id="legalAgree" checked required class="mt-1 w-4 h-4 text-[#8D8179] rounded accent-[#8D8179]">
+              <span class="text-xs text-slate-700 leading-relaxed">
+                I hereby declare that the information provided above is true and authentic to the best of my knowledge. I understand that submitting false statements or fabricated documentation is a punishable criminal offense under the Bharatiya Nyaya Sanhita (BNS) and Information Technology Act.
+              </span>
+            </label>
+          </div>
+
+          <div class="flex justify-between pt-4 border-t border-slate-100">
+            <button type="button" onclick="nextStep(3)" class="btn-outline-stone px-5 py-2.5 text-xs">&larr; Back</button>
+            <button type="button" onclick="submitApplication()" class="btn-official-stone px-8 py-3 text-sm flex items-center space-x-2">
+              <span>🚀 Submit Application to Tehsildar</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- SUBMISSION SUCCESS CONFIRMATION RECEIPT -->
+      <div id="successReceipt" class="hidden text-center py-6">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center text-3xl mb-4 font-bold">
+          ✓
+        </div>
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-300">
+          Application Submitted Successfully
+        </span>
+        <h2 class="text-2xl font-extrabold text-slate-900 mt-3 mb-1">Official Acknowledgement Receipt</h2>
+        <p class="text-xs text-slate-500 max-w-md mx-auto mb-6">
+          Your e-application has been registered with the Revenue e-District portal and assigned for field officer verification.
+        </p>
+
+        <!-- Receipt Card -->
+        <div class="max-w-md mx-auto bg-slate-50 border border-slate-200 rounded-2xl p-6 text-left text-xs mb-6 shadow-sm">
+          <div class="border-b border-slate-200 pb-3 mb-3 flex justify-between items-center">
+            <span class="font-bold text-slate-800 uppercase">Acknowledgement No.</span>
+            <span class="font-mono font-extrabold text-sm text-[#8D8179]" id="receiptNumber">CS-2026-849201</span>
+          </div>
+          <div class="space-y-2 text-slate-600">
+            <div class="flex justify-between">
+              <span>Applicant Name:</span>
+              <strong class="text-slate-900">Abhyuday Sharma</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>Service Applied:</span>
+              <strong class="text-slate-900">Income Certificate</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>Date & Timestamp:</span>
+              <strong class="text-slate-900" id="receiptTime">21 Sep 2026, 19:45 IST</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>Assigned Officer:</span>
+              <strong class="text-slate-900">Shri R. P. Verma (Naib Tehsildar)</strong>
+            </div>
+            <div class="flex justify-between">
+              <span>Estimated Delivery Date:</span>
+              <strong class="text-emerald-700">28 Sep 2026 (7 Days SLA)</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-3">
+          <button onclick="window.print()" class="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold">
+            🖨️ Print / Download PDF Receipt
+          </button>
+          <a id="trackReceiptLink" href="./track.html?ref=CS-2026-849201" class="btn-official-stone px-6 py-2.5 text-xs flex items-center justify-center space-x-2">
+            <span>Track Application Status Now</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <span class="font-bold text-slate-900">CivicSeva Online e-Form Portal</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-slate-500">Government of India</span>
+      </div>
+      <div class="flex space-x-4 text-slate-500">
+        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
+        <a href="./services.html" class="hover:text-[#8D8179]">Services</a>
+        <a href="./track.html" class="hover:text-[#8D8179]">Track Application</a>
+        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentStep = 1;
+
+    function nextStep(step) {
+      document.querySelectorAll('[id^="step"]').forEach(el => el.classList.add('hidden'));
+      document.getElementById(`step${step}`).classList.remove('hidden');
+
+      // Update progress bar and tabs
+      currentStep = step;
+      const pct = step * 25;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+      document.getElementById('stepPercentText').innerText = `${pct}% Completed`;
+
+      const titles = [
+        'Step 1 of 4: Citizen Demographics & Identity',
+        'Step 2 of 4: Service Category & Specifics',
+        'Step 3 of 4: Upload Required Documents',
+        'Step 4 of 4: Review Application & Self-Declaration'
+      ];
+      document.getElementById('stepTitleText').innerText = titles[step - 1];
+
+      for (let i = 1; i <= 4; i++) {
+        const tab = document.getElementById(`tab${i}`);
+        tab.className = 'step-pill py-2 rounded-lg border border-slate-300 text-xs font-semibold';
+        if (i === step) {
+          tab.classList.add('active');
+        } else if (i < step) {
+          tab.classList.add('completed');
+        } else {
+          tab.classList.add('bg-white', 'text-slate-500');
+        }
+      }
+    }
+
+    function submitApplication() {
+      if (!document.getElementById('legalAgree').checked) {
+        alert('Please accept the legal declaration before submitting.');
+        return;
+      }
+
+      // Generate Random Reference ID
+      const randomNum = Math.floor(100000 + Math.random() * 900000);
+      const ref = `CS-2026-${randomNum}`;
+
+      document.getElementById('receiptNumber').innerText = ref;
+      document.getElementById('trackReceiptLink').href = `./track.html?ref=${ref}`;
+
+      const now = new Date();
+      document.getElementById('receiptTime').innerText = now.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) + ' IST';
+
+      // Hide form steps & show receipt
+      document.getElementById('applyForm').classList.add('hidden');
+      document.getElementById('successReceipt').classList.remove('hidden');
+      document.getElementById('progressBar').style.width = '100%';
+      document.getElementById('stepPercentText').innerText = '100% Submitted';
+      document.getElementById('stepTitleText').innerText = 'Application Registered Successfully';
+    }
+
+    // Preselect service from URL query if passed
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const s = params.get('service');
+      if (s) {
+        const sel = document.getElementById('applyServiceSelect');
+        for (let i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === s) {
+            sel.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    });
+  </script>
+  <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
+  <script src="./assets/common.js"></script>
+</body>
+</html>
