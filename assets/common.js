@@ -2085,10 +2085,31 @@ function isCitizenLoggedIn() {
 function checkAuthStatus() {
   const userJson = localStorage.getItem('civicseva_user');
   const authContainer = document.getElementById('authActionContainer');
+  const navLogin = document.getElementById('navLoginLink');
+
+  let user = null;
+  if (userJson) {
+    try {
+      user = JSON.parse(userJson);
+    } catch(e) {
+      console.warn('Invalid user session in localStorage, resetting');
+      localStorage.removeItem('civicseva_user');
+      localStorage.removeItem('civicseva_token');
+      user = null;
+    }
+  }
+
+  if (navLogin) {
+    if (user && user.name) {
+      navLogin.classList.add('hidden');
+    } else {
+      navLogin.classList.remove('hidden');
+    }
+  }
+
   if (!authContainer) return;
 
-  if (userJson) {
-    const user = JSON.parse(userJson);
+  if (user && user.name) {
     authContainer.innerHTML = `
       <div class="relative inline-block text-left" id="userProfileWrapper" style="z-index: 9999;">
         <button type="button" onclick="toggleUserDropdown(event)" class="flex items-center space-x-2 bg-white border-2 border-[#1E3A8A] px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-800 shadow-md hover:shadow-lg transition cursor-pointer">
@@ -2138,7 +2159,7 @@ function checkAuthStatus() {
     `;
   } else {
     authContainer.innerHTML = `
-      <button onclick="openLoginModal()" class="btn-official-stone px-5 py-2 text-xs flex items-center space-x-2 cursor-pointer">
+      <button onclick="openLoginModal()" class="btn-official-stone px-5 py-2 text-xs flex items-center space-x-2 cursor-pointer shadow-md">
         <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
         <span data-i18n="login_btn">Login</span>
       </button>
@@ -2428,9 +2449,6 @@ async function sendDemoOtp() {
     document.getElementById('modalVerifyContainer').classList.remove('hidden');
     startModalTimer();
     document.getElementById('otpValueInput').focus();
-  }
-}
-    showToast('✓ OTP inserted automatically.');
   }
 }
 

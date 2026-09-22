@@ -200,13 +200,19 @@
         <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg hover:text-[#1E3A8A] hover:bg-slate-50 transition">Apply Online</a>
         <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg hover:text-[#1E3A8A] hover:bg-slate-50 transition">Track Application</a>
         <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg hover:text-[#1E3A8A] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./login.html" class="px-3.5 py-1.5 rounded-lg hover:text-[#1E3A8A] hover:bg-slate-50 transition font-bold text-[#1E3A8A]">Login</a>
         <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg hover:text-[#1E3A8A] hover:bg-slate-50 transition">Helpdesk</a>
       </nav>
 
       <!-- Right Header Actions with 22 Languages & Working Login -->
       <div class="flex items-center space-x-3 text-sm">
         <div id="langDropdownContainer"></div>
-        <div id="authActionContainer"></div>
+        <div id="authActionContainer">
+          <button onclick="if(typeof openLoginModal==='function'){openLoginModal();}else{window.location.href='./login.html';}" class="btn-official-stone px-5 py-2 text-xs flex items-center space-x-2 cursor-pointer shadow-md">
+            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            <span data-i18n="login_btn">Login</span>
+          </button>
+        </div>
       </div>
 
     </div>
