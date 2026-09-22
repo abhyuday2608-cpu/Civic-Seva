@@ -11,60 +11,69 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #EEEEEE;
+            background: radial-gradient(circle at 12% 18%, rgba(219, 234, 254, 0.65) 0%, transparent 45%),
+                  radial-gradient(circle at 88% 82%, rgba(254, 243, 199, 0.5) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.6) 0%, transparent 100%),
+                  linear-gradient(180deg, #F8FAFC 0%, #EEF2F6 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
     .tricolor-ribbon {
       height: 4px;
       background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
     }
     .btn-official-stone {
-      background-color: #8D8179;
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F2557 100%);
       color: #FFFFFF;
       font-weight: 600;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
-      transition: all 0.2s ease;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(30, 58, 138, 0.28), 0 1px 3px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
     }
     .btn-official-stone:hover {
-      background-color: #796E66;
-      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
+      transform: translateY(-2px);
     }
     .btn-outline-stone {
       background-color: #FFFFFF;
-      color: #4A4541;
-      border: 1.5px solid #D5CFCB;
+      color: #1E3A8A;
+      border: 1.5px solid #CBD5E1;
       font-weight: 600;
-      border-radius: 10px;
+      border-radius: 12px;
       transition: all 0.2s ease;
     }
     .btn-outline-stone:hover {
-      border-color: #8D8179;
-      color: #8D8179;
-      background-color: #FAF8F7;
+      border-color: #1E3A8A;
+      color: #1E3A8A;
+      background-color: #EFF6FF;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.12);
     }
     .btn-filter-pill {
-      background-color: #FFFFFF;
-      color: #4A4541;
-      border: 1.5px solid #D5CFCB;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      color: #334155;
+      border: 1.5px solid #CBD5E1;
       font-weight: 600;
-      border-radius: 10px;
-      padding: 6px 14px;
-      font-size: 12px;
+      border-radius: 12px;
       transition: all 0.2s ease;
       cursor: pointer;
     }
     .btn-filter-pill:hover {
-      border-color: #8D8179;
-      color: #8D8179;
+      border-color: #1E3A8A;
+      color: #1E3A8A;
+      background: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.14);
+      transform: translateY(-1px);
     }
     .btn-filter-pill.active {
-      background-color: #8D8179;
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F2557 100%);
       color: #FFFFFF;
-      border-color: #8D8179;
-      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
+      border-color: #1E3A8A;
+      box-shadow: 0 4px 14px rgba(30, 58, 138, 0.32);
     }
     .catalog-card {
       background: #FFFFFF;
@@ -74,7 +83,7 @@
       transition: all 0.2s ease;
     }
     .catalog-card:hover {
-      border-color: #8D8179;
+      border-color: #1E3A8A;
       box-shadow: 0 10px 20px -3px rgba(141, 129, 121, 0.16);
       transform: translateY(-2px);
     }
@@ -105,13 +114,13 @@
         <span class="text-slate-300">|</span>
         <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
         <span class="text-slate-300">|</span>
-        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+        <span data-i18n="citizen_navigator" class="text-[#1E3A8A] font-bold">Citizen Service Navigator</span>
       </div>
     </div>
     <div class="flex items-center space-x-4">
-      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#1E3A8A] transition">Skip to Main Content</a>
       <span class="text-slate-300">|</span>
-      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#1E3A8A] transition">Screen Reader</a>
       <span class="text-slate-300">|</span>
       <div class="flex items-center space-x-1 font-bold text-[11px]">
         <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
@@ -127,12 +136,12 @@
       
       <!-- Logo & Branding -->
       <a href="./index.html" class="flex items-center space-x-3.5">
-        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+        <div class="w-10 h-10 rounded-xl bg-[#1E3A8A] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-blue-900/25">
           C
         </div>
         <div>
           <div class="flex items-center space-x-2">
-            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#1E3A8A]">Seva</span></span>
             <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
           </div>
           <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
@@ -141,15 +150,15 @@
 
       <!-- Navigation links -->
       <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
-        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
-        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
-        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
-        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
-        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
-        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
-        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
-        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
-        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#1E3A8A] font-bold hover:text-[#1E3A8A] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Helpdesk</a>
       </nav>
 
       <!-- Right Header Actions with 22 Languages & Working Login -->
@@ -167,7 +176,7 @@
     <!-- Title and Search Banner -->
     <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-8">
       <div class="max-w-3xl">
-        <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">Central & State Directory</span>
+        <span class="text-xs font-bold uppercase tracking-wider text-[#1E3A8A]">Central & State Directory</span>
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">Find a Government Service</h1>
         <p class="text-sm text-slate-600 mb-5">
           Browse verified government services across ministries. Apply directly online or check documentation requirements.
@@ -181,7 +190,7 @@
             type="text" 
             id="searchInput" 
             placeholder="Search by service name, certificate, or department (e.g. 'caste', 'income', 'license')..." 
-            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-[#8D8179] text-sm"
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-[#1E3A8A] text-sm"
           />
           <svg class="w-5 h-5 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
@@ -416,16 +425,16 @@
   <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
     <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex items-center space-x-2">
-        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <div class="w-6 h-6 rounded bg-[#1E3A8A] text-white flex items-center justify-center font-bold text-xs">C</div>
         <span class="font-bold text-slate-900">CivicSeva Service Directory</span>
         <span class="text-slate-400">|</span>
         <span class="text-slate-500">Government of India</span>
       </div>
       <div class="flex space-x-4 text-slate-500">
-        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
-        <a href="./schemes.html" class="hover:text-[#8D8179]">Schemes</a>
-        <a href="./track.html" class="hover:text-[#8D8179]">Track Application</a>
-        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+        <a href="./index.html" class="hover:text-[#1E3A8A]">Home</a>
+        <a href="./schemes.html" class="hover:text-[#1E3A8A]">Schemes</a>
+        <a href="./track.html" class="hover:text-[#1E3A8A]">Track Application</a>
+        <a href="./support.html" class="hover:text-[#1E3A8A]">Support</a>
       </div>
     </div>
   </footer>

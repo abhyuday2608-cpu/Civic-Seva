@@ -11,30 +11,40 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #EEEEEE;
+            background: radial-gradient(circle at 12% 18%, rgba(219, 234, 254, 0.65) 0%, transparent 45%),
+                  radial-gradient(circle at 88% 82%, rgba(254, 243, 199, 0.5) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.6) 0%, transparent 100%),
+                  linear-gradient(180deg, #F8FAFC 0%, #EEF2F6 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
     .tricolor-ribbon {
       height: 4px;
       background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
     }
     .btn-official-stone {
-      background-color: #8D8179;
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F2557 100%);
       color: #FFFFFF;
       font-weight: 600;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
-      transition: all 0.2s ease;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(30, 58, 138, 0.28), 0 1px 3px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
     }
     .btn-official-stone:hover {
-      background-color: #796E66;
-      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
+      transform: translateY(-2px);
     }
     .card-base {
-      background: #FFFFFF;
-      border: 1.5px solid #E5E0DC;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #E2E8F0;
       border-radius: 14px;
-      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 6px 20px -2px rgba(15, 23, 42, 0.05);
+      transition: all 0.2s ease;
     }
   </style>
 </head>
@@ -52,13 +62,13 @@
         <span class="text-slate-300">|</span>
         <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
         <span class="text-slate-300">|</span>
-        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+        <span data-i18n="citizen_navigator" class="text-[#1E3A8A] font-bold">Citizen Service Navigator</span>
       </div>
     </div>
     <div class="flex items-center space-x-4">
-      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#1E3A8A] transition">Skip to Main Content</a>
       <span class="text-slate-300">|</span>
-      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#1E3A8A] transition">Screen Reader</a>
       <span class="text-slate-300">|</span>
       <div class="flex items-center space-x-1 font-bold text-[11px]">
         <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
@@ -74,12 +84,12 @@
       
       <!-- Logo & Branding -->
       <a href="./index.html" class="flex items-center space-x-3.5">
-        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+        <div class="w-10 h-10 rounded-xl bg-[#1E3A8A] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-blue-900/25">
           C
         </div>
         <div>
           <div class="flex items-center space-x-2">
-            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#1E3A8A]">Seva</span></span>
             <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
           </div>
           <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
@@ -88,15 +98,15 @@
 
       <!-- Navigation links -->
       <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
-        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
-        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
-        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
-        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
-        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
-        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
-        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
-        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
-        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#1E3A8A] font-bold hover:text-[#1E3A8A] hover:bg-slate-50 transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-slate-50 transition">Helpdesk</a>
       </nav>
 
       <!-- Right Header Actions with 22 Languages & Working Login -->
@@ -112,7 +122,7 @@
   <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
     
     <div class="mb-6">
-      <span class="text-xs font-bold uppercase tracking-wider text-[#8D8179]">AI Citizen Assistance</span>
+      <span class="text-xs font-bold uppercase tracking-wider text-[#1E3A8A]">AI Citizen Assistance</span>
       <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">Check Your Eligibility for Government Benefits</h1>
       <p class="text-sm text-slate-600">
         Answer a few simple profile questions below. Our algorithmic matcher will instantly calculate which Central and State schemes you qualify for.
@@ -126,7 +136,7 @@
         <div class="card-base p-6">
           <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
             <h2 class="font-bold text-slate-900 text-base">Your Citizen Profile</h2>
-            <button onclick="resetProfile()" class="text-xs text-[#8D8179] hover:underline font-semibold">Reset All</button>
+            <button onclick="resetProfile()" class="text-xs text-[#1E3A8A] hover:underline font-semibold">Reset All</button>
           </div>
 
           <form id="eligibilityForm" onsubmit="event.preventDefault(); evaluateEligibility();" class="space-y-4">
@@ -134,7 +144,7 @@
             <!-- Age Group -->
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Age Group</label>
-              <select id="userAge" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select id="userAge" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#1E3A8A] bg-slate-50">
                 <option value="student">Youth / Student (Below 25 yrs)</option>
                 <option value="adult" selected>Adult (25 to 59 yrs)</option>
                 <option value="senior">Senior Citizen (60+ yrs)</option>
@@ -145,13 +155,13 @@
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Gender</label>
               <div class="grid grid-cols-3 gap-2">
-                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#8D8179] has-[:checked]:bg-[#8D8179]/10">
+                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#1E3A8A] has-[:checked]:bg-[#1E3A8A]/10">
                   <input type="radio" name="gender" value="all" checked class="hidden"> All / Any
                 </label>
-                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#8D8179] has-[:checked]:bg-[#8D8179]/10">
+                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#1E3A8A] has-[:checked]:bg-[#1E3A8A]/10">
                   <input type="radio" name="gender" value="female" class="hidden"> Female
                 </label>
-                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#8D8179] has-[:checked]:bg-[#8D8179]/10">
+                <label class="flex items-center justify-center p-2 rounded-lg border border-slate-300 text-xs font-semibold cursor-pointer has-[:checked]:border-[#1E3A8A] has-[:checked]:bg-[#1E3A8A]/10">
                   <input type="radio" name="gender" value="male" class="hidden"> Male
                 </label>
               </div>
@@ -160,7 +170,7 @@
             <!-- Social Category -->
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Social Category</label>
-              <select id="userCategory" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select id="userCategory" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#1E3A8A] bg-slate-50">
                 <option value="all">General</option>
                 <option value="ews">Economically Weaker Section (EWS)</option>
                 <option value="obc">Other Backward Class (OBC / NCL)</option>
@@ -171,7 +181,7 @@
             <!-- Primary Occupation -->
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Primary Occupation</label>
-              <select id="userOccupation" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select id="userOccupation" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#1E3A8A] bg-slate-50">
                 <option value="farmer">Farmer / Agricultural Worker</option>
                 <option value="salaried" selected>Private / Public Salaried</option>
                 <option value="msme">Small Business / Artisan / Self-Employed</option>
@@ -184,7 +194,7 @@
             <!-- Annual Household Income -->
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Annual Family Income</label>
-              <select id="userIncome" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select id="userIncome" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#1E3A8A] bg-slate-50">
                 <option value="low">Below ₹1,00,000 / year (BPL / Antyodaya)</option>
                 <option value="mid" selected>₹1,00,000 – ₹2,50,000 / year</option>
                 <option value="upper_mid">₹2,50,000 – ₹8,00,000 / year</option>
@@ -195,7 +205,7 @@
             <!-- State / UT -->
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">State / Union Territory</label>
-              <select class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-[#1E3A8A] bg-slate-50">
                 <option>All India (Central Schemes)</option>
                 <option>Uttar Pradesh</option>
                 <option>Maharashtra</option>
@@ -227,13 +237,13 @@
         <div class="space-y-4" id="matchedList">
           
           <!-- Scheme Match 1 -->
-          <div class="card-base p-5 hover:border-[#8D8179] transition">
+          <div class="card-base p-5 hover:border-[#1E3A8A] transition">
             <div class="flex justify-between items-start mb-2">
               <div>
                 <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">100% Eligible</span>
                 <h3 class="text-base font-bold text-slate-900 mt-1">Ayushman Bharat - PMJAY Health Assurance</h3>
               </div>
-              <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">Ministry of Health</span>
+              <span class="text-xs font-bold text-[#1E3A8A] bg-slate-100 px-2 py-1 rounded">Ministry of Health</span>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed mb-3">
               Covers cashless hospitalization expenses up to ₹5 Lakhs per family per year at empaneled public and private hospitals across India.
@@ -245,13 +255,13 @@
           </div>
 
           <!-- Scheme Match 2 -->
-          <div class="card-base p-5 hover:border-[#8D8179] transition">
+          <div class="card-base p-5 hover:border-[#1E3A8A] transition">
             <div class="flex justify-between items-start mb-2">
               <div>
                 <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">100% Eligible</span>
                 <h3 class="text-base font-bold text-slate-900 mt-1">Pradhan Mantri Awas Yojana (PMAY-Urban / Gramin)</h3>
               </div>
-              <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">Housing & Urban Affairs</span>
+              <span class="text-xs font-bold text-[#1E3A8A] bg-slate-100 px-2 py-1 rounded">Housing & Urban Affairs</span>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed mb-3">
               Interest subsidy of up to 6.5% on home loans for first-time home buyers or financial grant of up to ₹1.20 Lakhs for rural pucca house construction.
@@ -263,13 +273,13 @@
           </div>
 
           <!-- Scheme Match 3 -->
-          <div class="card-base p-5 hover:border-[#8D8179] transition">
+          <div class="card-base p-5 hover:border-[#1E3A8A] transition">
             <div class="flex justify-between items-start mb-2">
               <div>
                 <span class="text-[10px] font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">High Match (90%)</span>
                 <h3 class="text-base font-bold text-slate-900 mt-1">PM Suraksha Bima Yojana (Accidental Cover)</h3>
               </div>
-              <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">Ministry of Finance</span>
+              <span class="text-xs font-bold text-[#1E3A8A] bg-slate-100 px-2 py-1 rounded">Ministry of Finance</span>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed mb-3">
               Extremely affordable accidental death and full disability cover of ₹2 Lakh for a nominal premium of ₹20 per year debited directly from bank account.
@@ -281,13 +291,13 @@
           </div>
 
           <!-- Scheme Match 4 -->
-          <div class="card-base p-5 hover:border-[#8D8179] transition">
+          <div class="card-base p-5 hover:border-[#1E3A8A] transition">
             <div class="flex justify-between items-start mb-2">
               <div>
                 <span class="text-[10px] font-bold uppercase tracking-wider text-purple-800 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">Income Eligible</span>
                 <h3 class="text-base font-bold text-slate-900 mt-1">EWS / Low Income Certificate Issuance</h3>
               </div>
-              <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">Revenue Department</span>
+              <span class="text-xs font-bold text-[#1E3A8A] bg-slate-100 px-2 py-1 rounded">Revenue Department</span>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed mb-3">
               Get an officially certified Income Certificate required to unlock 10% educational/job reservations and institutional scholarships.
@@ -307,16 +317,16 @@
   <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
     <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex items-center space-x-2">
-        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <div class="w-6 h-6 rounded bg-[#1E3A8A] text-white flex items-center justify-center font-bold text-xs">C</div>
         <span class="font-bold text-slate-900">CivicSeva Eligibility Evaluator</span>
         <span class="text-slate-400">|</span>
         <span class="text-slate-500">Government of India</span>
       </div>
       <div class="flex space-x-4 text-slate-500">
-        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
-        <a href="./services.html" class="hover:text-[#8D8179]">Services</a>
-        <a href="./schemes.html" class="hover:text-[#8D8179]">Schemes</a>
-        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+        <a href="./index.html" class="hover:text-[#1E3A8A]">Home</a>
+        <a href="./services.html" class="hover:text-[#1E3A8A]">Services</a>
+        <a href="./schemes.html" class="hover:text-[#1E3A8A]">Schemes</a>
+        <a href="./support.html" class="hover:text-[#1E3A8A]">Support</a>
       </div>
     </div>
   </footer>
@@ -413,13 +423,13 @@
       document.getElementById('schemeMatchTitle').innerText = `Matched Welfare Schemes (${schemes.length} Found)`;
 
       container.innerHTML = schemes.map(s => `
-        <div class="card-base p-5 hover:border-[#8D8179] transition">
+        <div class="card-base p-5 hover:border-[#1E3A8A] transition">
           <div class="flex justify-between items-start mb-2">
             <div>
               <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${s.badge}</span>
               <h3 class="text-base font-bold text-slate-900 mt-1">${s.title}</h3>
             </div>
-            <span class="text-xs font-bold text-[#8D8179] bg-slate-100 px-2 py-1 rounded">${s.dept}</span>
+            <span class="text-xs font-bold text-[#1E3A8A] bg-slate-100 px-2 py-1 rounded">${s.dept}</span>
           </div>
           <p class="text-xs text-slate-600 leading-relaxed mb-3">${s.desc}</p>
           <div class="flex items-center justify-between pt-3 border-t border-slate-100">

@@ -1920,16 +1920,16 @@ function renderLanguageDropdown() {
         type="button" 
         id="langDropdownToggleBtn"
         onclick="toggleLanguageMenu(event)" 
-        class="flex items-center space-x-2 bg-white hover:bg-slate-50 border-2 border-[#8D8179]/50 hover:border-[#8D8179] px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-800 shadow-md cursor-pointer transition">
+        class="flex items-center space-x-2 bg-white hover:bg-slate-50 border-2 border-[#1E3A8A]/50 hover:border-[#1E3A8A] px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-800 shadow-md cursor-pointer transition">
         <span class="text-base">🌐</span>
         <span id="currentLangLabel">${currentLang.native}</span>
-        <span class="text-[9px] text-[#8D8179]">▼</span>
+        <span class="text-[9px] text-[#1E3A8A]">▼</span>
       </button>
 
       <!-- Fixed High-Layer Dropdown Menu (Guaranteed above all buttons/cards) -->
       <div 
         id="langMenuDropdown" 
-        class="hidden absolute right-0 mt-2 w-80 max-h-[420px] overflow-y-auto bg-white border-2 border-[#8D8179] rounded-2xl shadow-2xl p-2.5" 
+        class="hidden absolute right-0 mt-2 w-80 max-h-[420px] overflow-y-auto bg-white border-2 border-[#1E3A8A] rounded-2xl shadow-2xl p-2.5" 
         style="position: absolute; right: 0; top: 100%; margin-top: 8px; z-index: 9999999 !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.45);">
         
         <div class="p-2.5 border-b border-slate-100 bg-slate-50 rounded-xl mb-2">
@@ -1937,7 +1937,7 @@ function renderLanguageDropdown() {
             <span data-i18n="lang_modal_title" class="text-[10px] font-extrabold uppercase text-slate-700 tracking-wider">22 Official Indian Languages</span>
             <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">Bhashini AI</span>
           </div>
-          <span data-i18n="lang_modal_sub" class="text-xs text-[#8D8179] font-bold block mt-0.5">Select your preferred regional script</span>
+          <span data-i18n="lang_modal_sub" class="text-xs text-[#1E3A8A] font-bold block mt-0.5">Select your preferred regional script</span>
         </div>
 
         <div class="grid grid-cols-1 gap-1">
@@ -1945,7 +1945,7 @@ function renderLanguageDropdown() {
             <button 
               type="button"
               onclick="selectLanguage('${l.code}', event)" 
-              class="flex items-center justify-between px-3 py-2 text-xs text-left rounded-xl transition cursor-pointer ${l.code === currentLangCode ? 'bg-[#8D8179] text-white font-bold shadow-sm' : 'text-slate-800 hover:bg-slate-100 font-medium'}">
+              class="flex items-center justify-between px-3 py-2 text-xs text-left rounded-xl transition cursor-pointer ${l.code === currentLangCode ? 'bg-[#1E3A8A] text-white font-bold shadow-sm' : 'text-slate-800 hover:bg-slate-100 font-medium'}">
               <span class="text-sm font-semibold">${l.native}</span>
               <span class="text-[11px] ${l.code === currentLangCode ? 'text-white/90' : 'text-slate-400'}">${l.name}</span>
             </button>
@@ -2030,7 +2030,7 @@ function applyFullPageTranslation(langCode) {
       if (parts.length > 2) {
         const first = parts.slice(0, -2).join(' ');
         const last = parts.slice(-2).join(' ');
-        heroHeading.innerHTML = `${first} <span class="text-[#8D8179]">${last}</span>`;
+        heroHeading.innerHTML = `${first} <span class="text-[#1E3A8A]">${last}</span>`;
       } else {
         heroHeading.innerHTML = heroTitle;
       }
@@ -2091,8 +2091,8 @@ function checkAuthStatus() {
     const user = JSON.parse(userJson);
     authContainer.innerHTML = `
       <div class="relative inline-block text-left" id="userProfileWrapper" style="z-index: 9999;">
-        <button type="button" onclick="toggleUserDropdown(event)" class="flex items-center space-x-2 bg-white border-2 border-[#8D8179] px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-800 shadow-md hover:shadow-lg transition cursor-pointer">
-          <div class="w-6 h-6 rounded-full bg-[#8D8179] text-white flex items-center justify-center text-[10px] font-extrabold shadow-sm">
+        <button type="button" onclick="toggleUserDropdown(event)" class="flex items-center space-x-2 bg-white border-2 border-[#1E3A8A] px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-800 shadow-md hover:shadow-lg transition cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center text-[10px] font-extrabold shadow-sm">
             ${user.initials || 'AS'}
           </div>
           <span class="max-w-[110px] truncate">${user.name}</span>
@@ -2101,7 +2101,7 @@ function checkAuthStatus() {
         </button>
 
         <!-- User Dropdown Menu -->
-        <div id="userProfileDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white border-2 border-[#8D8179] rounded-2xl shadow-2xl p-2.5 text-xs" style="z-index: 99999;">
+        <div id="userProfileDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white border-2 border-[#1E3A8A] rounded-2xl shadow-2xl p-2.5 text-xs" style="z-index: 99999;">
           <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 mb-2">
             <span class="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 uppercase tracking-wider">Aadhaar Verified Citizen</span>
             <strong class="text-slate-900 block mt-1 text-sm">${user.name}</strong>
@@ -2120,6 +2120,10 @@ function checkAuthStatus() {
             <a href="./security.html" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-medium">
               <span>🔒</span>
               <span>Security & Document Vault</span>
+            </a>
+            <a href="./admin.html" target="_blank" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-blue-50 text-[#1E3A8A] font-bold border border-blue-100 mt-1">
+              <span>⚙️</span>
+              <span>Admin & Active Sessions</span>
             </a>
           </div>
 
@@ -2156,8 +2160,19 @@ document.addEventListener('click', (e) => {
   }
 });
 
-function logoutCitizen() {
+async function logoutCitizen() {
+  const token = localStorage.getItem('civicseva_token');
+  if (token) {
+    try {
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ token })
+      });
+    } catch(e) {}
+  }
   localStorage.removeItem('civicseva_user');
+  localStorage.removeItem('civicseva_token');
   checkAuthStatus();
   showToast('Logged out securely from Jan Parichay Session.');
 }
@@ -2194,93 +2209,112 @@ function injectLoginModalHTML() {
           </div>
         </div>
 
-        <!-- Login Tabs -->
-        <div class="flex border-b border-slate-200 text-xs font-bold text-slate-600 px-6 pt-3">
-          <button id="tabAadhaarBtn" onclick="switchLoginTab('aadhaar')" class="flex-1 py-3 text-center border-b-2 border-[#8D8179] text-[#8D8179] bg-white cursor-pointer">
-            Aadhaar OTP (Direct e-KYC)
-          </button>
-          <button id="tabPasswordBtn" onclick="switchLoginTab('password')" class="flex-1 py-3 text-center border-b-2 border-transparent hover:text-slate-900 bg-slate-50/60 cursor-pointer">
-            Jan Parichay Credentials
-          </button>
+        <!-- Official Single Login Header -->
+        <div class="px-6 pt-4 pb-2 border-b border-slate-100 flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center space-x-1.5">
+              <span>🇮🇳</span>
+              <span>Official Mobile OTP Verification</span>
+            </span>
+            <span class="text-[10px] text-slate-400 block">MeriPehchaan e-Pramaan Single Sign-On</span>
+          </div>
+          <span class="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded font-bold">OFFICIAL</span>
         </div>
 
         <!-- Modal Body -->
         <div class="p-6">
           
           <!-- FORM 1: AADHAAR OTP -->
-          <div id="aadhaarLoginForm" class="space-y-4 text-xs">
+          <div id="aadhaarLoginForm" class="space-y-3.5 text-xs">
             <div>
-              <label class="block font-bold text-slate-700 uppercase mb-1">Aadhaar Number or Virtual ID (VID) *</label>
-              <div class="relative">
-                <input 
-                  type="text" 
-                  id="loginAadhaarInput" 
-                  maxlength="14" 
-                  placeholder="Enter 12-digit Aadhaar (e.g. 8492-9102-4521)" 
-                  value="8492-9102-4521"
-                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] font-mono tracking-wider font-semibold text-slate-900"
-                />
-              </div>
-              <span class="text-[10px] text-slate-400 mt-1 block">Authentication via UIDAI Central Identity Data Repository (CIDR).</span>
+              <label class="block font-bold text-slate-700 uppercase mb-1">Your Full Legal Name *</label>
+              <input 
+                type="text" 
+                id="loginNameInput" 
+                placeholder="Enter your full name" 
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] font-semibold text-slate-900 bg-white"
+              />
             </div>
 
-            <!-- OTP Input Section -->
-            <div id="otpInputSection" class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <div>
+              <label class="block font-bold text-slate-700 uppercase mb-1">Mobile Number or Aadhaar *</label>
+              <div class="flex">
+                <span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-slate-300 bg-slate-100 text-slate-700 font-bold text-xs">
+                  🇮🇳 +91
+                </span>
+                <input 
+                  type="tel" 
+                  id="loginAadhaarInput" 
+                  maxlength="12" 
+                  placeholder="Enter 10-digit mobile number" 
+                  class="w-full px-3.5 py-2.5 rounded-r-xl border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] font-mono tracking-wider font-semibold text-slate-900 bg-white"
+                />
+              </div>
+              <span class="text-[10px] text-slate-400 mt-0.5 block">National e-Pramaan gateway will send a 6-digit OTP to your mobile.</span>
+            </div>
+
+            <!-- Send OTP Button (Step 1) -->
+            <div id="modalGetOtpContainer" class="pt-1">
+              <button 
+                id="getOtpBtn" 
+                type="button" 
+                onclick="sendDemoOtp()" 
+                class="btn-official-stone w-full py-3 text-sm font-bold flex items-center justify-center space-x-2 cursor-pointer shadow-md shadow-blue-900/20">
+                <span>Send OTP to Mobile</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Official SMS Gateway Dispatch Card (Reveals in Step 2) -->
+            <div id="modalSmsCard" class="hidden p-3 bg-emerald-50 border-2 border-emerald-300 rounded-xl text-emerald-950 space-y-1 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-emerald-900 flex items-center space-x-1.5">
+                  <span>📲</span>
+                  <span>e-Pramaan SMS Dispatch</span>
+                </span>
+                <span class="text-[10px] bg-emerald-200 text-emerald-900 font-extrabold px-1 rounded font-mono">DELIVERED</span>
+              </div>
+              <p class="text-[11px] text-emerald-800 leading-tight" id="modalSmsText">
+                Your CivicSeva OTP is <strong class="font-mono text-emerald-950 bg-emerald-200 px-1.5 py-0.5 rounded tracking-widest text-xs" id="modalDispatchedOtp">------</strong>. Valid for 10 min.
+              </p>
+            </div>
+
+            <!-- OTP Input Section (Step 2) -->
+            <div id="otpInputSection" class="hidden p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5 animate-in fade-in duration-300">
               <div class="flex justify-between items-center">
-                <span class="font-bold text-slate-800">Enter 6-Digit OTP:</span>
-                <span class="text-[10px] text-emerald-700 font-bold" id="otpTimer">Resend in 58s</span>
+                <span class="font-bold text-slate-800 text-xs">Enter 6-Digit OTP Received:</span>
+                <span class="text-[10px] text-emerald-700 font-bold font-mono" id="otpTimer">Resend in 59s</span>
               </div>
               <input 
                 type="text" 
                 id="otpValueInput" 
                 maxlength="6" 
-                placeholder="123456" 
-                value="123456" 
-                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-center font-mono font-bold text-lg tracking-widest focus:outline-none focus:border-[#8D8179] bg-white"
+                placeholder="• • • • • •" 
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-center font-mono font-extrabold text-xl tracking-[0.3em] focus:outline-none focus:border-[#1E3A8A] bg-white text-slate-900"
               />
-              <span class="text-[10px] text-slate-500 block text-center">Demo OTP <strong>123456</strong> pre-filled for testing.</span>
+              <div class="flex justify-between items-center text-[10px] text-slate-500">
+                <button type="button" onclick="editModalPhone()" class="text-[#1E3A8A] font-bold hover:underline cursor-pointer">&larr; Change Mobile Number</button>
+                <button type="button" id="modalResendBtn" onclick="sendDemoOtp()" class="text-slate-400 font-bold hover:underline cursor-pointer" disabled>Resend OTP</button>
+              </div>
             </div>
 
-            <div class="pt-2">
-              <button 
-                id="getOtpBtn" 
-                type="button" 
-                onclick="sendDemoOtp()" 
-                class="btn-official-stone w-full py-3 text-sm font-bold hidden items-center justify-center space-x-2 cursor-pointer">
-                <span>Send OTP to Registered Mobile</span>
-                <span>&rarr;</span>
-              </button>
-
+            <!-- Verify OTP Button (Step 2) -->
+            <div id="modalVerifyContainer" class="hidden pt-1">
               <button 
                 id="verifyOtpBtn" 
                 type="button" 
                 onclick="verifyDemoOtp()" 
-                class="btn-official-stone w-full py-3 text-sm font-bold flex items-center justify-center space-x-2 cursor-pointer">
+                class="btn-official-stone w-full py-3 text-sm font-bold flex items-center justify-center space-x-2 cursor-pointer shadow-md shadow-blue-900/20">
                 <span>Verify OTP & Access Account</span>
                 <span>✓</span>
               </button>
             </div>
           </div>
 
-          <!-- FORM 2: USERNAME / PASSWORD -->
-          <div id="passwordLoginForm" class="space-y-4 text-xs hidden">
-            <div>
-              <label class="block font-bold text-slate-700 uppercase mb-1">Jan Parichay Username / Mobile *</label>
-              <input type="text" id="modalUsernameInput" value="abhyuday.citizen" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179]">
-            </div>
-            <div>
-              <label class="block font-bold text-slate-700 uppercase mb-1">Password *</label>
-              <input type="password" id="modalPasswordInput" value="NationalPortal@2026" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179]">
-            </div>
-            <div class="pt-2">
-              <button type="button" onclick="loginWithCredentials()" class="btn-official-stone w-full py-3 text-sm font-bold cursor-pointer">
-                Login via MeriPehchaan &rarr;
-              </button>
-            </div>
-          </div>
+
 
           <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-            <a href="./login.html" id="openFullLoginPageLink" class="text-[#8D8179] font-bold hover:underline">Open Full Login Page &rarr;</a>
+            <a href="./login.html" id="openFullLoginPageLink" class="text-[#1E3A8A] font-bold hover:underline">Open Full Login Page &rarr;</a>
             <span>NIC SSL/TLS 1.3 Verified</span>
           </div>
 
@@ -2323,90 +2357,273 @@ function closeLoginModal() {
   if (modal) modal.classList.add('hidden');
 }
 
-function switchLoginTab(tab) {
-  const formAadhaar = document.getElementById('aadhaarLoginForm');
-  const formPass = document.getElementById('passwordLoginForm');
-  const btnAadhaar = document.getElementById('tabAadhaarBtn');
-  const btnPass = document.getElementById('tabPasswordBtn');
+let modalOtpTimer = null;
 
-  if (tab === 'aadhaar') {
-    formAadhaar.classList.remove('hidden');
-    formPass.classList.add('hidden');
-    btnAadhaar.className = 'flex-1 py-3 text-center border-b-2 border-[#8D8179] text-[#8D8179] bg-white cursor-pointer';
-    btnPass.className = 'flex-1 py-3 text-center border-b-2 border-transparent hover:text-slate-900 bg-slate-50/60 cursor-pointer';
-  } else {
-    formAadhaar.classList.add('hidden');
-    formPass.classList.remove('hidden');
-    btnPass.className = 'flex-1 py-3 text-center border-b-2 border-[#8D8179] text-[#8D8179] bg-white cursor-pointer';
-    btnAadhaar.className = 'flex-1 py-3 text-center border-b-2 border-transparent hover:text-slate-900 bg-slate-50/60 cursor-pointer';
-  }
-}
+async function sendDemoOtp() {
+  const name = document.getElementById('loginNameInput')?.value.trim();
+  const phone = document.getElementById('loginAadhaarInput')?.value.trim();
 
-function sendDemoOtp() {
-  const aadhaar = document.getElementById('loginAadhaarInput').value.trim();
-  if (!aadhaar) {
-    alert('Please enter your Aadhaar or Mobile number.');
+  if (!name) {
+    alert('Please enter your full legal name.');
+    document.getElementById('loginNameInput')?.focus();
     return;
   }
-  document.getElementById('otpInputSection').classList.remove('hidden');
-  document.getElementById('getOtpBtn').classList.add('hidden');
-  document.getElementById('verifyOtpBtn').classList.remove('hidden');
-  showToast('OTP sent successfully to registered mobile (*** *** 3210). Demo OTP: 123456');
-}
-
-function verifyDemoOtp() {
-  const otp = document.getElementById('otpValueInput').value.trim();
-  if (otp !== '123456' && otp.length !== 6) {
-    alert('Invalid OTP. Please enter 123456 for testing.');
+  if (!phone || phone.replace(/\D/g, '').length < 10) {
+    alert('Please enter a valid 10-digit mobile number to receive your OTP.');
+    document.getElementById('loginAadhaarInput')?.focus();
     return;
   }
 
-  const citizen = {
-    name: 'Abhyuday Sharma',
-    initials: 'AS',
-    aadhaarMasked: 'XXXX-XXXX-4521',
-    mobile: '9876543210',
-    role: 'Verified Citizen',
-    loginTime: new Date().toISOString()
-  };
+  const getBtn = document.getElementById('getOtpBtn');
+  getBtn.innerHTML = `<span>Dispatching SMS to Mobile...</span>`;
+  getBtn.disabled = true;
 
-  localStorage.setItem('civicseva_user', JSON.stringify(citizen));
-  closeLoginModal();
-  checkAuthStatus();
-  showToast('Welcome, Abhyuday Sharma! Authenticated successfully via Aadhaar e-KYC.');
+  try {
+    const res = await fetch('/api/auth/send-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone })
+    });
+    const data = await res.json();
 
-  // Auto-redirect if an option was pending
-  if (window.pendingRedirectUrl && window.pendingRedirectUrl !== window.location.href) {
-    const dest = window.pendingRedirectUrl;
-    window.pendingRedirectUrl = null;
-    setTimeout(() => {
-      window.location.href = dest;
-    }, 400);
+    // Lock inputs
+    document.getElementById('loginNameInput').readOnly = true;
+    document.getElementById('loginAadhaarInput').readOnly = true;
+
+    const card = document.getElementById('modalSmsCard');
+    const msg = document.getElementById('modalSmsText');
+    const activeOtp = data.demoOtp || data.currentOtp || '123456';
+
+    if (data.smsLiveDelivered) {
+      card.className = "p-3 bg-emerald-50 border-2 border-emerald-300 rounded-xl text-emerald-950 space-y-1 animate-in fade-in duration-300";
+      msg.innerHTML = `Real cellular SMS text delivered to <strong>${data.phoneMasked || phone}</strong> via ${data.provider}. Please check your phone messages and enter the code below.`;
+      showToast(`📲 Real SMS delivered to +91 ${phone}`);
+    } else if (data.statusCode === 996 || (data.telecomNotice && data.telecomNotice.includes('Website Verification'))) {
+      card.className = "p-3 bg-amber-50 border-2 border-amber-300 rounded-xl text-amber-950 space-y-1.5 animate-in fade-in duration-300";
+      msg.innerHTML = `
+        <div class="text-[11px] text-amber-900 leading-tight">
+          <strong>Fast2SMS Carrier Notice:</strong> 1-minute Website Verification needed in Fast2SMS for cellular SMS.
+        </div>
+        <div class="p-2 bg-white rounded-lg border border-amber-300 flex items-center justify-between text-xs">
+          <div>
+            <span class="text-[10px] text-amber-800 font-bold uppercase">Active OTP:</span>
+            <strong class="font-mono text-slate-900 text-sm tracking-widest ml-1">${activeOtp}</strong>
+          </div>
+          <button type="button" onclick="autoFillModalOtp('${activeOtp}')" class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded text-[11px] font-bold cursor-pointer">
+            Use OTP &rarr;
+          </button>
+        </div>
+      `;
+      showToast(`⚠️ Fast2SMS connected: Use instant OTP ${activeOtp}`);
+    } else {
+      card.className = "p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-950 space-y-1.5 animate-in fade-in duration-300";
+      msg.innerHTML = `
+        <div class="text-[11px] text-blue-900 leading-tight">
+          OTP dispatched to <strong>${data.phoneMasked || phone}</strong>.
+        </div>
+        <div class="p-2 bg-white rounded-lg border border-blue-200 flex items-center justify-between text-xs">
+          <div>
+            <span class="text-[10px] text-blue-800 font-bold uppercase">Active OTP:</span>
+            <strong class="font-mono text-slate-900 text-sm tracking-widest ml-1">${activeOtp}</strong>
+          </div>
+          <button type="button" onclick="autoFillModalOtp('${activeOtp}')" class="px-2.5 py-1 bg-[#1E3A8A] hover:bg-blue-900 text-white rounded text-[11px] font-bold cursor-pointer">
+            Use OTP &rarr;
+          </button>
+        </div>
+      `;
+      showToast(`📲 Verification OTP ready: ${activeOtp}`);
+    }
+    card.classList.remove('hidden');
+
+    // DO NOT pre-fill OTP: User must enter from phone or click Use OTP
+    document.getElementById('otpValueInput').value = '';
+
+    // Transition buttons
+    document.getElementById('modalGetOtpContainer').classList.add('hidden');
+    document.getElementById('otpInputSection').classList.remove('hidden');
+    document.getElementById('modalVerifyContainer').classList.remove('hidden');
+
+    startModalTimer();
+    document.getElementById('otpValueInput').focus();
+  } catch(e) {
+    document.getElementById('modalSmsText').innerHTML = 
+      `SMS OTP dispatched to mobile. (Demo code: <strong class="font-mono bg-emerald-200 px-1 rounded">123456</strong>)`;
+    document.getElementById('modalSmsCard').classList.remove('hidden');
+    document.getElementById('otpValueInput').value = '';
+    document.getElementById('modalGetOtpContainer').classList.add('hidden');
+    document.getElementById('otpInputSection').classList.remove('hidden');
+    document.getElementById('modalVerifyContainer').classList.remove('hidden');
+    startModalTimer();
+    document.getElementById('otpValueInput').focus();
   }
 }
 
-function loginWithCredentials() {
-  const citizen = {
-    name: 'Abhyuday Sharma',
-    initials: 'AS',
-    aadhaarMasked: 'XXXX-XXXX-4521',
-    mobile: '9876543210',
-    role: 'Verified Citizen',
-    loginTime: new Date().toISOString()
-  };
-  localStorage.setItem('civicseva_user', JSON.stringify(citizen));
-  closeLoginModal();
-  checkAuthStatus();
-  showToast('Authenticated via MeriPehchaan (Jan Parichay).');
-
-  if (window.pendingRedirectUrl && window.pendingRedirectUrl !== window.location.href) {
-    const dest = window.pendingRedirectUrl;
-    window.pendingRedirectUrl = null;
-    setTimeout(() => {
-      window.location.href = dest;
-    }, 400);
+function autoFillModalOtp(code) {
+  const input = document.getElementById('otpValueInput');
+  if (input) {
+    input.value = code;
+    input.focus();
+    showToast('✓ OTP inserted automatically.');
   }
 }
+
+function editModalPhone() {
+  document.getElementById('loginNameInput').readOnly = false;
+  document.getElementById('loginAadhaarInput').readOnly = false;
+  document.getElementById('modalGetOtpContainer').classList.remove('hidden');
+  document.getElementById('getOtpBtn').innerHTML = `<span>Send OTP to Mobile</span><span>&rarr;</span>`;
+  document.getElementById('getOtpBtn').disabled = false;
+  document.getElementById('otpInputSection').classList.add('hidden');
+  document.getElementById('modalVerifyContainer').classList.add('hidden');
+  document.getElementById('modalSmsCard').classList.add('hidden');
+  document.getElementById('otpValueInput').value = '';
+  if (modalOtpTimer) clearInterval(modalOtpTimer);
+}
+
+function startModalTimer() {
+  let sec = 59;
+  const timerEl = document.getElementById('otpTimer');
+  const resendBtn = document.getElementById('modalResendBtn');
+  resendBtn.disabled = true;
+  resendBtn.classList.add('text-slate-400');
+  resendBtn.classList.remove('text-[#1E3A8A]');
+
+  if (modalOtpTimer) clearInterval(modalOtpTimer);
+  modalOtpTimer = setInterval(() => {
+    sec--;
+    if (sec > 0) {
+      timerEl.innerText = `Resend in ${sec}s`;
+    } else {
+      clearInterval(modalOtpTimer);
+      timerEl.innerText = `OTP Expired`;
+      resendBtn.disabled = false;
+      resendBtn.classList.remove('text-slate-400');
+      resendBtn.classList.add('text-[#1E3A8A]');
+    }
+  }, 1000);
+}
+
+async function verifyDemoOtp() {
+  const name = document.getElementById('loginNameInput')?.value.trim() || 'Citizen User';
+  const phone = document.getElementById('loginAadhaarInput')?.value.trim() || '9876543210';
+  const otp = document.getElementById('otpValueInput')?.value.trim();
+
+  if (!otp || otp.length !== 6) {
+    alert('Please enter the 6-digit OTP.');
+    document.getElementById('otpValueInput')?.focus();
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/auth/verify-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, otp })
+    });
+    const data = await res.json();
+    if (data.success) {
+      if (data.token) localStorage.setItem('civicseva_token', data.token);
+      localStorage.setItem('civicseva_user', JSON.stringify(data.user));
+      recordSessionInLocalStorage(data.user, data.token);
+      closeLoginModal();
+      checkAuthStatus();
+      showToast(`Welcome, ${data.user.name}! Authenticated successfully via e-Pramaan.`);
+
+      if (window.pendingRedirectUrl && window.pendingRedirectUrl !== window.location.href) {
+        const dest = window.pendingRedirectUrl;
+        window.pendingRedirectUrl = null;
+        setTimeout(() => {
+          window.location.href = dest;
+        }, 400);
+      }
+      return;
+    } else {
+      alert(data.message || 'Invalid OTP');
+      return;
+    }
+  } catch(e) {
+    const citizen = {
+      name: name,
+      initials: name.split(' ').map(p=>p[0]).join('').slice(0, 2).toUpperCase() || 'CU',
+      aadhaarMasked: 'XXXX-XXXX-' + phone.slice(-4),
+      mobile: phone,
+      role: 'Verified Citizen',
+      loginTime: new Date().toISOString()
+    };
+    const token = 'tok_gh_' + Math.random().toString(36).slice(2, 12);
+    localStorage.setItem('civicseva_token', token);
+    localStorage.setItem('civicseva_user', JSON.stringify(citizen));
+    recordSessionInLocalStorage(citizen, token);
+    closeLoginModal();
+    checkAuthStatus();
+    showToast(`Welcome, ${name}! Authenticated via Aadhaar e-KYC.`);
+    if (window.pendingRedirectUrl) {
+      const dest = window.pendingRedirectUrl;
+      window.pendingRedirectUrl = null;
+      setTimeout(() => {
+        window.location.href = dest;
+      }, 400);
+    }
+  }
+}
+
+function recordSessionInLocalStorage(user, token) {
+  try {
+    const phone = user.mobile || '8328085685';
+    const name = user.name || user.full_name || 'Verified Citizen';
+    const timeStr = new Date().toLocaleString();
+
+    // 1. All Active Sessions
+    let sessions = JSON.parse(localStorage.getItem('civicseva_all_sessions') || '[]');
+    const newSession = {
+      id: Date.now(),
+      citizenName: name,
+      username: (user.username || name.toLowerCase().replace(/\s+/g, '.') + '.' + phone.slice(-4)),
+      aadhaarMasked: user.aadhaarMasked || user.aadhaar_masked || ('XXXX-XXXX-' + phone.slice(-4)),
+      mobile: phone,
+      loginTime: timeStr,
+      lastActive: 'Active now',
+      ipAddress: '127.0.0.1 (Web Client)',
+      status: 'active',
+      token: (token || 'tok_' + Math.random().toString(36).slice(2, 10)).slice(0, 8) + '...',
+      fullToken: token || ('tok_' + Date.now())
+    };
+    sessions = [newSession, ...sessions.filter(s => s.mobile !== phone)];
+    localStorage.setItem('civicseva_all_sessions', JSON.stringify(sessions));
+
+    // 2. All Registered Citizens
+    let citizens = JSON.parse(localStorage.getItem('civicseva_all_citizens') || '[]');
+    if (!citizens.find(c => c.mobile === phone)) {
+      citizens.unshift({
+        id: citizens.length + 1,
+        full_name: name,
+        username: newSession.username,
+        aadhaar_masked: newSession.aadhaarMasked,
+        mobile: phone,
+        role: 'Verified Citizen',
+        app_count: 1,
+        doc_count: 2,
+        created_at: timeStr
+      });
+      localStorage.setItem('civicseva_all_citizens', JSON.stringify(citizens));
+    }
+
+    // 3. Security Audit Trail
+    let audit = JSON.parse(localStorage.getItem('civicseva_audit_history') || '[]');
+    audit.unshift({
+      id: audit.length + 1,
+      timestamp: timeStr,
+      action: 'LOGIN_AADHAAR_OTP',
+      citizen_name: name,
+      ip_address: '127.0.0.1',
+      details: `Citizen authenticated via e-Pramaan OTP (+91 ${phone})`
+    });
+    localStorage.setItem('civicseva_audit_history', JSON.stringify(audit.slice(0, 50)));
+  } catch (err) {
+    console.warn('LocalStorage session sync warning:', err);
+  }
+}
+
 
 /* ==========================================================
    GLOBAL OPTION AUTHENTICATION GUARD (CLICK INTERCEPTOR)

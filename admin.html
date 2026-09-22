@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicSeva Admin Console - Citizen Sessions & Management</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 12% 18%, rgba(219, 234, 254, 0.65) 0%, transparent 45%),
+                  radial-gradient(circle at 88% 82%, rgba(254, 243, 199, 0.5) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.6) 0%, transparent 100%),
+                  linear-gradient(180deg, #F8FAFC 0%, #EEF2F6 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .tricolor-ribbon {
+      height: 4px;
+      background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+    }
+    .btn-official-stone {
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F2557 100%);
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(30, 58, 138, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 0.2s ease;
+    }
+    .btn-official-stone:hover {
+      background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%);
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+      transform: translateY(-1px);
+    }
+    .card-base {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px -2px rgba(15, 23, 42, 0.05);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+  <!-- Top Tricolor Stripe -->
+  <div class="tricolor-ribbon"></div>
+
+  <!-- Masthead -->
+  <div class="bg-white/85 backdrop-blur-sm border-b border-slate-200 px-6 py-1.5 text-xs text-slate-600 flex justify-between items-center z-10">
+    <div class="flex items-center space-x-3">
+      <img src="./assets/emblem.png" alt="State Emblem of India" class="h-8 w-auto object-contain py-0.5">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+        <span class="font-bold text-slate-900">भारत सरकार</span>
+        <span class="text-slate-300">|</span>
+        <span class="font-medium text-slate-700">Government of India</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-[#1E3A8A] font-bold">National e-Governance Admin Console</span>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="./index.html" class="font-bold text-[#1E3A8A] hover:underline">&larr; Open Citizen Portal</a>
+      <span class="text-slate-300">|</span>
+      <span class="text-emerald-700 font-bold flex items-center space-x-1.5" id="backendStatusWrapper">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping" id="backendStatusDot"></span>
+        <span id="backendStatusLabel">Live Database Connected</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-8 py-3.5 sticky top-0 z-[99999] shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1E3A8A] to-[#0F2557] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-blue-900/25">
+          ⚙️
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#1E3A8A]">Seva</span> Admin</span>
+            <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-300 tracking-wider">Session Monitor</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-medium">Real-Time Citizen Authentication & System Audit Room</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <button onclick="fetchAdminData()" class="btn-official-stone px-4 py-2 text-xs flex items-center space-x-1.5 cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>Refresh Data</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-8">
+    
+    <!-- Dual-Mode Hosting Banner (Reveals when running on GitHub Pages / Static Hosting) -->
+    <div id="hostingModeBanner" class="hidden mb-6 p-4 rounded-2xl bg-amber-50/95 border-2 border-amber-300 text-amber-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm animate-in fade-in duration-300">
+      <div class="flex items-start space-x-3">
+        <span class="text-2xl">🌐</span>
+        <div>
+          <div class="flex items-center space-x-2">
+            <strong class="text-xs font-bold text-amber-900 uppercase tracking-wide">GitHub Pages / Static Host Mode Active</strong>
+            <span class="text-[10px] bg-amber-200 text-amber-900 font-extrabold px-2 py-0.5 rounded font-mono">LOCALSTORAGE SYNC</span>
+          </div>
+          <p class="text-xs text-amber-800 mt-1 leading-relaxed">
+            GitHub Pages only hosts static files and does not execute Python or SQLite. 
+            This Admin Console is operating in <strong>Browser Storage Mode</strong>: any citizen who logs in on this browser is recorded and displayed in real time below!
+          </p>
+          <div class="text-[11px] text-amber-900 mt-2 flex flex-wrap items-center gap-1.5 font-medium">
+            <span>💻 To connect full multi-user SQLite database on your PC:</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-amber-300 font-mono font-bold text-[#1E3A8A]">Double-click start_server.bat</span>
+            <span>or run</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-amber-300 font-mono font-bold text-[#1E3A8A]">python server.py</span>
+          </div>
+        </div>
+      </div>
+      <button onclick="clearLocalSessions()" class="px-3 py-1.5 bg-amber-200 hover:bg-amber-300 text-amber-950 rounded-xl text-xs font-bold transition whitespace-nowrap cursor-pointer">
+        Reset Demo Data
+      </button>
+    </div>
+
+    <!-- Top System Metrics -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      
+      <div class="card-base p-5 border-l-4 border-l-emerald-500">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Active Logged-In Sessions</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        </div>
+        <div class="text-3xl font-extrabold text-slate-900 mt-2" id="statActiveSessions">-</div>
+        <span class="text-[11px] text-emerald-700 font-medium mt-1 block">Live authenticated citizens</span>
+      </div>
+
+      <div class="card-base p-5 border-l-4 border-l-[#1E3A8A]">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Registered Citizens</span>
+          <span class="text-base">👥</span>
+        </div>
+        <div class="text-3xl font-extrabold text-slate-900 mt-2" id="statTotalCitizens">-</div>
+        <span class="text-[11px] text-slate-500 font-medium mt-1 block">Aadhaar e-KYC verified UIDs</span>
+      </div>
+
+      <div class="card-base p-5 border-l-4 border-l-amber-500">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Applications Filed</span>
+          <span class="text-base">📑</span>
+        </div>
+        <div class="text-3xl font-extrabold text-slate-900 mt-2" id="statTotalApps">-</div>
+        <span class="text-[11px] text-slate-500 font-medium mt-1 block">Persisted in SQLite database</span>
+      </div>
+
+      <div class="card-base p-5 border-l-4 border-l-purple-500">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Vault Documents</span>
+          <span class="text-base">🔒</span>
+        </div>
+        <div class="text-3xl font-extrabold text-slate-900 mt-2" id="statTotalDocs">-</div>
+        <span class="text-[11px] text-slate-500 font-medium mt-1 block">SHA-256 encrypted records</span>
+      </div>
+
+    </div>
+
+    <!-- Tab Bar -->
+    <div class="flex space-x-2 border-b border-slate-200 mb-6 text-xs font-bold text-slate-600">
+      <button onclick="switchTab('sessions')" id="tabSessionsBtn" class="px-5 py-3 border-b-2 border-[#1E3A8A] text-[#1E3A8A] bg-white rounded-t-xl transition cursor-pointer flex items-center space-x-2">
+        <span>🟢 Active Citizen Sessions</span>
+        <span id="sessionBadgeCount" class="bg-blue-100 text-[#1E3A8A] px-2 py-0.5 rounded-full text-[10px] font-extrabold">0</span>
+      </button>
+      <button onclick="switchTab('citizens')" id="tabCitizensBtn" class="px-5 py-3 border-b-2 border-transparent hover:text-slate-900 rounded-t-xl transition cursor-pointer">
+        👤 Registered Citizens
+      </button>
+      <button onclick="switchTab('applications')" id="tabAppsBtn" class="px-5 py-3 border-b-2 border-transparent hover:text-slate-900 rounded-t-xl transition cursor-pointer">
+        📑 Submitted Applications
+      </button>
+      <button onclick="switchTab('audit')" id="tabAuditBtn" class="px-5 py-3 border-b-2 border-transparent hover:text-slate-900 rounded-t-xl transition cursor-pointer">
+        🛡️ Security Audit Log
+      </button>
+      <button onclick="switchTab('sms')" id="tabSmsBtn" class="px-5 py-3 border-b-2 border-transparent hover:text-slate-900 rounded-t-xl transition cursor-pointer flex items-center space-x-1.5">
+        <span>📲 SMS Gateway & Dispatch</span>
+        <span id="smsStatusBadge" class="bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded text-[10px] font-bold">SIMULATED</span>
+      </button>
+    </div>
+
+    <!-- TAB 1: ACTIVE CITIZEN SESSIONS -->
+    <div id="sectionSessions" class="space-y-4">
+      <div class="card-base overflow-hidden">
+        <div class="p-4 bg-slate-50/80 border-b border-slate-200 flex justify-between items-center">
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Live Logged-In Citizens & Sessions</h3>
+            <p class="text-xs text-slate-500">Real-time session records stored in SQLite (<code class="text-[#1E3A8A] font-mono">sessions</code> table)</p>
+          </div>
+          <span class="text-xs text-slate-400" id="lastUpdatedTime">Updated just now</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-100/70 border-b border-slate-200 text-slate-600 font-bold uppercase tracking-wider text-[10px]">
+              <tr>
+                <th class="p-3.5">Citizen Name</th>
+                <th class="p-3.5">Aadhaar UID</th>
+                <th class="p-3.5">Mobile</th>
+                <th class="p-3.5">Login Time</th>
+                <th class="p-3.5">Last Active</th>
+                <th class="p-3.5">Client IP</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5">Session Token</th>
+                <th class="p-3.5 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="sessionsTableBody" class="divide-y divide-slate-100 font-medium">
+              <tr>
+                <td colspan="9" class="p-8 text-center text-slate-400">Loading active sessions...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: REGISTERED CITIZENS -->
+    <div id="sectionCitizens" class="space-y-4 hidden">
+      <div class="card-base overflow-hidden">
+        <div class="p-4 bg-slate-50/80 border-b border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900">Registered Citizen Directory</h3>
+          <p class="text-xs text-slate-500">Persistent citizen profiles stored in <code class="text-[#1E3A8A] font-mono">citizens</code> table</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-100/70 border-b border-slate-200 text-slate-600 font-bold uppercase tracking-wider text-[10px]">
+              <tr>
+                <th class="p-3.5">ID</th>
+                <th class="p-3.5">Citizen Name</th>
+                <th class="p-3.5">Username</th>
+                <th class="p-3.5">Masked Aadhaar</th>
+                <th class="p-3.5">Mobile</th>
+                <th class="p-3.5">Role</th>
+                <th class="p-3.5">Applications</th>
+                <th class="p-3.5">Vault Docs</th>
+                <th class="p-3.5">Joined</th>
+              </tr>
+            </thead>
+            <tbody id="citizensTableBody" class="divide-y divide-slate-100 font-medium">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: SUBMITTED APPLICATIONS -->
+    <div id="sectionApplications" class="space-y-4 hidden">
+      <div class="card-base overflow-hidden">
+        <div class="p-4 bg-slate-50/80 border-b border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900">Submitted Citizen Applications</h3>
+          <p class="text-xs text-slate-500">Database applications tracked in <code class="text-[#1E3A8A] font-mono">applications</code> table</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-100/70 border-b border-slate-200 text-slate-600 font-bold uppercase tracking-wider text-[10px]">
+              <tr>
+                <th class="p-3.5">Reference ID</th>
+                <th class="p-3.5">Service Name</th>
+                <th class="p-3.5">Applicant</th>
+                <th class="p-3.5">State & District</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5">Stage</th>
+                <th class="p-3.5">Assigned Officer</th>
+                <th class="p-3.5">Submitted On</th>
+                <th class="p-3.5 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="applicationsTableBody" class="divide-y divide-slate-100 font-medium">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: AUDIT LOG -->
+    <div id="sectionAudit" class="space-y-4 hidden">
+      <div class="card-base overflow-hidden">
+        <div class="p-4 bg-slate-50/80 border-b border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900">Security Audit Trail (Last 50 Events)</h3>
+          <p class="text-xs text-slate-500">Tamper-evident logs of logins, OTP requests, and application filings in <code class="text-[#1E3A8A] font-mono">audit_logs</code> table</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-100/70 border-b border-slate-200 text-slate-600 font-bold uppercase tracking-wider text-[10px]">
+              <tr>
+                <th class="p-3.5">ID</th>
+                <th class="p-3.5">Timestamp</th>
+                <th class="p-3.5">Action Event</th>
+                <th class="p-3.5">Citizen</th>
+                <th class="p-3.5">IP Address</th>
+                <th class="p-3.5">Event Details</th>
+              </tr>
+            </thead>
+            <tbody id="auditTableBody" class="divide-y divide-slate-100 font-medium">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: SMS GATEWAY & TELECOM -->
+    <div id="sectionSms" class="space-y-6 hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left: Gateway Configuration -->
+        <div class="lg:col-span-2 card-base p-6 space-y-5">
+          <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+            <div>
+              <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+                <span>📲</span>
+                <span>Cellular SMS Gateway Configuration</span>
+              </h3>
+              <p class="text-xs text-slate-500">Configure telecom gateway to deliver real OTP text messages directly to citizens' mobile phones</p>
+            </div>
+            <div id="smsGatewayActiveIndicator" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
+              Simulation Mode
+            </div>
+          </div>
+
+          <form id="smsConfigForm" onsubmit="saveSmsConfig(event)" class="space-y-4 text-xs">
+            <div>
+              <label class="block font-bold text-slate-700 uppercase mb-1">Select SMS Provider</label>
+              <select id="smsProviderSelect" onchange="toggleProviderFields()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-semibold text-slate-900 bg-white">
+                <option value="fast2sms">🇮🇳 Fast2SMS (Recommended for India — Direct +91 OTP Route)</option>
+                <option value="twilio">🌐 Twilio (Global SMS Carrier Gateway)</option>
+                <option value="simulated">💻 Local Simulator (Console & Admin Logs)</option>
+              </select>
+            </div>
+
+            <!-- Fast2SMS Configuration -->
+            <div id="fast2smsGroup" class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+              <div class="flex justify-between items-center">
+                <strong class="text-slate-900 text-xs font-bold">Fast2SMS API Credentials</strong>
+                <a href="https://www.fast2sms.com/" target="_blank" class="text-[#1E3A8A] font-bold hover:underline text-[11px]">Get Free Fast2SMS Account &rarr;</a>
+              </div>
+              <p class="text-[11px] text-slate-500">Fast2SMS offers free testing credits upon signup with instant delivery to all Indian telecom operators without manual DLT registration for OTP routes.</p>
+              <div>
+                <label class="block font-bold text-slate-700 uppercase mb-1">Fast2SMS Authorization Key *</label>
+                <input type="password" id="fast2smsApiKey" placeholder="Enter Fast2SMS API Key (e.g. xKq0W...)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-sm bg-white" />
+                <span class="text-[10px] text-slate-400 mt-1 block">Found on Fast2SMS Dashboard &rarr; Dev API &rarr; Authorization Key</span>
+              </div>
+            </div>
+
+            <!-- Twilio Configuration -->
+            <div id="twilioGroup" class="hidden p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+              <strong class="text-slate-900 text-xs font-bold">Twilio Carrier Credentials</strong>
+              <div>
+                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Account SID</label>
+                <input type="text" id="twilioAccountSid" placeholder="ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs bg-white" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Auth Token</label>
+                <input type="password" id="twilioAuthToken" placeholder="Your Twilio Auth Token" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs bg-white" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Sender Phone Number</label>
+                <input type="text" id="twilioFromNumber" placeholder="+1234567890" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs bg-white" />
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 pt-2">
+              <input type="checkbox" id="isLiveActiveCheckbox" class="w-4 h-4 text-[#1E3A8A] rounded border-slate-300 cursor-pointer" />
+              <label for="isLiveActiveCheckbox" class="text-xs font-bold text-slate-800 cursor-pointer">
+                Activate Live Cellular SMS Dispatch to Real Physical Mobile Numbers
+              </label>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+              <button type="submit" class="btn-official-stone px-6 py-2.5 text-xs font-bold flex items-center space-x-1.5 cursor-pointer shadow-md">
+                <span>💾 Save Gateway Settings</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right: Real-time SMS Test Dispatcher -->
+        <div class="card-base p-6 space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h4 class="text-sm font-bold text-slate-900">📲 Live SMS Test Dispatch</h4>
+            <p class="text-xs text-slate-500">Send an instant test SMS to your phone to confirm cellular carrier delivery</p>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block font-bold text-slate-700 uppercase mb-1">Your Mobile Number (10 Digits) *</label>
+              <div class="flex">
+                <span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-slate-300 bg-slate-100 text-slate-700 font-bold text-xs">
+                  🇮🇳 +91
+                </span>
+                <input type="tel" id="testMobileInput" maxlength="10" placeholder="98XXXXXXXX" class="w-full px-3.5 py-2.5 rounded-r-xl border border-slate-300 text-sm font-mono font-bold text-slate-900 bg-white" />
+              </div>
+            </div>
+
+            <button type="button" onclick="sendTestSmsToMobile()" id="testSmsBtn" class="btn-official-stone w-full py-2.5 text-xs font-bold flex items-center justify-center space-x-2 cursor-pointer shadow-md">
+              <span>Send Test SMS to My Mobile</span>
+              <span>&rarr;</span>
+            </button>
+
+            <!-- Test Result Banner -->
+            <div id="testSmsResultCard" class="hidden p-3.5 rounded-xl border text-xs space-y-1">
+              <div class="flex justify-between items-center font-bold" id="testResultHeader">
+                <span>Result</span>
+              </div>
+              <p class="text-[11px]" id="testResultMessage"></p>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600 space-y-1.5">
+              <span class="font-bold text-slate-800 block">💡 How it works:</span>
+              <p>• If an API key is saved, the gateway delivers a real cellular text message to your phone.</p>
+              <p>• In simulator mode, the SMS is recorded in the server terminal and security audit logs.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
+      <span class="text-[11px] text-slate-500">
+        CivicSeva Admin Operations Engine • Connected to SQLite Database <code class="text-[#1E3A8A]">civicseva.db</code>
+      </span>
+      <a href="./index.html" class="text-xs font-bold text-[#1E3A8A] hover:underline">
+        &larr; Return to National Citizen Portal
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tab) {
+      ['sessions', 'citizens', 'applications', 'audit', 'sms'].forEach(t => {
+        const sec = document.getElementById('section' + t.charAt(0).toUpperCase() + t.slice(1));
+        const btn = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn');
+        if (sec) sec.classList.add('hidden');
+        if (btn) btn.className = 'px-5 py-3 border-b-2 border-transparent hover:text-slate-900 rounded-t-xl transition cursor-pointer flex items-center space-x-1.5';
+      });
+
+      const activeSec = document.getElementById('section' + tab.charAt(0).toUpperCase() + tab.slice(1));
+      const activeBtn = document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1) + 'Btn');
+      if (activeSec) activeSec.classList.remove('hidden');
+      if (activeBtn) activeBtn.className = 'px-5 py-3 border-b-2 border-[#1E3A8A] text-[#1E3A8A] bg-white rounded-t-xl transition cursor-pointer flex items-center space-x-1.5 font-bold';
+
+      if (tab === 'sms') loadSmsConfig();
+    }
+
+    let isBackendReachable = false;
+
+    async function fetchAdminData() {
+      try {
+        const statsRes = await fetch('/api/admin/stats');
+        if (statsRes.ok) {
+          const statsData = await statsRes.json();
+          if (statsData.success) {
+            isBackendReachable = true;
+            await renderLiveBackendData(statsData);
+            return;
+          }
+        }
+      } catch (err) {
+        // Backend offline or running on GitHub Pages
+      }
+
+      isBackendReachable = false;
+      renderClientSideAdminData();
+    }
+
+    async function renderLiveBackendData(statsData) {
+      // 1. Update Connection Status
+      const statusLabel = document.getElementById('backendStatusLabel');
+      const statusDot = document.getElementById('backendStatusDot');
+      const banner = document.getElementById('hostingModeBanner');
+      if (statusLabel) statusLabel.innerText = "Live SQLite Database Connected";
+      if (statusDot) statusDot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-ping";
+      if (banner) banner.classList.add('hidden');
+
+      // 2. Stats
+      document.getElementById('statActiveSessions').innerText = statsData.stats.activeSessions;
+      document.getElementById('statTotalCitizens').innerText = statsData.stats.totalCitizens;
+      document.getElementById('statTotalApps').innerText = statsData.stats.totalApplications;
+      document.getElementById('statTotalDocs').innerText = statsData.stats.totalVaultDocs;
+      document.getElementById('sessionBadgeCount').innerText = statsData.stats.activeSessions;
+      document.getElementById('lastUpdatedTime').innerText = `Live sync at ${new Date().toLocaleTimeString()}`;
+
+      // 3. Active Sessions Table
+      try {
+        const sessionsRes = await fetch('/api/admin/sessions');
+        const sessionsData = await sessionsRes.json();
+        const sTbody = document.getElementById('sessionsTableBody');
+        
+        if (sessionsData.sessions && sessionsData.sessions.length > 0) {
+          sTbody.innerHTML = sessionsData.sessions.map(s => `
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="p-3.5">
+                <div class="flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center text-[10px] font-extrabold">
+                    ${(s.citizenName || 'C').split(' ').map(n=>n[0]).join('')}
+                  </div>
+                  <div>
+                    <strong class="text-slate-900 block">${s.citizenName}</strong>
+                    <span class="text-[10px] text-slate-400 font-mono">@${s.username}</span>
+                  </div>
+                </div>
+              </td>
+              <td class="p-3.5 font-mono text-slate-700">${s.aadhaarMasked}</td>
+              <td class="p-3.5 font-mono text-slate-600">${s.mobile}</td>
+              <td class="p-3.5 text-slate-600">${s.loginTime}</td>
+              <td class="p-3.5 text-slate-600">${s.lastActive}</td>
+              <td class="p-3.5 font-mono text-slate-500">${s.ipAddress}</td>
+              <td class="p-3.5">
+                ${s.status === 'active' ? 
+                  '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 inline-flex items-center space-x-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse mr-1"></span>Active</span>' : 
+                  '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">Terminated</span>'}
+              </td>
+              <td class="p-3.5 font-mono text-[11px] text-slate-500" title="${s.fullToken}">${s.token}</td>
+              <td class="p-3.5 text-right">
+                ${s.status === 'active' ? 
+                  `<button onclick="revokeSession('${s.fullToken}')" class="px-2.5 py-1 text-[11px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-200 transition cursor-pointer">Revoke</button>` : 
+                  `<span class="text-[10px] text-slate-400">None</span>`}
+              </td>
+            </tr>
+          `).join('');
+
+          // Mirror into localStorage for offline availability
+          try {
+            localStorage.setItem('civicseva_all_sessions', JSON.stringify(sessionsData.sessions));
+          } catch (e) {}
+        } else {
+          sTbody.innerHTML = `<tr><td colspan="9" class="p-8 text-center text-slate-400">No sessions recorded in database yet.</td></tr>`;
+        }
+      } catch(e) {}
+
+      // 4. Citizens Table
+      try {
+        const citizensRes = await fetch('/api/admin/citizens');
+        const citizensData = await citizensRes.json();
+        const cTbody = document.getElementById('citizensTableBody');
+        if (citizensData.citizens) {
+          cTbody.innerHTML = citizensData.citizens.map(c => `
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="p-3.5 font-mono text-slate-400">#${c.id}</td>
+              <td class="p-3.5 font-bold text-slate-900">${c.full_name}</td>
+              <td class="p-3.5 font-mono text-slate-600">${c.username}</td>
+              <td class="p-3.5 font-mono text-slate-700">${c.aadhaar_masked}</td>
+              <td class="p-3.5 font-mono text-slate-600">${c.mobile}</td>
+              <td class="p-3.5"><span class="bg-blue-50 text-[#1E3A8A] font-bold px-2 py-0.5 rounded text-[10px] border border-blue-200">${c.role}</span></td>
+              <td class="p-3.5 font-bold text-slate-800">${c.app_count} Active</td>
+              <td class="p-3.5 font-bold text-slate-800">${c.doc_count} Verified</td>
+              <td class="p-3.5 text-slate-500">${c.created_at}</td>
+            </tr>
+          `).join('');
+        }
+      } catch(e) {}
+
+      // 5. Applications Table
+      try {
+        const appsRes = await fetch('/api/applications');
+        const appsData = await appsRes.json();
+        const aTbody = document.getElementById('applicationsTableBody');
+        if (appsData.applications) {
+          aTbody.innerHTML = appsData.applications.map(a => `
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="p-3.5 font-mono font-bold text-[#1E3A8A]">${a.ref_id}</td>
+              <td class="p-3.5 font-bold text-slate-900">${a.service_name}</td>
+              <td class="p-3.5 text-slate-800">${a.applicant_name}</td>
+              <td class="p-3.5 text-slate-600">${a.district}, ${a.state}</td>
+              <td class="p-3.5">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-300">
+                  ${a.status}
+                </span>
+              </td>
+              <td class="p-3.5 font-bold text-slate-700">Stage ${a.current_stage}/4</td>
+              <td class="p-3.5 text-slate-600">${a.officer_name || 'In Queue'}</td>
+              <td class="p-3.5 text-slate-500">${a.submitted_at}</td>
+              <td class="p-3.5 text-right">
+                <a href="./track.html?ref=${a.ref_id}" target="_blank" class="px-2.5 py-1 text-[11px] font-bold text-[#1E3A8A] bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition">Track &rarr;</a>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch(e) {}
+
+      // 6. Audit Table
+      try {
+        const auditRes = await fetch('/api/admin/audit-logs');
+        const auditData = await auditRes.json();
+        const audTbody = document.getElementById('auditTableBody');
+        if (auditData.logs) {
+          audTbody.innerHTML = auditData.logs.map(l => `
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="p-3.5 font-mono text-slate-400">#${l.id}</td>
+              <td class="p-3.5 font-mono text-slate-600">${l.timestamp}</td>
+              <td class="p-3.5 font-bold text-[#1E3A8A]"><span class="bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200 font-mono text-[10px]">${l.action}</span></td>
+              <td class="p-3.5 text-slate-800 font-medium">${l.citizen_name || 'Anonymous / Guest'}</td>
+              <td class="p-3.5 font-mono text-slate-500">${l.ip_address}</td>
+              <td class="p-3.5 text-slate-700">${l.details}</td>
+            </tr>
+          `).join('');
+        }
+      } catch(e) {}
+    }
+
+    function renderClientSideAdminData() {
+      // 1. Update Connection Status
+      const statusLabel = document.getElementById('backendStatusLabel');
+      const statusDot = document.getElementById('backendStatusDot');
+      const banner = document.getElementById('hostingModeBanner');
+      if (statusLabel) statusLabel.innerText = "GitHub Pages / Browser Storage Active";
+      if (statusDot) statusDot.className = "w-2 h-2 rounded-full bg-amber-500";
+      if (banner) banner.classList.remove('hidden');
+
+      // 2. Gather Sessions from LocalStorage
+      let storedSessions = [];
+      try {
+        storedSessions = JSON.parse(localStorage.getItem('civicseva_all_sessions') || '[]');
+      } catch(e) {}
+
+      // Ensure logged-in citizen is present
+      try {
+        const currentUser = JSON.parse(localStorage.getItem('civicseva_user') || 'null');
+        if (currentUser && currentUser.name) {
+          const phone = currentUser.mobile || '8328085685';
+          if (!storedSessions.find(s => s.mobile === phone)) {
+            storedSessions.unshift({
+              id: Date.now(),
+              citizenName: currentUser.name,
+              username: (currentUser.name).toLowerCase().replace(/\s+/g, '.') + '.' + phone.slice(-4),
+              aadhaarMasked: currentUser.aadhaarMasked || `XXXX-XXXX-${phone.slice(-4)}`,
+              mobile: phone,
+              loginTime: currentUser.loginTime ? new Date(currentUser.loginTime).toLocaleTimeString() : new Date().toLocaleTimeString(),
+              lastActive: 'Active now',
+              ipAddress: '127.0.0.1 (Web Browser)',
+              status: 'active',
+              token: 'tok_live_' + phone.slice(-4) + '...',
+              fullToken: 'tok_live_client_' + phone
+            });
+          }
+        }
+      } catch(e) {}
+
+      // If still no sessions recorded, seed with realistic official records
+      if (storedSessions.length === 0) {
+        storedSessions = [
+          {
+            id: 1,
+            citizenName: 'Abhyuday',
+            username: 'abhyuday.gov',
+            aadhaarMasked: 'XXXX-XXXX-5685',
+            mobile: '8328085685',
+            loginTime: 'Today, ' + new Date().toLocaleTimeString(),
+            lastActive: 'Active Now',
+            ipAddress: '127.0.0.1 (Web Client)',
+            status: 'active',
+            token: '45dd85a7...',
+            fullToken: '45dd85a7215d7aa0dc850c03f83ad6c0bc70e2a9d1dd296d'
+          },
+          {
+            id: 2,
+            citizenName: 'Vikram Aditya',
+            username: 'vikram.aditya',
+            aadhaarMasked: 'XXXX-XXXX-3344',
+            mobile: '9811223344',
+            loginTime: 'Today, 08:00 AM',
+            lastActive: '15m ago',
+            ipAddress: '192.168.1.14',
+            status: 'active',
+            token: '9913c165...',
+            fullToken: '9913c165ee2d3080e22eb5c202ba44a6f7b9c9df4164b73b'
+          },
+          {
+            id: 3,
+            citizenName: 'Priya Sharma',
+            username: 'priya.sharma',
+            aadhaarMasked: 'XXXX-XXXX-1122',
+            mobile: '9820011223',
+            loginTime: 'Yesterday, 18:22 PM',
+            lastActive: '1h ago',
+            ipAddress: '10.0.4.12',
+            status: 'active',
+            token: '7fa89012...',
+            fullToken: '7fa8901234bcde5678901234567890abcdef'
+          }
+        ];
+        try {
+          localStorage.setItem('civicseva_all_sessions', JSON.stringify(storedSessions));
+        } catch(e) {}
+      }
+
+      const activeCount = storedSessions.filter(s => s.status === 'active').length;
+
+      // 3. Update Metrics
+      document.getElementById('statActiveSessions').innerText = activeCount;
+      document.getElementById('statTotalCitizens').innerText = Math.max(storedSessions.length, 3);
+      document.getElementById('statTotalApps').innerText = '8';
+      document.getElementById('statTotalDocs').innerText = '12';
+      document.getElementById('sessionBadgeCount').innerText = activeCount;
+      document.getElementById('lastUpdatedTime').innerText = `Local sync at ${new Date().toLocaleTimeString()}`;
+
+      // 4. Render Active Sessions Table
+      const sTbody = document.getElementById('sessionsTableBody');
+      sTbody.innerHTML = storedSessions.map(s => `
+        <tr class="hover:bg-slate-50/80 transition">
+          <td class="p-3.5">
+            <div class="flex items-center space-x-2">
+              <div class="w-6 h-6 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center text-[10px] font-extrabold">
+                ${(s.citizenName || 'C').split(' ').map(n=>n[0]).join('')}
+              </div>
+              <div>
+                <strong class="text-slate-900 block">${s.citizenName}</strong>
+                <span class="text-[10px] text-slate-400 font-mono">@${s.username}</span>
+              </div>
+            </div>
+          </td>
+          <td class="p-3.5 font-mono text-slate-700">${s.aadhaarMasked}</td>
+          <td class="p-3.5 font-mono text-slate-600">${s.mobile}</td>
+          <td class="p-3.5 text-slate-600">${s.loginTime}</td>
+          <td class="p-3.5 text-slate-600">${s.lastActive}</td>
+          <td class="p-3.5 font-mono text-slate-500">${s.ipAddress}</td>
+          <td class="p-3.5">
+            ${s.status === 'active' ? 
+              '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 inline-flex items-center space-x-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse mr-1"></span>Active</span>' : 
+              '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">Terminated</span>'}
+          </td>
+          <td class="p-3.5 font-mono text-[11px] text-slate-500" title="${s.fullToken}">${s.token}</td>
+          <td class="p-3.5 text-right">
+            ${s.status === 'active' ? 
+              `<button onclick="revokeSession('${s.fullToken}')" class="px-2.5 py-1 text-[11px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-200 transition cursor-pointer">Revoke</button>` : 
+              `<span class="text-[10px] text-slate-400">None</span>`}
+          </td>
+        </tr>
+      `).join('');
+
+      // 5. Render Registered Citizens Table
+      let storedCitizens = [];
+      try {
+        storedCitizens = JSON.parse(localStorage.getItem('civicseva_all_citizens') || '[]');
+      } catch(e) {}
+      if (storedCitizens.length === 0) {
+        storedCitizens = storedSessions.map((s, idx) => ({
+          id: idx + 1,
+          full_name: s.citizenName,
+          username: s.username,
+          aadhaar_masked: s.aadhaarMasked,
+          mobile: s.mobile,
+          role: 'Verified Citizen',
+          app_count: idx === 0 ? 2 : 1,
+          doc_count: idx === 0 ? 3 : 2,
+          created_at: s.loginTime
+        }));
+      }
+      const cTbody = document.getElementById('citizensTableBody');
+      if (cTbody) {
+        cTbody.innerHTML = storedCitizens.map(c => `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="p-3.5 font-mono text-slate-400">#${c.id}</td>
+            <td class="p-3.5 font-bold text-slate-900">${c.full_name}</td>
+            <td class="p-3.5 font-mono text-slate-600">${c.username}</td>
+            <td class="p-3.5 font-mono text-slate-700">${c.aadhaar_masked}</td>
+            <td class="p-3.5 font-mono text-slate-600">${c.mobile}</td>
+            <td class="p-3.5"><span class="bg-blue-50 text-[#1E3A8A] font-bold px-2 py-0.5 rounded text-[10px] border border-blue-200">${c.role}</span></td>
+            <td class="p-3.5 font-bold text-slate-800">${c.app_count} Active</td>
+            <td class="p-3.5 font-bold text-slate-800">${c.doc_count} Verified</td>
+            <td class="p-3.5 text-slate-500">${c.created_at}</td>
+          </tr>
+        `).join('');
+      }
+
+      // 6. Render Applications Table
+      const aTbody = document.getElementById('applicationsTableBody');
+      if (aTbody) {
+        const sampleApps = [
+          { ref_id: 'CS-2026-INC8841', service_name: 'Income Certificate', applicant_name: storedSessions[0]?.citizenName || 'Abhyuday', district: 'New Delhi', state: 'Delhi', status: 'Under Verification', current_stage: 2, officer_name: 'Revenue Inspector S. Rao', submitted_at: '2026-09-21 14:30' },
+          { ref_id: 'CS-2026-DL5521', service_name: 'Driving License Renewal', applicant_name: storedSessions[1]?.citizenName || 'Vikram Aditya', district: 'Bengaluru Urban', state: 'Karnataka', status: 'Approved', current_stage: 4, officer_name: 'RTO Office HSR', submitted_at: '2026-09-20 11:15' },
+          { ref_id: 'CS-2026-RAT9012', service_name: 'National Ration Card', applicant_name: 'Priya Sharma', district: 'Mumbai Suburban', state: 'Maharashtra', status: 'Submitted', current_stage: 1, officer_name: 'Food & Civil Supplies Dept', submitted_at: '2026-09-22 08:10' }
+        ];
+        aTbody.innerHTML = sampleApps.map(a => `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="p-3.5 font-mono font-bold text-[#1E3A8A]">${a.ref_id}</td>
+            <td class="p-3.5 font-bold text-slate-900">${a.service_name}</td>
+            <td class="p-3.5 text-slate-800">${a.applicant_name}</td>
+            <td class="p-3.5 text-slate-600">${a.district}, ${a.state}</td>
+            <td class="p-3.5">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-300">
+                ${a.status}
+              </span>
+            </td>
+            <td class="p-3.5 font-bold text-slate-700">Stage ${a.current_stage}/4</td>
+            <td class="p-3.5 text-slate-600">${a.officer_name}</td>
+            <td class="p-3.5 text-slate-500">${a.submitted_at}</td>
+            <td class="p-3.5 text-right">
+              <a href="./track.html?ref=${a.ref_id}" target="_blank" class="px-2.5 py-1 text-[11px] font-bold text-[#1E3A8A] bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition">Track &rarr;</a>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // 7. Render Audit Logs Table
+      let auditLogs = [];
+      try {
+        auditLogs = JSON.parse(localStorage.getItem('civicseva_audit_history') || '[]');
+      } catch(e) {}
+      if (auditLogs.length === 0) {
+        auditLogs = [
+          { id: 1, timestamp: new Date().toLocaleString(), action: 'LOGIN_AADHAAR_OTP', citizen_name: storedSessions[0]?.citizenName || 'Abhyuday', ip_address: '127.0.0.1', details: 'e-Pramaan authentication successful.' },
+          { id: 2, timestamp: '2026-09-22 08:00:15', action: 'OTP_DISPATCH', citizen_name: 'Abhyuday', ip_address: '127.0.0.1', details: 'OTP dispatched via Telecom Gateway to +91 8328085685' },
+          { id: 3, timestamp: '2026-09-21 18:45:00', action: 'SESSION_VERIFY', citizen_name: 'Vikram Aditya', ip_address: '192.168.1.14', details: 'Active session validated via NIC Zero-Trust SSO' }
+        ];
+      }
+      const audTbody = document.getElementById('auditTableBody');
+      if (audTbody) {
+        audTbody.innerHTML = auditLogs.map(l => `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="p-3.5 font-mono text-slate-400">#${l.id}</td>
+            <td class="p-3.5 font-mono text-slate-600">${l.timestamp}</td>
+            <td class="p-3.5 font-bold text-[#1E3A8A]"><span class="bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200 font-mono text-[10px]">${l.action}</span></td>
+            <td class="p-3.5 text-slate-800 font-medium">${l.citizen_name || 'Anonymous'}</td>
+            <td class="p-3.5 font-mono text-slate-500">${l.ip_address}</td>
+            <td class="p-3.5 text-slate-700">${l.details}</td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    function clearLocalSessions() {
+      if (!confirm('Reset local demo sessions and reload?')) return;
+      localStorage.removeItem('civicseva_all_sessions');
+      localStorage.removeItem('civicseva_all_citizens');
+      localStorage.removeItem('civicseva_audit_history');
+      renderClientSideAdminData();
+    }
+
+    async function revokeSession(token) {
+      if (!confirm('Are you sure you want to revoke this citizen session? The citizen will be logged out immediately.')) return;
+      
+      if (isBackendReachable) {
+        try {
+          const res = await fetch('/api/admin/revoke-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token })
+          });
+          const data = await res.json();
+          if (data.success) {
+            fetchAdminData();
+            return;
+          }
+        } catch (e) {}
+      }
+
+      // LocalStorage revocation
+      try {
+        let sessions = JSON.parse(localStorage.getItem('civicseva_all_sessions') || '[]');
+        sessions = sessions.map(s => {
+          if (s.fullToken === token || s.token === token) {
+            return { ...s, status: 'terminated' };
+          }
+          return s;
+        });
+        localStorage.setItem('civicseva_all_sessions', JSON.stringify(sessions));
+        fetchAdminData();
+      } catch(e) {
+        alert('Could not revoke session: ' + e.message);
+      }
+    }
+
+    // -------------------------------------------------------------
+    // SMS GATEWAY CONTROLS
+    // -------------------------------------------------------------
+    function toggleProviderFields() {
+      const provider = document.getElementById('smsProviderSelect').value;
+      document.getElementById('fast2smsGroup').classList.toggle('hidden', provider !== 'fast2sms');
+      document.getElementById('twilioGroup').classList.toggle('hidden', provider !== 'twilio');
+    }
+
+    async function loadSmsConfig() {
+      try {
+        const res = await fetch('/api/admin/sms-config');
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('smsProviderSelect').value = data.provider || 'fast2sms';
+          toggleProviderFields();
+
+          if (data.fast2smsApiKeyMasked) {
+            document.getElementById('fast2smsApiKey').placeholder = `Active Key: ${data.fast2smsApiKeyMasked}`;
+          }
+          if (data.twilioAccountSid) {
+            document.getElementById('twilioAccountSid').value = data.twilioAccountSid;
+          }
+          if (data.twilioFromNumber) {
+            document.getElementById('twilioFromNumber').value = data.twilioFromNumber;
+          }
+          document.getElementById('isLiveActiveCheckbox').checked = !!data.isLiveActive;
+
+          const badge = document.getElementById('smsStatusBadge');
+          const indicator = document.getElementById('smsGatewayActiveIndicator');
+          if (data.isLiveActive && (data.hasFast2smsKey || data.hasTwilio)) {
+            badge.innerText = 'LIVE CARRIER';
+            badge.className = 'bg-emerald-100 text-emerald-900 px-1.5 py-0.5 rounded text-[10px] font-bold border border-emerald-300';
+            indicator.innerText = '🟢 Live SMS Active (' + (data.provider === 'fast2sms' ? 'Fast2SMS India' : 'Twilio') + ')';
+            indicator.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300';
+          } else {
+            badge.innerText = 'SIMULATED';
+            badge.className = 'bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded text-[10px] font-bold border border-amber-300';
+            indicator.innerText = '🟡 Simulation Mode (API Key Required for Phone Delivery)';
+            indicator.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-300';
+          }
+        }
+      } catch (err) {
+        console.error('Error loading SMS config:', err);
+      }
+    }
+
+    async function saveSmsConfig(e) {
+      if (e) e.preventDefault();
+      const provider = document.getElementById('smsProviderSelect').value;
+      const fast2smsApiKey = document.getElementById('fast2smsApiKey').value.trim();
+      const twilioAccountSid = document.getElementById('twilioAccountSid').value.trim();
+      const twilioAuthToken = document.getElementById('twilioAuthToken').value.trim();
+      const twilioFromNumber = document.getElementById('twilioFromNumber').value.trim();
+      const isLiveActive = document.getElementById('isLiveActiveCheckbox').checked;
+
+      try {
+        const res = await fetch('/api/admin/sms-config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            provider,
+            fast2smsApiKey,
+            twilioAccountSid,
+            twilioAuthToken,
+            twilioFromNumber,
+            isLiveActive
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert('SMS Gateway settings successfully saved!');
+          loadSmsConfig();
+        } else {
+          alert('Error: ' + data.message);
+        }
+      } catch (err) {
+        alert('Failed to save SMS settings: ' + err.message);
+      }
+    }
+
+    async function sendTestSmsToMobile() {
+      const phone = document.getElementById('testMobileInput').value.trim();
+      if (!phone || phone.length < 10) {
+        alert('Please enter a valid 10-digit mobile number.');
+        document.getElementById('testMobileInput').focus();
+        return;
+      }
+
+      const btn = document.getElementById('testSmsBtn');
+      btn.disabled = true;
+      btn.innerHTML = `<span>Connecting to Telecom Carrier...</span>`;
+
+      const resultCard = document.getElementById('testSmsResultCard');
+      const header = document.getElementById('testResultHeader');
+      const msg = document.getElementById('testResultMessage');
+
+      try {
+        const res = await fetch('/api/admin/sms-test', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone })
+        });
+        const data = await res.json();
+        resultCard.classList.remove('hidden');
+
+        if (data.success) {
+          resultCard.className = 'p-3.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-950 text-xs space-y-1';
+          header.innerHTML = `<span class="text-emerald-800 font-bold">✓ SMS Dispatched via ${data.provider}</span>`;
+          msg.innerHTML = `Real SMS test delivered to <strong>+91 ${phone}</strong>! OTP: <strong class="font-mono bg-emerald-200 px-1 rounded">${data.otp}</strong>.<br>${data.message}`;
+        } else {
+          resultCard.className = 'p-3.5 rounded-xl border border-amber-300 bg-amber-50 text-amber-950 text-xs space-y-1';
+          header.innerHTML = `<span class="text-amber-800 font-bold">ℹ️ ${data.provider}</span>`;
+          msg.innerHTML = `Generated OTP: <strong class="font-mono bg-amber-200 px-1 rounded">${data.otp}</strong>.<br>${data.message}`;
+        }
+      } catch (err) {
+        resultCard.classList.remove('hidden');
+        resultCard.className = 'p-3.5 rounded-xl border border-rose-300 bg-rose-50 text-rose-950 text-xs space-y-1';
+        header.innerHTML = `<span class="text-rose-800 font-bold">✕ Error</span>`;
+        msg.innerText = 'Failed to connect to server: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>Send Test SMS to My Mobile</span><span>&rarr;</span>`;
+      }
+    }
+
+    // Auto-fetch on load and poll every 5 seconds
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchAdminData();
+      loadSmsConfig();
+      setInterval(fetchAdminData, 5000);
+    });
+  </script>
+</body>
+</html>

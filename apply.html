@@ -11,48 +11,60 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #EEEEEE;
+            background: radial-gradient(circle at 12% 18%, rgba(219, 234, 254, 0.65) 0%, transparent 45%),
+                  radial-gradient(circle at 88% 82%, rgba(254, 243, 199, 0.5) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.6) 0%, transparent 100%),
+                  linear-gradient(180deg, #F8FAFC 0%, #EEF2F6 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
     .tricolor-ribbon {
       height: 4px;
       background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
     }
     .btn-official-stone {
-      background-color: #8D8179;
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F2557 100%);
       color: #FFFFFF;
       font-weight: 600;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(141, 129, 121, 0.28);
-      transition: all 0.2s ease;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(30, 58, 138, 0.28), 0 1px 3px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
     }
     .btn-official-stone:hover {
-      background-color: #796E66;
-      box-shadow: 0 6px 16px rgba(141, 129, 121, 0.38);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
+      transform: translateY(-2px);
     }
     .btn-outline-stone {
       background-color: #FFFFFF;
-      color: #4A4541;
-      border: 1.5px solid #D5CFCB;
+      color: #1E3A8A;
+      border: 1.5px solid #CBD5E1;
       font-weight: 600;
-      border-radius: 10px;
+      border-radius: 12px;
       transition: all 0.2s ease;
     }
     .btn-outline-stone:hover {
-      border-color: #8D8179;
-      color: #8D8179;
-      background-color: #FAF8F7;
+      border-color: #1E3A8A;
+      color: #1E3A8A;
+      background-color: #EFF6FF;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.12);
     }
     .card-base {
-      background: #FFFFFF;
-      border: 1.5px solid #E5E0DC;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid #E2E8F0;
       border-radius: 14px;
-      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 6px 20px -2px rgba(15, 23, 42, 0.05);
+      transition: all 0.2s ease;
     }
     .step-pill.active {
-      background-color: #8D8179;
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F2557 100%);
       color: #FFFFFF;
-      border-color: #8D8179;
+      border-color: #1E3A8A;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.28);
     }
     .step-pill.completed {
       background-color: #F0FDF4;
@@ -75,13 +87,13 @@
         <span class="text-slate-300">|</span>
         <span data-i18n="gov_india" class="font-medium text-slate-700">Government of India</span>
         <span class="text-slate-300">|</span>
-        <span data-i18n="citizen_navigator" class="text-[#8D8179] font-bold">Citizen Service Navigator</span>
+        <span data-i18n="citizen_navigator" class="text-[#1E3A8A] font-bold">Citizen Service Navigator</span>
       </div>
     </div>
     <div class="flex items-center space-x-4">
-      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#8D8179] transition">Skip to Main Content</a>
+      <a href="#mainContent" data-i18n="skip_content" class="hover:text-[#1E3A8A] transition">Skip to Main Content</a>
       <span class="text-slate-300">|</span>
-      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#8D8179] transition">Screen Reader</a>
+      <a href="./support.html" data-i18n="screen_reader" class="hover:text-[#1E3A8A] transition">Screen Reader</a>
       <span class="text-slate-300">|</span>
       <div class="flex items-center space-x-1 font-bold text-[11px]">
         <button onclick="document.body.style.fontSize='14px'" class="px-1.5 py-0.5 bg-slate-100 rounded hover:bg-slate-200 border border-slate-300">A-</button>
@@ -97,12 +109,12 @@
       
       <!-- Logo & Branding -->
       <a href="./index.html" class="flex items-center space-x-3.5">
-        <div class="w-10 h-10 rounded-xl bg-[#8D8179] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-[#8D8179]/25">
+        <div class="w-10 h-10 rounded-xl bg-[#1E3A8A] flex items-center justify-center font-extrabold text-lg text-white shadow-md shadow-blue-900/25">
           C
         </div>
         <div>
           <div class="flex items-center space-x-2">
-            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#8D8179]">Seva</span></span>
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">Civic<span class="text-[#1E3A8A]">Seva</span></span>
             <span data-i18n="official_portal" class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300/80 tracking-wider">Official Portal</span>
           </div>
           <p data-i18n="citizen_navigator" class="text-[11px] text-slate-500 font-medium">Unified Citizen Service Navigator</p>
@@ -111,15 +123,15 @@
 
       <!-- Navigation links -->
       <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold text-slate-700">
-        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Home</a>
-        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Services</a>
-        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Schemes</a>
-        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Eligibility</a>
-        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Documents</a>
-        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#8D8179] font-bold hover:text-[#8D8179] hover:bg-slate-50 transition">Apply Online</a>
-        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Track Application</a>
-        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Security Vault</a>
-        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#8D8179] hover:bg-slate-50 transition">Helpdesk</a>
+        <a href="./index.html" data-i18n="nav_home" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-white transition">Home</a>
+        <a href="./services.html" data-i18n="nav_services" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-white transition">Services</a>
+        <a href="./schemes.html" data-i18n="nav_schemes" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-white transition">Schemes</a>
+        <a href="./eligibility.html" data-i18n="nav_eligibility" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-white transition">Eligibility</a>
+        <a href="./documents.html" data-i18n="nav_documents" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-white transition">Documents</a>
+        <a href="./apply.html" data-i18n="nav_apply" class="px-3.5 py-1.5 rounded-lg bg-slate-100 text-[#1E3A8A] font-bold hover:text-[#1E3A8A] hover:bg-white transition">Apply Online</a>
+        <a href="./track.html" data-i18n="nav_track" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-white transition">Track Application</a>
+        <a href="./security.html" data-i18n="nav_security" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-white transition">Security Vault</a>
+        <a href="./support.html" data-i18n="nav_helpdesk" class="px-3.5 py-1.5 rounded-lg  hover:text-[#1E3A8A] hover:bg-white transition">Helpdesk</a>
       </nav>
 
       <!-- Right Header Actions with 22 Languages & Working Login -->
@@ -138,10 +150,10 @@
     <div class="mb-8">
       <div class="flex items-center justify-between mb-3 text-xs font-bold text-slate-700">
         <span id="stepTitleText">Step 1 of 4: Citizen Demographics & Identity</span>
-        <span class="text-[#8D8179]" id="stepPercentText">25% Completed</span>
+        <span class="text-[#1E3A8A]" id="stepPercentText">25% Completed</span>
       </div>
       <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-        <div id="progressBar" class="h-full bg-[#8D8179] transition-all duration-300" style="width: 25%"></div>
+        <div id="progressBar" class="h-full bg-[#1E3A8A] transition-all duration-300" style="width: 25%"></div>
       </div>
       
       <!-- Step Tabs -->
@@ -168,27 +180,27 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Legal Name (as per Aadhaar) *</label>
-              <input type="text" id="appFullName" value="Abhyuday Sharma" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+              <input type="text" id="appFullName" placeholder="Enter your full name" value="" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white font-medium">
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Father's / Husband's Name *</label>
-              <input type="text" id="appGuardian" placeholder="Enter guardian name" value="R. K. Sharma" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+              <input type="text" id="appGuardian" placeholder="Enter guardian name" placeholder="Enter father / spouse name" value="" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white font-medium">
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Aadhaar Card Number (12 Digits) *</label>
-              <input type="text" maxlength="14" placeholder="XXXX-XXXX-1234" value="8492-9102-4521" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium tracking-wider">
+              <input type="text" maxlength="14" placeholder="XXXX-XXXX-1234" placeholder="Enter 12-digit Aadhaar number" value="" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white font-medium tracking-wider">
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mobile Number (Linked with Aadhaar) *</label>
-              <input type="tel" maxlength="10" placeholder="9876543210" value="9876543210" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+              <input type="tel" maxlength="10" placeholder="9876543210" placeholder="Enter 10-digit mobile number" value="" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white font-medium">
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Date of Birth *</label>
-              <input type="date" value="1998-05-15" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <input type="date" value="" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white">
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Gender *</label>
-              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white">
                 <option selected>Male</option>
                 <option>Female</option>
                 <option>Third Gender</option>
@@ -198,7 +210,7 @@
 
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Permanent Residential Address *</label>
-            <textarea rows="2" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50" required>House No. 42, Civil Lines Road, District Headquarters, Pincode 208001</textarea>
+            <textarea rows="2" placeholder="Enter complete residential address with pincode" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white" required></textarea>
           </div>
 
           <div class="flex justify-end pt-4 border-t border-slate-100">
@@ -218,7 +230,7 @@
 
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Target Government Service *</label>
-            <select id="applyServiceSelect" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-semibold text-slate-900">
+            <select id="applyServiceSelect" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white font-semibold text-slate-900">
               <option value="income" selected>Income Certificate (Aay Praman Patra)</option>
               <option value="caste">Caste / Community Certificate</option>
               <option value="license">Learner / Driving License Application</option>
@@ -232,7 +244,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Purpose of Application *</label>
-              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white">
                 <option selected>Higher Education Fee Concession / Scholarship</option>
                 <option>Government Employment / Job Reservation</option>
                 <option>Social Welfare Scheme Subsidies</option>
@@ -242,11 +254,11 @@
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Declared Annual Household Income (₹) *</label>
-              <input type="number" value="180000" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50 font-medium">
+              <input type="number" value="180000" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white font-medium">
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Competent Revenue Authority *</label>
-              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white">
                 <option selected>Tehsildar Office (Sub-Division Central)</option>
                 <option>Sub-Divisional Magistrate (SDM)</option>
                 <option>Revenue Officer / Mamlatdar</option>
@@ -254,7 +266,7 @@
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Service Delivery Mode *</label>
-              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#8D8179] bg-slate-50">
+              <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:border-[#1E3A8A] bg-white">
                 <option selected>Digital e-Certificate with QR Code (DigiLocker)</option>
                 <option>Speed Post Physical Certificate Delivery</option>
                 <option>In-Person Collection at Tehsildar Office</option>
@@ -279,7 +291,7 @@
           </div>
 
           <!-- Doc 1 -->
-          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+          <div class="p-4 rounded-xl border border-slate-200 bg-white flex items-center justify-between">
             <div class="flex items-center space-x-3">
               <span class="text-xl">🪪</span>
               <div>
@@ -291,7 +303,7 @@
           </div>
 
           <!-- Doc 2 -->
-          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+          <div class="p-4 rounded-xl border border-slate-200 bg-white flex items-center justify-between">
             <div class="flex items-center space-x-3">
               <span class="text-xl">🏠</span>
               <div>
@@ -303,9 +315,9 @@
           </div>
 
           <!-- Doc 3 -->
-          <div class="p-4 rounded-xl border border-dashed border-[#8D8179] bg-[#8D8179]/5 flex items-center justify-between">
+          <div class="p-4 rounded-xl border border-dashed border-[#1E3A8A] bg-[#1E3A8A]/5 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-              <span class="text-xl text-[#8D8179]">📑</span>
+              <span class="text-xl text-[#1E3A8A]">📑</span>
               <div>
                 <span class="font-bold text-slate-900 text-xs block">Income Affidavit / Salary Certificate *</span>
                 <span class="text-[10px] text-slate-500">Drag & drop or browse from local disk</span>
@@ -315,7 +327,7 @@
           </div>
 
           <!-- Doc 4 -->
-          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+          <div class="p-4 rounded-xl border border-slate-200 bg-white flex items-center justify-between">
             <div class="flex items-center space-x-3">
               <span class="text-xl">👤</span>
               <div>
@@ -343,7 +355,7 @@
           </div>
 
           <!-- Summary Box -->
-          <div class="bg-slate-50 rounded-xl p-5 border border-slate-200 text-xs space-y-2.5">
+          <div class="bg-white rounded-xl p-5 border border-slate-200 text-xs space-y-2.5">
             <div class="flex justify-between">
               <span class="text-slate-500 font-semibold">Applicant Name:</span>
               <span class="font-bold text-slate-900">Abhyuday Sharma</span>
@@ -369,7 +381,7 @@
           <!-- Legal Declaration Checkbox -->
           <div class="p-4 rounded-xl border border-amber-200 bg-amber-50/70">
             <label class="flex items-start space-x-3 cursor-pointer">
-              <input type="checkbox" id="legalAgree" checked required class="mt-1 w-4 h-4 text-[#8D8179] rounded accent-[#8D8179]">
+              <input type="checkbox" id="legalAgree" checked required class="mt-1 w-4 h-4 text-[#1E3A8A] rounded accent-[#1E3A8A]">
               <span class="text-xs text-slate-700 leading-relaxed">
                 I hereby declare that the information provided above is true and authentic to the best of my knowledge. I understand that submitting false statements or fabricated documentation is a punishable criminal offense under the Bharatiya Nyaya Sanhita (BNS) and Information Technology Act.
               </span>
@@ -400,10 +412,10 @@
         </p>
 
         <!-- Receipt Card -->
-        <div class="max-w-md mx-auto bg-slate-50 border border-slate-200 rounded-2xl p-6 text-left text-xs mb-6 shadow-sm">
+        <div class="max-w-md mx-auto bg-white border border-slate-200 rounded-2xl p-6 text-left text-xs mb-6 shadow-sm">
           <div class="border-b border-slate-200 pb-3 mb-3 flex justify-between items-center">
             <span class="font-bold text-slate-800 uppercase">Acknowledgement No.</span>
-            <span class="font-mono font-extrabold text-sm text-[#8D8179]" id="receiptNumber">CS-2026-849201</span>
+            <span class="font-mono font-extrabold text-sm text-[#1E3A8A]" id="receiptNumber">CS-2026-849201</span>
           </div>
           <div class="space-y-2 text-slate-600">
             <div class="flex justify-between">
@@ -430,7 +442,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row justify-center gap-3">
-          <button onclick="window.print()" class="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold">
+          <button onclick="window.print()" class="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-white text-slate-700 text-xs font-bold">
             🖨️ Print / Download PDF Receipt
           </button>
           <a id="trackReceiptLink" href="./track.html?ref=CS-2026-849201" class="btn-official-stone px-6 py-2.5 text-xs flex items-center justify-center space-x-2">
@@ -446,16 +458,16 @@
   <footer class="bg-white border-t border-slate-200 mt-12 text-xs text-slate-600">
     <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex items-center space-x-2">
-        <div class="w-6 h-6 rounded bg-[#8D8179] text-white flex items-center justify-center font-bold text-xs">C</div>
+        <div class="w-6 h-6 rounded bg-[#1E3A8A] text-white flex items-center justify-center font-bold text-xs">C</div>
         <span class="font-bold text-slate-900">CivicSeva Online e-Form Portal</span>
         <span class="text-slate-400">|</span>
         <span class="text-slate-500">Government of India</span>
       </div>
       <div class="flex space-x-4 text-slate-500">
-        <a href="./index.html" class="hover:text-[#8D8179]">Home</a>
-        <a href="./services.html" class="hover:text-[#8D8179]">Services</a>
-        <a href="./track.html" class="hover:text-[#8D8179]">Track Application</a>
-        <a href="./support.html" class="hover:text-[#8D8179]">Support</a>
+        <a href="./index.html" class="hover:text-[#1E3A8A]">Home</a>
+        <a href="./services.html" class="hover:text-[#1E3A8A]">Services</a>
+        <a href="./track.html" class="hover:text-[#1E3A8A]">Track Application</a>
+        <a href="./support.html" class="hover:text-[#1E3A8A]">Support</a>
       </div>
     </div>
   </footer>
@@ -494,15 +506,46 @@
       }
     }
 
-    function submitApplication() {
+    async function submitApplication() {
       if (!document.getElementById('legalAgree').checked) {
         alert('Please accept the legal declaration before submitting.');
         return;
       }
 
-      // Generate Random Reference ID
-      const randomNum = Math.floor(100000 + Math.random() * 900000);
-      const ref = `CS-2026-${randomNum}`;
+      const serviceSelect = document.getElementById('applyServiceSelect');
+      const serviceName = serviceSelect ? serviceSelect.options[serviceSelect.selectedIndex].text : 'Income Certificate';
+      const applicantName = document.getElementById('appFullName')?.value.trim() || 'Citizen Applicant';
+      const guardian = document.getElementById('appGuardian')?.value.trim() || '';
+      const aadhaar = document.querySelector('input[maxlength="14"]')?.value.trim() || 'Not Provided';
+      const mobile = document.querySelector('input[type="tel"]')?.value.trim() || 'Not Provided';
+      const state = document.querySelector('#step1 select')?.value || 'Delhi';
+      const address = document.querySelector('#step1 textarea')?.value.trim() || '';
+
+      let ref = 'CS-2026-' + Math.floor(100000 + Math.random() * 900000);
+      try {
+        const token = localStorage.getItem('civicseva_token');
+        const res = await fetch('/api/applications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(token ? { 'Authorization': 'Bearer ' + token } : {})
+          },
+          body: JSON.stringify({
+            service_name: serviceName,
+            applicant_name: applicantName,
+            aadhaar: aadhaar,
+            mobile: mobile,
+            state: state,
+            district: 'Central District'
+          })
+        });
+        const data = await res.json();
+        if (data.success && data.ref_id) {
+          ref = data.ref_id;
+        }
+      } catch(e) {
+        console.warn('Backend offline fallback:', e);
+      }
 
       document.getElementById('receiptNumber').innerText = ref;
       document.getElementById('trackReceiptLink').href = `./track.html?ref=${ref}`;
@@ -535,5 +578,22 @@
   </script>
   <!-- CivicSeva Shared SSO Auth & 22 Indian Languages Engine -->
   <script src="./assets/common.js"></script>
+<script>
+    // Autofill from customer session if logged in
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        const u = localStorage.getItem('civicseva_user');
+        if (u) {
+          const user = JSON.parse(u);
+          const nameInput = document.getElementById('appFullName');
+          if (nameInput && !nameInput.value) nameInput.value = user.name || '';
+          const aadhInput = document.querySelector('input[maxlength="14"]');
+          if (aadhInput && !aadhInput.value && user.aadhaarMasked) aadhInput.value = user.aadhaarMasked;
+          const mobInput = document.querySelector('input[type="tel"]');
+          if (mobInput && !mobInput.value && user.mobile) mobInput.value = user.mobile;
+        }
+      } catch(e) {}
+    });
+</script>
 </body>
 </html>
