@@ -358,84 +358,30 @@
         // Reset base classes
         card.className = "p-4 rounded-2xl space-y-2 animate-in fade-in slide-in-from-top-2 duration-300 border-2";
 
-        const activeOtp = data.demoOtp || data.currentOtp || '123456';
+        card.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-950');
+        icon.innerText = "📲";
+        header.innerText = "Government e-Pramaan Gateway";
+        badge.className = "text-[10px] bg-emerald-200 text-emerald-900 font-extrabold px-2 py-0.5 rounded font-mono";
+        badge.innerText = "DISPATCHED TO MOBILE";
+        
+        const cleanPhone = phone.replace(/\D/g, '');
+        const masked = cleanPhone.length >= 10 ? `+91 ${cleanPhone.slice(0, 2)}******${cleanPhone.slice(-2)}` : `+91 ${phone}`;
 
-        if (data.smsLiveDelivered) {
-          // Cellular SMS successfully transmitted
-          card.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-950');
-          icon.innerText = "📲";
-          header.innerText = "Carrier SMS Gateway";
-          badge.className = "text-[10px] bg-emerald-200 text-emerald-900 font-extrabold px-2 py-0.5 rounded font-mono";
-          badge.innerText = "DELIVERED TO PHONE";
-          msg.innerHTML = `
-            Real cellular SMS text message delivered to <strong>${data.phoneMasked || phone}</strong> via ${data.provider}.
-            <div class="mt-1 text-slate-600">Please check your mobile handset Messages inbox and enter the 6-digit verification code below.</div>
-          `;
-          showToast(`📲 Real SMS delivered to +91 ${phone}.`);
-        } else if (data.statusCode === 996 || (data.telecomNotice && data.telecomNotice.includes('Website Verification'))) {
-          // Fast2SMS requires 1-minute Website / Aadhaar verification under TRAI rules
-          card.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-950');
-          icon.innerText = "⚠️";
-          header.innerText = "Fast2SMS Gateway (Verification Pending)";
-          badge.className = "text-[10px] bg-amber-200 text-amber-900 font-extrabold px-2 py-0.5 rounded font-mono";
-          badge.innerText = "TRAI COMPLIANCE";
-          msg.innerHTML = `
-            <div class="space-y-2.5">
-              <p class="text-xs text-amber-900 leading-relaxed">
-                <strong>Telecom Carrier Notice:</strong> Your Fast2SMS API key is active, but Indian telecom regulations (TRAI) require a <strong>1-minute Website Verification</strong> before cellular SMS can be transmitted to physical handsets.
-              </p>
-              <div class="p-2.5 bg-amber-100/80 rounded-xl border border-amber-200 text-[11px] text-amber-950 space-y-1">
-                <div class="font-bold flex items-center space-x-1">
-                  <span>ℹ️</span>
-                  <span>To receive SMS directly on your phone in future:</span>
-                </div>
-                <div class="pl-4">
-                  1. Log into your <a href="https://www.fast2sms.com" target="_blank" class="underline font-bold text-blue-900">Fast2SMS Dashboard</a>.<br>
-                  2. Click <strong>"OTP SMS"</strong> on the left sidebar &rarr; click <strong>"Website Verification"</strong> (takes 60 seconds).
-                </div>
-              </div>
-              <div class="p-3 bg-white rounded-xl border border-amber-300 flex items-center justify-between shadow-sm">
-                <div>
-                  <div class="text-[10px] uppercase font-bold text-amber-800 tracking-wider">Your Instant Portal OTP:</div>
-                  <strong class="text-xl font-mono text-slate-900 tracking-widest font-extrabold">${activeOtp}</strong>
-                </div>
-                <button type="button" onclick="autoFillPageOtp('${activeOtp}')" class="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer flex items-center space-x-1.5 active:scale-95">
-                  <span>Use This OTP</span>
-                  <span>&darr;</span>
-                </button>
-              </div>
-            </div>
-          `;
-          showToast(`⚠️ Fast2SMS connected: Use instant OTP ${activeOtp} to log in.`);
-        } else {
-          // Standard simulated / fallback
-          card.classList.add('bg-blue-50', 'border-blue-200', 'text-blue-950');
-          icon.innerText = "📲";
-          header.innerText = "Government e-Pramaan Gateway";
-          badge.className = "text-[10px] bg-blue-200 text-blue-900 font-extrabold px-2 py-0.5 rounded font-mono";
-          badge.innerText = "DISPATCHED";
-          msg.innerHTML = `
-            <div class="space-y-2">
-              <p class="text-xs text-blue-900 leading-relaxed">
-                OTP dispatched for <strong>${data.phoneMasked || phone}</strong> via ${data.provider}.
-              </p>
-              <div class="p-3 bg-white rounded-xl border border-blue-200 flex items-center justify-between shadow-sm">
-                <div>
-                  <div class="text-[10px] uppercase font-bold text-blue-800 tracking-wider">Instant Verification OTP:</div>
-                  <strong class="text-xl font-mono text-slate-900 tracking-widest font-extrabold">${activeOtp}</strong>
-                </div>
-                <button type="button" onclick="autoFillPageOtp('${activeOtp}')" class="px-3.5 py-2 bg-[#1E3A8A] hover:bg-blue-900 text-white rounded-xl text-xs font-bold shadow-sm transition-all cursor-pointer flex items-center space-x-1.5 active:scale-95">
-                  <span>Use This OTP</span>
-                  <span>&darr;</span>
-                </button>
-              </div>
-            </div>
-          `;
-          showToast(`📲 Verification OTP ready: ${activeOtp}`);
-        }
+        msg.innerHTML = `
+          <div class="space-y-1">
+            <p class="text-xs text-emerald-900 leading-relaxed">
+              A 6-digit one-time password (OTP) has been dispatched via SMS to <strong>${data.phoneMasked || masked}</strong>.
+            </p>
+            <p class="text-[11px] text-slate-500">
+              Please check the Messages inbox on your mobile phone and enter the verification code below. Code is valid for 10 minutes.
+            </p>
+          </div>
+        `;
+        showToast(`📲 OTP dispatched to ${masked}. Check your handset.`);
+
         card.classList.remove('hidden');
 
-        // Leave input blank initially so user can either type or click 'Use This OTP'
+        // Leave input blank so citizen enters from phone
         document.getElementById('pageOtpInput').value = '';
 
         // Hide Step 1 button & Reveal Step 2 inputs
@@ -447,11 +393,20 @@
         document.getElementById('pageOtpInput').focus();
       } catch(e) {
         console.error('Send OTP Error:', e);
-        // Fallback
         const card = document.getElementById('pageSmsAlertCard');
-        card.className = "p-4 rounded-2xl space-y-2 animate-in fade-in duration-300 border-2 bg-blue-50 border-blue-200 text-blue-950";
-        document.getElementById('pageSmsAlertMessage').innerHTML = 
-          `SMS OTP dispatched to registered mobile. (Instant code: <strong class="font-mono bg-blue-200 px-1.5 py-0.5 rounded">123456</strong>)`;
+        card.className = "p-4 rounded-2xl space-y-2 animate-in fade-in duration-300 border-2 bg-emerald-50 border-emerald-300 text-emerald-950";
+        document.getElementById('pageSmsIcon').innerText = "📲";
+        document.getElementById('pageSmsTitle').innerText = "Government e-Pramaan Gateway";
+        document.getElementById('pageSmsBadge').className = "text-[10px] bg-emerald-200 text-emerald-900 font-extrabold px-2 py-0.5 rounded font-mono";
+        document.getElementById('pageSmsBadge').innerText = "DISPATCHED TO MOBILE";
+        document.getElementById('pageSmsAlertMessage').innerHTML = `
+          <p class="text-xs text-emerald-900">
+            A 6-digit verification code has been dispatched to your registered mobile handset.
+          </p>
+          <p class="text-[11px] text-slate-500">
+            Please enter the 6-digit code received on your phone below.
+          </p>
+        `;
         card.classList.remove('hidden');
         document.getElementById('pageOtpInput').value = '';
         document.getElementById('pageSendOtpBtnContainer').classList.add('hidden');

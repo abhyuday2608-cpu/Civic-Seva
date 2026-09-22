@@ -237,9 +237,37 @@
           <p class="text-xs text-slate-600 leading-relaxed mb-4">
             Skip scanning paperwork! Automatically import verified Aadhaar, PAN, Marksheets, and Driving Licenses directly from your government DigiLocker account.
           </p>
-          <button onclick="alert('DigiLocker API authorization simulation connected.')" class="w-full py-2 bg-blue-900 text-white rounded-lg text-xs font-bold hover:bg-blue-800 transition">
-            Fetch from DigiLocker
-          </button>
+          <a href="./certificate.html?ref=CS-2026-EK5512&type=aadhaar" target="_blank" class="w-full py-2 bg-blue-900 text-white rounded-lg text-xs font-bold hover:bg-blue-800 transition flex items-center justify-center space-x-1.5">
+            <span>📥 View Aadhaar e-KYC Slip</span>
+          </a>
+        </div>
+
+        <!-- Official Downloadable Issued Certificates -->
+        <div class="card-base p-5 bg-white border-emerald-300">
+          <div class="flex items-center space-x-2 text-emerald-900 font-bold text-xs uppercase mb-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Official Issued Documents</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm mb-2">Download Digitally Signed Certificates</h4>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3">
+            Government certificates generated with verifiable QR codes, SDM DSC digital signature, and cryptographic SHA-256 seal.
+          </p>
+          <div class="space-y-2 text-xs">
+            <a href="./certificate.html?ref=CS-2026-849201&type=income" target="_blank" class="p-2.5 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 flex items-center justify-between transition group">
+              <div>
+                <strong class="text-slate-900 block group-hover:text-emerald-900">Income & Asset Certificate</strong>
+                <span class="text-[10px] text-slate-400 font-mono">Ref: CS-2026-849201 • Valid FY 2026-27</span>
+              </div>
+              <span class="text-emerald-700 font-bold text-xs group-hover:translate-x-0.5 transition">PDF &rarr;</span>
+            </a>
+            <a href="./certificate.html?ref=CS-2026-DOM3321&type=residence" target="_blank" class="p-2.5 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 flex items-center justify-between transition group">
+              <div>
+                <strong class="text-slate-900 block group-hover:text-emerald-900">Permanent Residence / Domicile</strong>
+                <span class="text-[10px] text-slate-400 font-mono">Ref: CS-2026-DOM3321 • SDM Certified</span>
+              </div>
+              <span class="text-emerald-700 font-bold text-xs group-hover:translate-x-0.5 transition">PDF &rarr;</span>
+            </a>
+          </div>
         </div>
 
       </div>

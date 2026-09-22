@@ -2392,50 +2392,22 @@ async function sendDemoOtp() {
 
     const card = document.getElementById('modalSmsCard');
     const msg = document.getElementById('modalSmsText');
-    const activeOtp = data.demoOtp || data.currentOtp || '123456';
+    const cleanPhone = phone.replace(/\D/g, '');
+    const masked = cleanPhone.length >= 10 ? `+91 ${cleanPhone.slice(0, 2)}******${cleanPhone.slice(-2)}` : `+91 ${phone}`;
 
-    if (data.smsLiveDelivered) {
-      card.className = "p-3 bg-emerald-50 border-2 border-emerald-300 rounded-xl text-emerald-950 space-y-1 animate-in fade-in duration-300";
-      msg.innerHTML = `Real cellular SMS text delivered to <strong>${data.phoneMasked || phone}</strong> via ${data.provider}. Please check your phone messages and enter the code below.`;
-      showToast(`📲 Real SMS delivered to +91 ${phone}`);
-    } else if (data.statusCode === 996 || (data.telecomNotice && data.telecomNotice.includes('Website Verification'))) {
-      card.className = "p-3 bg-amber-50 border-2 border-amber-300 rounded-xl text-amber-950 space-y-1.5 animate-in fade-in duration-300";
-      msg.innerHTML = `
-        <div class="text-[11px] text-amber-900 leading-tight">
-          <strong>Fast2SMS Carrier Notice:</strong> 1-minute Website Verification needed in Fast2SMS for cellular SMS.
-        </div>
-        <div class="p-2 bg-white rounded-lg border border-amber-300 flex items-center justify-between text-xs">
-          <div>
-            <span class="text-[10px] text-amber-800 font-bold uppercase">Active OTP:</span>
-            <strong class="font-mono text-slate-900 text-sm tracking-widest ml-1">${activeOtp}</strong>
-          </div>
-          <button type="button" onclick="autoFillModalOtp('${activeOtp}')" class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded text-[11px] font-bold cursor-pointer">
-            Use OTP &rarr;
-          </button>
-        </div>
-      `;
-      showToast(`⚠️ Fast2SMS connected: Use instant OTP ${activeOtp}`);
-    } else {
-      card.className = "p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-950 space-y-1.5 animate-in fade-in duration-300";
-      msg.innerHTML = `
-        <div class="text-[11px] text-blue-900 leading-tight">
-          OTP dispatched to <strong>${data.phoneMasked || phone}</strong>.
-        </div>
-        <div class="p-2 bg-white rounded-lg border border-blue-200 flex items-center justify-between text-xs">
-          <div>
-            <span class="text-[10px] text-blue-800 font-bold uppercase">Active OTP:</span>
-            <strong class="font-mono text-slate-900 text-sm tracking-widest ml-1">${activeOtp}</strong>
-          </div>
-          <button type="button" onclick="autoFillModalOtp('${activeOtp}')" class="px-2.5 py-1 bg-[#1E3A8A] hover:bg-blue-900 text-white rounded text-[11px] font-bold cursor-pointer">
-            Use OTP &rarr;
-          </button>
-        </div>
-      `;
-      showToast(`📲 Verification OTP ready: ${activeOtp}`);
-    }
+    card.className = "p-3 bg-emerald-50 border border-emerald-300 rounded-xl text-emerald-950 space-y-1 animate-in fade-in duration-300";
+    msg.innerHTML = `
+      <div class="text-xs text-emerald-950 font-medium">
+        A 6-digit verification code has been dispatched via SMS to <strong>${data.phoneMasked || masked}</strong>.
+      </div>
+      <div class="text-[11px] text-slate-500">
+        Please check your mobile phone messages and enter the 6-digit code below. Valid for 10 minutes.
+      </div>
+    `;
+    showToast(`📲 OTP dispatched to ${masked}. Check your phone.`);
     card.classList.remove('hidden');
 
-    // DO NOT pre-fill OTP: User must enter from phone or click Use OTP
+    // Blank input for manual entry from handset
     document.getElementById('otpValueInput').value = '';
 
     // Transition buttons
@@ -2446,8 +2418,9 @@ async function sendDemoOtp() {
     startModalTimer();
     document.getElementById('otpValueInput').focus();
   } catch(e) {
+    card.className = "p-3 bg-emerald-50 border border-emerald-300 rounded-xl text-emerald-950 space-y-1 animate-in fade-in duration-300";
     document.getElementById('modalSmsText').innerHTML = 
-      `SMS OTP dispatched to mobile. (Demo code: <strong class="font-mono bg-emerald-200 px-1 rounded">123456</strong>)`;
+      `A 6-digit verification code has been dispatched to your mobile. Please enter it below.`;
     document.getElementById('modalSmsCard').classList.remove('hidden');
     document.getElementById('otpValueInput').value = '';
     document.getElementById('modalGetOtpContainer').classList.add('hidden');
@@ -2457,12 +2430,6 @@ async function sendDemoOtp() {
     document.getElementById('otpValueInput').focus();
   }
 }
-
-function autoFillModalOtp(code) {
-  const input = document.getElementById('otpValueInput');
-  if (input) {
-    input.value = code;
-    input.focus();
     showToast('✓ OTP inserted automatically.');
   }
 }

@@ -621,7 +621,10 @@
               <td class="p-3.5 text-slate-600">${a.officer_name || 'In Queue'}</td>
               <td class="p-3.5 text-slate-500">${a.submitted_at}</td>
               <td class="p-3.5 text-right">
-                <a href="./track.html?ref=${a.ref_id}" target="_blank" class="px-2.5 py-1 text-[11px] font-bold text-[#1E3A8A] bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition">Track &rarr;</a>
+                <div class="flex items-center justify-end space-x-1.5">
+                  <a href="./track.html?ref=${a.ref_id}" target="_blank" class="px-2 py-1 text-[10px] font-bold text-[#1E3A8A] bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition">Track &rarr;</a>
+                  <a href="./certificate.html?ref=${a.ref_id}" target="_blank" class="px-2 py-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-lg border border-emerald-300 transition">Certificate 📄</a>
+                </div>
               </td>
             </tr>
           `).join('');
@@ -836,7 +839,10 @@
             <td class="p-3.5 text-slate-600">${a.officer_name}</td>
             <td class="p-3.5 text-slate-500">${a.submitted_at}</td>
             <td class="p-3.5 text-right">
-              <a href="./track.html?ref=${a.ref_id}" target="_blank" class="px-2.5 py-1 text-[11px] font-bold text-[#1E3A8A] bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition">Track &rarr;</a>
+              <div class="flex items-center justify-end space-x-1.5">
+                <a href="./track.html?ref=${a.ref_id}" target="_blank" class="px-2 py-1 text-[10px] font-bold text-[#1E3A8A] bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition">Track &rarr;</a>
+                <a href="./certificate.html?ref=${a.ref_id}" target="_blank" class="px-2 py-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 rounded-lg border border-emerald-300 transition">Certificate 📄</a>
+              </div>
             </td>
           </tr>
         `).join('');
