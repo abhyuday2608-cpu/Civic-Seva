@@ -2142,6 +2142,10 @@ function checkAuthStatus() {
               <span>🔒</span>
               <span>Security & Document Vault</span>
             </a>
+            <a href="./dashboard.html" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-medium">
+              <span>📊</span>
+              <span>National Trust Dashboard</span>
+            </a>
             <a href="./admin.html" target="_blank" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-blue-50 text-[#1E3A8A] font-bold border border-blue-100 mt-1">
               <span>⚙️</span>
               <span>Admin & Active Sessions</span>
