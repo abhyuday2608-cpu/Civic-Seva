@@ -380,18 +380,27 @@
 
             <!-- Twilio Configuration -->
             <div id="twilioGroup" class="hidden p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
-              <strong class="text-slate-900 text-xs font-bold">Twilio Carrier Credentials</strong>
+              <div class="flex justify-between items-center">
+                <strong class="text-slate-900 text-xs font-bold">Twilio Carrier & AI Verify Credentials</strong>
+                <a href="https://console.twilio.com/" target="_blank" class="text-[#1E3A8A] font-bold hover:underline text-[11px]">Open Twilio Console &rarr;</a>
+              </div>
+              <p class="text-[11px] text-slate-500">Supports both <strong>Twilio Verify API</strong> (AI Fraud Guard & Auto OTP) and <strong>Twilio Programmable SMS</strong>.</p>
               <div>
-                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Account SID</label>
+                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Account SID *</label>
                 <input type="text" id="twilioAccountSid" placeholder="ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs bg-white" />
               </div>
               <div>
-                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Auth Token</label>
+                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Auth Token *</label>
                 <input type="password" id="twilioAuthToken" placeholder="Your Twilio Auth Token" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs bg-white" />
               </div>
               <div>
-                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Sender Phone Number</label>
-                <input type="text" id="twilioFromNumber" placeholder="+1234567890" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs bg-white" />
+                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Sender Phone Number (+1...)</label>
+                <input type="text" id="twilioFromNumber" placeholder="+17372508034" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs bg-white" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 uppercase mb-1">Twilio Verify Service SID (VA... - AI Fraud Guard)</label>
+                <input type="text" id="twilioVerifySid" placeholder="VAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs bg-white" />
+                <span class="text-[10px] text-slate-400 mt-1 block">Created automatically or found in Twilio Console &rarr; Verify &rarr; Services</span>
               </div>
             </div>
 
@@ -928,6 +937,9 @@
           if (data.twilioFromNumber) {
             document.getElementById('twilioFromNumber').value = data.twilioFromNumber;
           }
+          if (data.twilioVerifySid) {
+            document.getElementById('twilioVerifySid').value = data.twilioVerifySid;
+          }
           document.getElementById('isLiveActiveCheckbox').checked = !!data.isLiveActive;
 
           const badge = document.getElementById('smsStatusBadge');
@@ -935,7 +947,7 @@
           if (data.isLiveActive && (data.hasFast2smsKey || data.hasTwilio)) {
             badge.innerText = 'LIVE CARRIER';
             badge.className = 'bg-emerald-100 text-emerald-900 px-1.5 py-0.5 rounded text-[10px] font-bold border border-emerald-300';
-            indicator.innerText = '🟢 Live SMS Active (' + (data.provider === 'fast2sms' ? 'Fast2SMS India' : 'Twilio') + ')';
+            indicator.innerText = '🟢 Live SMS Active (' + (data.provider === 'fast2sms' ? 'Fast2SMS India' : 'Twilio Global') + ')';
             indicator.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300';
           } else {
             badge.innerText = 'SIMULATED';
@@ -956,6 +968,7 @@
       const twilioAccountSid = document.getElementById('twilioAccountSid').value.trim();
       const twilioAuthToken = document.getElementById('twilioAuthToken').value.trim();
       const twilioFromNumber = document.getElementById('twilioFromNumber').value.trim();
+      const twilioVerifySid = document.getElementById('twilioVerifySid').value.trim();
       const isLiveActive = document.getElementById('isLiveActiveCheckbox').checked;
 
       try {
@@ -968,6 +981,7 @@
             twilioAccountSid,
             twilioAuthToken,
             twilioFromNumber,
+            twilioVerifySid,
             isLiveActive
           })
         });
